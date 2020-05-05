@@ -1,0 +1,11 @@
+.chart-styling{
+    margin-top: 10px; 
+    /* margin-left: 30px; */
+}
+
+.data{
+    font-size: 35px;
+    color: rgb(140, 4, 168);
+    font-weight: bold;
+    text-shadow: 1px 1px;
+}   
