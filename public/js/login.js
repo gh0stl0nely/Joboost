@@ -22,6 +22,18 @@ $(document).ready(function () {
         console.log("close menu");
         isOpen = false;
         responsiveMenu();
-    })
+    });
+
+    $("#loginBtn").on('click', function(e){
+        e.preventDefault();
+
+        const data = {
+            email: $("#email").val(),
+            password: $("#password").val(),
+        };
+
+        $.post("/api/login", data); // If successful go to dashboard.?
+
+    });
 });
 

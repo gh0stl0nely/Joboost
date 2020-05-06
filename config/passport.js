@@ -1,25 +1,47 @@
 const passport = require("passport");
 const Local_Strategy = require("passport-local").Strategy;
+const db = require("../models");
 
-passport.use(new Local_Strategy({usernameField: "email"}, authenticateUser));
+passport.use(new Local_Strategy({
+    usernameField: "email"
+}, authenticateUser));
 
-function authenticateUser(username, password, done){
+async function authenticateUser(username, password, done) {
 
-    
+    try {
+        const user = await db.Employer.findOne({
+            where: {
+                email: username,
+            }
+        });
 
-     //Find the user here 
-    //db.Employer.FindOne
+        if(!user){
+            console.log("USER NOT FOUND!");
+            return done(null,false, {message: "User not found"});
+        }
 
-    // if (err) { return done(err); }
-    // if (!user) { return done(null, false); }
-    // if (!user.verifyPassword(password)) { return done(null, false); }
-    // return done(null, user);
+        if(password != user.password){
+            console.log("WRONG PASSWORD!");
+            return done(null,false, {message: "Wrong password"});
+        };
+
+        // Passing user that was found from database ^ for serialization
+        return done(null,user);
+    } catch (e) {
+       return done(e)
+    };
 }
 
+// We would only want to serialize user.id ^
 passport.serializeUser((user, done) => {
-
+    console.log("Serializing id is " + user.id);
+    done(null, user.id);
 });
 
-passport.deserializeUser((user, done) => {
-
+// Deserialize it into req.user = user.id; Basically when the user moves to another page this functionw will run
+passport.deserializeUser((id, done) => {
+    console.log("Deserializing id is " + id);
+    done(null,id);
 });
+
+module.exports = passport;

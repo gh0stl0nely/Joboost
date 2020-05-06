@@ -1,4 +1,5 @@
 const passport = require("../config/passport.js");
+const db = require("../models");
 
 module.exports = function(app){
     
@@ -6,11 +7,25 @@ module.exports = function(app){
     app.post("/api/login", passport.authenticate("local"), (req,res)=> {
         //If successful then redirect them back to t
         //req.user will exist here. 
+        console.log("FOUND EM! ID is " + req.user);
+        // After this will direct them to to dashboard page
+        res.end();
     });
 
     // When Employer press "Signup"
-    app.post("/api/register", (req,res) => {
-        // Store this into the Employer thing
+    app.post("/api/register", async (req,res) => {
+        const username = req.body.name;
+        const email = req.body.email;
+        const password = req.body.password;
+
+        const response = await db.Employer.create({
+            email: email,
+            password: password,
+            company: username
+        });
+
+        res.end();
+
     });
 
 
