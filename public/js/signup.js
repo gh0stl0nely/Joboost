@@ -48,6 +48,21 @@ $(document).ready(function () {
         console.log("close menu");
         isOpen = false;
         responsiveMenu();
+    });
+
+    $("#registerBtn").on("click", (e) => {
+        e.preventDefault();
+
+        const data = {
+            name: $('#name').val(),
+            email: $('#email').val(),
+            password: $('#password').val(),
+            // Missing logo but will figure out later
+        };
+
+        $.post("/api/register", data).then(() => {
+            window.location = "/login";
+        })
     })
 });
 

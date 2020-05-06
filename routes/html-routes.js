@@ -6,14 +6,23 @@
 // =============================================================
 const path = require("path");
 
+function checkAuthentication(req,res,next){
+  if(req.user){
+      next();
+  } else {
+    console.log("Not authenticated");
+    return res.redirect('/login'); // Supposed to redirect to home page :)
+  }
+}
 
 // Routes
 // =============================================================
 module.exports = function(app){
 
-    // To Home Page
-    app.get("/", (req,res) => {
-        
+    // To Home Page, IF authenticated, go to dashboard page. If not go to homepage
+    app.get("/", checkAuthentication, (req,res) => {
+        console.log(req.user); // This is the ID!! 
+        //Prepare data and go into dashboard page... 
     });
 
     // To industry_data html page
@@ -48,7 +57,7 @@ module.exports = function(app){
   
   // Dashboard route loads dashboard.html
 //   app.get("/dashboard", function(req, res) {
-//     res.sendFile(path.join(__dirname, "../public/dashboard.html"));
+//     
 //   });
 
   // Viewing a job post route loads jobposting.html

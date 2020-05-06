@@ -5,6 +5,8 @@
 // *** Dependencies
 // =============================================================
 var express = require("express");
+var session = require("express-session");
+const passport = require("./config/passport");
 
 // Sets up the Express App
 // =============================================================
@@ -21,9 +23,21 @@ app.use(express.json());
 // Static directory
 app.use(express.static("public"));
 
+// Use Express session for persistent login and passport
+app.use(session({
+  secret: "asdsadsad21313@",
+  resave: false,
+  saveUninitialized: false // Will only create a cookie upon authentication or logged in 
+}));
+
+// Initialize passport and integrates Express session with Express-session 
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Routes
 // =============================================================
 require("./routes/html-routes.js")(app);
+require("./routes/api-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
