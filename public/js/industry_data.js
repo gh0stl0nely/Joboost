@@ -12,6 +12,33 @@ $(document).ready(function () {
         drawEmploymentGrowthRateGraph();
     })
 
+    $("#industryOption").on("change", function(){
+        const selectedOption = $(this).find(":selected").text(); // Get the selected option
+        const dataSection = $("#dataSection"); 
+        const selectionBar = $("#industryOption");
+        // selectionBar.attr("disabled", true);
+        $("#loader").css("visibility", "visible");
+
+        
+    
+        // Send Get Request Here
+        // Spin, and disbale the button (while waiting to receive it from backend)
+
+        // Once receive .then() => Take the code below inside, 
+
+        // Dont't really need the none tbh ...
+
+        dataSection.css("display", "block");
+        $("#selectedIndustry").text(selectedOption);
+        animateValue("growthData",39,320040,1000);
+        animateValue("opportunityData",39,320040,1000);
+        drawJobOpportunityGraph();
+        drawEmploymentGrowthRateGraph();
+        // $("#loader").css("display", "none");
+        // selectionBar.attr("disabled", false);
+
+    })
+
     //Initialize selection bar
     $('select').formSelect(); 
 
@@ -30,12 +57,12 @@ function drawJobOpportunityGraph() {
     ]);
 
     var options = {
-        title: 'Annual Employment Growth Within Industry',
+        title: 'Estimated number of job available per annum ',
         width: "100%",
         height: $(window).height() * 0.75,
         legend: 'bottom',
         vAxis: {
-            title: 'Cups',
+            title: 'Number of jobs',
             minValue: 0
         },
         hAxis: {
@@ -64,7 +91,7 @@ function drawEmploymentGrowthRateGraph() {
     var chartElement = document.getElementById('employmentGrowthGraph')
     var data = google.visualization.arrayToDataTable([
         ['Year', 'Medicine'],
-        ['2019', 165, ],
+        ['2019', -39, ],
         ['2020', 135, ],
         ['2021', 157, ],
         ['2022', 139, ],
@@ -72,13 +99,13 @@ function drawEmploymentGrowthRateGraph() {
     ]);
 
     var options = {
-        title: 'Annual Employment Growth Within Industry',
+        title: 'Changes in employment growth per annum',
         legend: 'bottom',
         width: "100%",
         height: $(window).height() * 0.75,
         vAxis: {
             minValue: 0,
-            title: 'Cups'
+            title: 'Job Growth'
         },
         hAxis: {
             title: 'Year'
@@ -99,4 +126,36 @@ function drawEmploymentGrowthRateGraph() {
 
     var chart = new google.visualization.ComboChart(chartElement);
     chart.draw(data, options);
+}
+
+function animateValue(id, start, end, duration) {
+    // assumes integer values for start and end
+    
+    var obj = document.getElementById(id);
+    var range = end - start;
+    // no timer shorter than 50ms (not really visible any way)
+    var minTimer = 50;
+    // calc step time to show all interediate values
+    var stepTime = Math.abs(Math.floor(duration / range));
+    
+    // never go below minTimer
+    stepTime = Math.max(stepTime, minTimer);
+    
+    // get current time and calculate desired end time
+    var startTime = new Date().getTime();
+    var endTime = startTime + duration;
+    var timer;
+  
+    const run = () => {
+        var now = new Date().getTime();
+        var remaining = Math.max((endTime - now) / duration, 0);
+        var value = Math.round(end - (remaining * range));
+        obj.innerHTML = value;
+        if (value == end) {
+            clearInterval(timer);
+        }
+    }
+    
+    timer = setInterval(run, stepTime);
+    run();
 }

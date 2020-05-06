@@ -4,19 +4,48 @@
 
 // Dependencies
 // =============================================================
-var path = require("path");
+const path = require("path");
+
 
 // Routes
 // =============================================================
-module.exports = function(app) {
+module.exports = function(app){
 
-  // Each of the below routes just handles the HTML page that the user gets sent to.
+    // To Home Page
+    app.get("/", (req,res) => {
+        
+    });
 
-  // Index route 
-  app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/html/index.html"));
-  });
+    // To industry_data html page
+    app.get("/data", (req,res) => {
+        res.sendFile(path.resolve(__dirname + "/../public/html/industry_data.html"));
+    });
 
+    // To login page
+    app.get("/login", (req,res) => {
+        res.sendFile(path.resolve(__dirname + "/../public/html/login.html"));
+    });
+
+    // To signup page
+    app.get("/signup", (req,res) => {
+        res.sendFile(path.resolve(__dirname + "/../public/html/signup.html"));
+    });
+  
+  
+// When all is lost, 404 
+ //   app.get("*", function(req, res) {
+//     res.sendFile(path.join(__dirname, "../public/index.html"));
+//   });
+  
+    // Viewing ALL resumes for a job leads to viewallresumes.html
+  //   app.get("/viewall", function(req, res) {
+//     res.sendFile(path.join(__dirname, "../public/viewallresumes.html"));
+//   });
+    // Creating a job post route leads to createpost.html
+  //   app.get("/createpost", function(req, res) {
+//     res.sendFile(path.join(__dirname, "../public/createpost.html"));
+//   });
+  
   // Dashboard route loads dashboard.html
 //   app.get("/dashboard", function(req, res) {
 //     res.sendFile(path.join(__dirname, "../public/dashboard.html"));
@@ -27,24 +56,4 @@ module.exports = function(app) {
 //     res.sendFile(path.join(__dirname, "../public/jobposting.html"));
 //   });
 
-  // Creating a job post route leads to createpost.html
-  //   app.get("/createpost", function(req, res) {
-//     res.sendFile(path.join(__dirname, "../public/createpost.html"));
-//   });
-
-  // Viewing ALL resumes for a job leads to viewallresumes.html
-  //   app.get("/viewall", function(req, res) {
-//     res.sendFile(path.join(__dirname, "../public/viewallresumes.html"));
-//   });
-
-  // Viewing the Jobs graph leads to datapage.html
-  //   app.get("/jobsgraph", function(req, res) {
-//     res.sendFile(path.join(__dirname, "../public/jobsgraph.html"));
-//   });
-
-// When all is lost, 404 
- //   app.get("*", function(req, res) {
-//     res.sendFile(path.join(__dirname, "../public/index.html"));
-//   });
-
-};
+}
