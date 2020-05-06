@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="../css/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">Logo</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/">Create Posts</a></li>
+                <li><a href="/" class="hover:text-purple-800 hover:bg-white">Log out</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="/" class="hover:text-purple-800 hover:bg-white">Create Posts</a></li>
+        <li><a href="/" class="hover:text-purple-800 hover:bg-white">Log out</a></li>
+    </ul>
+
+    <div class="container">
+        <div class="row">
+            <h3 class="center">All Job Posts</h3>
+        </div>
+        <div class="row">
+            <form>
+                <div class="input-field col s12 m6">
+                    <select>
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="1">most resume received</option>
+                        <option value="2">publish date</option>
+                    </select>
+                    <label>Sorted By</label>
+                </div>
+
+                <div class="input-field col s11 m5">
+                    <input id="search" type="search" placeholder="Search for job title..." required>
+                </div>
+                <div class="input-field col s1 m1">
+                    <a class="btn waves-effect waves-light" type="submit" id="searchBtn">
+                        <i class="material-icons">search</i>
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="row">
+            <div class="col s7" style="padding: 0;">
+                <ul class="collection" id="postList">
+                    <li class="collection-item avatar dropdown-trigger" data-target='dropdown'
+                        style="padding-left: 15px; background-color: #f3e5f5">
+                        <span class="title">Title</span>
+                        <p>Published date:
+                            <br>
+                            Resume received:
+                        </p>
+                        <a href="#" class="secondary-content"><i
+                                class="material-icons purple-text text-darken-2">more_vert</i></a>
+                    </li>
+                    <li class="collection-item avatar dropdown-trigger" data-target='dropdown'
+                        style="padding-left: 15px; background-color: #f3e5f5">
+                        <span class="title">Title</span>
+                        <p>Published date:
+                            <br>
+                            Resume received:
+                        </p>
+                        <a href="#" class="secondary-content"><i
+                                class="material-icons purple-text text-darken-2">more_vert</i></a>
+                    </li>
+                    <li class="collection-item avatar dropdown-trigger" data-target='dropdown'
+                        style="padding-left: 15px; background-color: #f3e5f5">
+                        <span class="title">Title</span>
+                        <p>Published date:
+                            <br>
+                            Resume received:
+                        </p>
+                        <a href="#" class="secondary-content"><i
+                                class="material-icons purple-text text-darken-2">more_vert</i></a>
+                    </li>
+                    <li class="collection-item avatar dropdown-trigger" data-target='dropdown'
+                        style="padding-left: 15px;">
+                        <span class="title">Title</span>
+                        <p>Published date:
+                            <br>
+                            Resume received:
+                        </p>
+                        <a href="#" class="secondary-content"><i
+                                class="material-icons purple-text text-darken-2">more_vert</i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col s2" id="editList" style="padding: 0px">
+                <ul class="collection" style="border: none;">
+                    <li class="collection-item avatar" style="border:none; padding: 0;">
+                        <a class="edit modal-trigger btn purple" href="#modalEdit"><i
+                                class="material-icons white-text left">mode_edit</i>Edit</a>
+                    </li>
+                    <li class="collection-item avatar" style="border:none; padding: 0;">
+                        <a class="edit modal-trigger btn purple" href="#modalEdit"><i
+                                class="material-icons white-text left">mode_edit</i>Edit</a>
+                    </li>
+                    <li class="collection-item avatar" style="border:none; padding: 0;">
+                        <a class="edit modal-trigger btn purple" href="#modalEdit"><i
+                                class="material-icons white-text left">mode_edit</i>Edit</a>
+                    </li>
+                    <li class="collection-item avatar" style="border:none; padding: 0;">
+                        <a class="edit modal-trigger btn purple" href="#modalEdit"><i
+                                class="material-icons white-text left">mode_edit</i>Edit</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col s3" id="viewList" style="padding: 0px">
+                <ul class="collection" style="border: none;">
+                    <li class="collection-item avatar" style="border:none; padding: 0;">
+                        <a class="btn purple"><i class="material-icons white-text">view_list</i>View all resume</a>
+                    </li>
+                    <li class="collection-item avatar" style="border:none; padding: 0;">
+                        <a class="btn purple"><i class="material-icons white-text">view_list</i>View all resume</a>
+                    </li>
+                    <li class="collection-item avatar" style="border:none; padding: 0;">
+                        <a class="btn purple"><i class="material-icons white-text">view_list</i>View all resume</a>
+                    </li>
+                    <li class="collection-item avatar" style="border:none; padding: 0;">
+                        <a class="btn purple"><i class="material-icons white-text">view_list</i>View all resume</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <ul class="collapsible">
+                <li>
+                    <div class="collapsible-header">
+                        Title
+                        <i class="material-icons purple-text text-darken-2 right">more_vert</i>
+                        <a class="edit modal-trigger right" href="#modalEdit"><i
+                                class="material-icons purple-text text-darken-2">mode_edit</i></a>
+                    </div>
+                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="modalEdit" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Title</h4>
+                <div class="row">
+                    <p>Published date: <span></span></p>
+                </div>
+                <form>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="location" type="text" class="validate">
+                            <label for="location">Location</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="description" class="materialize-textarea"></textarea>
+                            <label for="description">Description</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="contact" type="text">
+                            <label for="contact">Contact</label>
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <p>Resume Received: <span></span></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Save</a>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+            </div>
+        </div>
+
+        <ul id='dropdown' class='dropdown-content'>
+            <li>Title</li>
+            <li>Published Date: <span></span></li>
+            <li>Description</li>
+            <li>Contact</li>
+            <li>Resume received: <span></span></li>
+        </ul>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script type="text/javascript" src="../js/dashboard.js"></script>
+</body>
