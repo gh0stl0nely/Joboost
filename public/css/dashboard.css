@@ -6,10 +6,19 @@ h3{
     color: rgb(140, 4, 168);
 }
 
-#search{
-    width: 80%;
-}
-
 #searchBtn{
     background-color: #B794F4;
+}
+
+
+#postList li{
+    background-color: #f3e5f5;
+}
+
+#dropdown li{
+    pointer-events: none;
+}
+
+#dropdown li:hover{
+    background-color: white;
 }
