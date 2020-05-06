@@ -21,8 +21,7 @@ module.exports = function(app){
 
     // To Home Page, IF authenticated, go to dashboard page. If not go to homepage
     app.get("/", checkAuthentication, (req,res) => {
-        console.log(req.user); // This is the ID!! 
-        //Prepare data and go into dashboard page... 
+        res.redirect('/dashboard');
     });
 
     // To industry_data html page
@@ -38,6 +37,13 @@ module.exports = function(app){
     // To signup page
     app.get("/signup", (req,res) => {
         res.sendFile(path.resolve(__dirname + "/../public/html/signup.html"));
+    });
+    
+    // Dashboard route loads dashboard.html
+    app.get("/dashboard", checkAuthentication, function(req, res) {
+      // Would have to do some database searching and data preparation here!
+      // res.render('something', {data})/ 
+      res.sendFile(path.resolve(__dirname + "/../public/html/dashboard.html"));
     });
   
   
@@ -55,11 +61,6 @@ module.exports = function(app){
 //     res.sendFile(path.join(__dirname, "../public/createpost.html"));
 //   });
   
-  // Dashboard route loads dashboard.html
-//   app.get("/dashboard", function(req, res) {
-//     
-//   });
-
   // Viewing a job post route loads jobposting.html
 //   app.get("/jobposting", function(req, res) {
 //     res.sendFile(path.join(__dirname, "../public/jobposting.html"));

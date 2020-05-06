@@ -9,7 +9,9 @@ module.exports = function(app){
         //req.user will exist here. 
         console.log("FOUND EM! ID is " + req.user);
         // After this will direct them to to dashboard page
-        res.end();
+        res.json({
+            "message": "Successfully login!"
+        });
     });
 
     // When Employer press "Signup"

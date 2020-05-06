@@ -32,7 +32,9 @@ $(document).ready(function () {
             password: $("#password").val(),
         };
 
-        $.post("/api/login", data); // If successful go to dashboard.?
+        $.post("/api/login", data).then(() => {
+            window.location = '/dashboard';
+        });
 
     });
 });
