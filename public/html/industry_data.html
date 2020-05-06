@@ -16,13 +16,27 @@
 
 <body>
 
-    <nav></nav>
+    <nav style="background-color: rgb(140, 4, 168)">
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">Joboost</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/">Home</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <section>
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="/">Home</a></li>
+    </ul>
 
-        <div style="text-align: center; font-size: 20px; margin-top: 15px; margin-bottom: 15px;">Filtered by industry/sector to see visual
-            data about employment growth rate and job market prediction</div>
-        <select id="industryOption" class="browser-default" style="width: 90%; margin: 0 auto;">
+    <section class="container">
+        <div class="row center-align" style="color: #8C04A8;">
+            <h4>Employment Growth Rate & Job Market Prediction</h4>
+        </div>
+        <div class="center-align" style="font-size: 20px; margin-top: 15px; margin-bottom: 15px;">Filtered by
+            industry/sector to see visual data</div>
+        <select id="industryOption" class="browser-default" style="width: 60%; margin: 0 auto;">
             <option value="" selected disabled>Choose sector</option>
             <option value="1">Option 1</option>
             <option value="2">Option 2</option>
@@ -30,8 +44,8 @@
         </select>
     </section>
 
-    <div id="loader" class="progress" style="visibility: hidden; width: 80%; margin: 0 auto; margin-top: 10px;">
-            <div class="indeterminate"></div>
+    <div id="loader" class="progress purple lighten-2" style="visibility: hidden; width: 80%; margin: 0 auto; margin-top: 10px;">
+        <div class="indeterminate purple lighten-5"></div>
     </div>
     <!-- This will be hidden if first time goes here-->
     <section id="dataSection" style="display:none;">
@@ -62,7 +76,7 @@
             </div>
         </div>
     </section>
- 
+
 
 </body>
 

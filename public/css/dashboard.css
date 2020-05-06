@@ -10,9 +10,9 @@ h3{
     background-color: #B794F4;
 }
 
-
 #postList li{
     background-color: #f3e5f5;
+    padding-left: 15px;
 }
 
 #dropdown li{
@@ -21,4 +21,20 @@ h3{
 
 #dropdown li:hover{
     background-color: white;
+}
+
+#editList{
+    padding-left: 10px; 
+    padding-top: 20px;
+}
+
+#editList li,
+#viewList li{
+    border:none; 
+    padding: 0;
+}
+
+#viewList {
+    padding-top: 20px; 
+    padding-left: 0px;
 }
