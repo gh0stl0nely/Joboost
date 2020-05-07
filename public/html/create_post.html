@@ -6,10 +6,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+
+    <!-- Materialize-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="../css/dashboard.css" rel="stylesheet">
+    
+    <!-- Quill.js API text editor-->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="../css/create_post.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js" defer></script>
+    <script src="../js/create_post.js" defer></script>
 </head>
 
 <body>
@@ -3431,11 +3440,22 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <label for="description">Details</label>
-                            <textarea id="description" cols="30" rows="30"
-                                placeholder="job description or qualification..." required></textarea>
+                            <div id="editor">
+                                    <!-- https://quilljs.com/playground/#quill-playground/  
+                                        
+                                        READ UP ON DEFER TAG FOR JAVASCRIPT (Since you can see upon loading everything is very slow
+                                        But because we are using handlebar so when serving file it shouldn't be that long. But you
+                                        need to figure this out
+                                        
+                                        You should make sure HTML works first prior to putting it in handlebar
+                                        
+                                    -->
+                            </div>
+
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="input-field col s12 m6">
                         <select required>
@@ -3451,20 +3471,12 @@
                     </div>
                 </div>
                 <div class="row center-align">
-                    <button class="btn waves-effect waves-light" style="background-color: #B794F4;" type="submit" name="action">Submit
+                    <button class="btn waves-effect waves-light" style="background-color: #B794F4;" type="submit"
+                        name="action">Submit
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
             </form>
-
-
         </div>
 
-
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <!-- Compiled and minified JavaScript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-        <script type="text/javascript" src="../js/dashboard.js"></script>
 </body>
