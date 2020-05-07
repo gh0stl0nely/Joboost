@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Create a post</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="../css/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">Joboost</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/">Log out</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/">Log out</a></li>
+    </ul>
+
+    <div class="container">
+        <div class="row">
+            <h3 class="center-align">Create Job Post</h3>
+        </div>
+
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="title" type="text" class="validate">
+                        <label for="title">Post Title</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select>
+                             <option value="" disabled selected>Choose your option</option>
+                            {{#each industry_list_data}}
+                                <option value="{{Industry}}">{{Industry}}</option>
+                            {{/each}}
+                        </select>
+                        <label>Industry</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <select>
+                            <option value="" disabled selected>Choose your option</option>
+                            {{#each city_data}}
+                                <option value="{{city}}">{{city}}</option>
+                            {{/each}}
+                        </select>
+                        <label>City</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <select>
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="AB">Alberta</option>
+                            <option value="BC">British Columbia</option>
+                            <option value="MB">Manitoba</option>
+                            <option value="NB">New Brunswick</option>
+                            <option value="NL">Newfoundland and Labrador</option>
+                            <option value="NS">Nova Scotia</option>
+                            <option value="ON">Ontario</option>
+                            <option value="PE">Prince Edward Island</option>
+                            <option value="QC">Quebec</option>
+                            <option value="SK">Saskatchewan</option>
+                            <option value="NT">Northwest Territories</option>
+                            <option value="NU">Nunavut</option>
+                            <option value="YT">Yukon</option>
+                        </select>
+                        <label>Pronvince</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="description">Details</label>
+                            <textarea id="description" cols="30" rows="30"
+                                placeholder="job description or qualification..." required></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <select required>
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="phone">Phone</option>
+                            <option value="email">Email</option>
+                        </select>
+                        <label for="contactOp">Contact Method</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="contactInfo" type="text" class="validate" required>
+                        <label for="contactInfo">Email or phone number</label>
+                    </div>
+                </div>
+                <div class="row center-align">
+                    <button class="btn waves-effect waves-light" style="background-color: #B794F4;" type="submit"
+                        name="action">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
+
+
+        </div>
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+        <script type="text/javascript" src="../js/dashboard.js"></script>
+</body>
