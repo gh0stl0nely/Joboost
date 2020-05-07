@@ -59,9 +59,22 @@ module.exports = function (app) {
     res.sendFile(path.resolve(__dirname + "/../public/html/dashboard.html"));
   });
 
-  // Creating a job post route leads to createpost.html
-  app.get("/createpost", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/html/create_post.html"));
+  // Creating a job post route
+  app.get("/createpost", async function (req, res) {
+    try{
+      const industry_list_raw= await readFilePromise(path.resolve(__dirname, "../data/job_growth.json"));
+      const industry_list_data= JSON.parse(industry_list_raw);
+      const city_raw = await readFilePromise(path.resolve(__dirname, "../data/city.json"));
+      const city_data = JSON.parse(city_raw);
+      
+      res.render('create_post', {
+        industry_list_data,
+        city_data,
+      });
+    }catch(e){
+      throw e;
+    }
+
   });
 
 

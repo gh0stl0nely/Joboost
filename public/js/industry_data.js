@@ -4,129 +4,45 @@ $(document).ready(function () {
     google.charts.load('current', {
         'packages': ['corechart']
     });
-    google.charts.setOnLoadCallback(drawJobOpportunityGraph);
-    google.charts.setOnLoadCallback(drawEmploymentGrowthRateGraph);
+    google.charts.setOnLoadCallback(drawJobOpportunityGraphWithData);
+    google.charts.setOnLoadCallback(drawEmploymentGrowthRateGraphWithData);
 
-    $(window).resize(function () {
-        drawJobOpportunityGraph();
-        drawEmploymentGrowthRateGraph();
+    $(window).resize(function() {
+        drawJobOpportunityGraphWithData(JSON.parse(sessionStorage.getItem("opportunityData")));
+        drawEmploymentGrowthRateGraphWithData(JSON.parse(sessionStorage.getItem("growthData")));
     })
 
     $("#industryOption").on("change", function(){
         const selectedOption = $(this).find(":selected").text(); // Get the selected option
         const dataSection = $("#dataSection"); 
         const selectionBar = $("#industryOption");
-        // selectionBar.attr("disabled", true);
+        selectionBar.attr("disabled", true);
         $("#loader").css("visibility", "visible");
 
-        
-    
-        // Send Get Request Here
-        // Spin, and disbale the button (while waiting to receive it from backend)
+        $.post("/api/data", {selectedOption}).then(response => {
+            const job_growth = response.job_growth_data;
+            const job_predictions = response.job_prediction_data;
+            dataSection.css("display", "block");
+            $("#selectedIndustry").text(selectedOption);
+            animateValue("growthData",0,job_growth.Average,1000);
+            animateValue("opportunityData",0,job_predictions.Mean,1000);
+            
+            drawEmploymentGrowthRateGraphWithData(job_growth);
+            drawJobOpportunityGraphWithData(job_predictions);
 
-        // Once receive .then() => Take the code below inside, 
+            $("#loader").css("display", "none");
+            selectionBar.attr("disabled", false);
 
-        // Dont't really need the none tbh ...
-
-        dataSection.css("display", "block");
-        $("#selectedIndustry").text(selectedOption);
-        animateValue("growthData",39,320040,1000);
-        animateValue("opportunityData",39,320040,1000);
-        drawJobOpportunityGraph();
-        drawEmploymentGrowthRateGraph();
-        // $("#loader").css("display", "none");
-        // selectionBar.attr("disabled", false);
-
-    })
+            // Save to sessionStorage for window resizing...
+            sessionStorage.setItem('growthData', JSON.stringify(job_growth));
+            sessionStorage.setItem('opportunityData', JSON.stringify(job_predictions));
+        });
+    });
 
     //Initialize selection bar
     $('select').formSelect(); 
 
 })
-
-// Draw Job Opportunity Graph
-function drawJobOpportunityGraph() {
-    var chartElement = document.getElementById('jobPredictionGraph')
-    var data = google.visualization.arrayToDataTable([
-        ['Year', 'Medicine', ],
-        ['2019', 165, ],
-        ['2020', 135, ],
-        ['2021', 157, ],
-        ['2022', 139, ],
-        ['2023', 136, ],
-    ]);
-
-    var options = {
-        title: 'Estimated number of job available per annum ',
-        width: "100%",
-        height: $(window).height() * 0.75,
-        legend: 'bottom',
-        vAxis: {
-            title: 'Number of jobs',
-            minValue: 0
-        },
-        hAxis: {
-            title: 'Year'
-        },
-        seriesType: 'bars',
-        series: {
-            1: {
-                type: 'line'
-            }
-        },
-        colors: ["#8C04A8"],
-        animation: {
-            startup: true,
-            duration: 500,
-            easing: 'linear'
-        }
-    };
-
-    var chart = new google.visualization.ComboChart(chartElement);
-    chart.draw(data, options);
-}
-
-// Draw Employment Growth Graph
-function drawEmploymentGrowthRateGraph() {
-    var chartElement = document.getElementById('employmentGrowthGraph')
-    var data = google.visualization.arrayToDataTable([
-        ['Year', 'Medicine'],
-        ['2019', -39, ],
-        ['2020', 135, ],
-        ['2021', 157, ],
-        ['2022', 139, ],
-        ['2023', 136, ],
-    ]);
-
-    var options = {
-        title: 'Changes in employment growth per annum',
-        legend: 'bottom',
-        width: "100%",
-        height: $(window).height() * 0.75,
-        vAxis: {
-            minValue: 0,
-            title: 'Job Growth'
-        },
-        hAxis: {
-            title: 'Year'
-        },
-        seriesType: 'bars',
-        series: {
-            1: {
-                type: 'line'
-            }
-        },
-        colors: ["#8C04A8"],
-        animation: {
-            startup: true,
-            duration: 500,
-            easing: 'linear'
-        }
-    };
-
-    var chart = new google.visualization.ComboChart(chartElement);
-    chart.draw(data, options);
-}
 
 function animateValue(id, start, end, duration) {
     // assumes integer values for start and end
@@ -159,3 +75,86 @@ function animateValue(id, start, end, duration) {
     timer = setInterval(run, stepTime);
     run();
 }
+
+function drawJobOpportunityGraphWithData(data) {
+    var chartElement = document.getElementById('jobPredictionGraph')
+    var data = google.visualization.arrayToDataTable([
+        ['Year', data.Industry, ],
+        ['2019', data['2019']],
+        ['2020', data['2020']],
+        ['2021', data['2021']],
+        ['2022', data['2022']],
+        ['2023', data['2023']],
+    ]);
+
+    var options = {
+        title: 'Estimated number of job available per annum ',
+        width: "100%",
+        height: $(window).height() * 0.75,
+        legend: 'bottom',
+        vAxis: {
+            title: 'Number of jobs',
+            minValue: 0
+        },
+        hAxis: {
+            title: 'Year'
+        },
+        seriesType: 'bars',
+        series: {
+            1: {
+                type: 'line'
+            }
+        },
+        colors: ["#8C04A8"],
+        animation: {
+            startup: true,
+            duration: 500,
+            easing: 'linear'
+        }
+    };
+
+    var chart = new google.visualization.ComboChart(chartElement);
+    chart.draw(data, options);
+}
+
+function drawEmploymentGrowthRateGraphWithData(data) {
+    var chartElement = document.getElementById('employmentGrowthGraph')
+    var data = google.visualization.arrayToDataTable([
+        ['Year', data.Industry, ],
+        ['2019', data['2019']],
+        ['2020', data['2020']],
+        ['2021', data['2021']],
+        ['2022', data['2022']],
+        ['2023', data['2023']],
+    ]);
+
+    var options = {
+        title: 'Changes in employment growth per annum',
+        legend: 'bottom',
+        width: "100%",
+        height: $(window).height() * 0.75,
+        vAxis: {
+            minValue: 0,
+            title: 'Job Growth'
+        },
+        hAxis: {
+            title: 'Year'
+        },
+        seriesType: 'bars',
+        series: {
+            1: {
+                type: 'line'
+            }
+        },
+        colors: ["#8C04A8"],
+        animation: {
+            startup: true,
+            duration: 500,
+            easing: 'linear'
+        }
+    };
+
+    var chart = new google.visualization.ComboChart(chartElement);
+    chart.draw(data, options);
+}
+
