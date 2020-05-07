@@ -7,6 +7,8 @@
 var express = require("express");
 var session = require("express-session");
 const passport = require("./config/passport");
+const hbs = require('express-handlebars');
+
 
 // Sets up the Express App
 // =============================================================
@@ -19,6 +21,10 @@ var db = require("./models");
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Set up view engine
+app.engine('handlebars', hbs());
+app.set('view engine', 'handlebars');
 
 // Static directory
 app.use(express.static("public"));
