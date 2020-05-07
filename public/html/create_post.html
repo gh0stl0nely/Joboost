@@ -18,14 +18,14 @@
             <a href="#!" class="brand-logo">Joboost</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="/">Create Posts</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
                 <li><a href="/">Log out</a></li>
             </ul>
         </div>
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="/">Create Posts</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
         <li><a href="/">Log out</a></li>
     </ul>
 
@@ -3438,16 +3438,12 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m6">
-                        <select required>
-                            <option value="" disabled selected>Choose your option</option>
-                            <option value="phone">Phone</option>
-                            <option value="email">Email</option>
-                        </select>
-                        <label for="contactOp">Contact Method</label>
+                        <input id="emailInfo" type="email" class="validate" required>
+                        <label for="emailInfo">Email</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <input id="contactInfo" type="text" class="validate" required>
-                        <label for="contactInfo">Email or phone number</label>
+                        <input id="phone" type="number" class="validate" required>
+                        <label for="phone">Phone number</label>
                     </div>
                 </div>
                 <div class="row center-align">

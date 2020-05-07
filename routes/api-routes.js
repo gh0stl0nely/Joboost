@@ -7,9 +7,11 @@ module.exports = function(app){
     app.post("/api/login", passport.authenticate("local"), (req,res)=> {
         //If successful then redirect them back to t
         //req.user will exist here. 
-        console.log("FOUND EM! ID is " + req.user);
+        // console.log("FOUND EM! ID is " + req.user);
         // After this will direct them to to dashboard page
-        res.end();
+        res.json({
+            "message": "Successfully login!"
+        });
     });
 
     // When Employer press "Signup"

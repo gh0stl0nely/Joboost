@@ -5,10 +5,13 @@
 // Dependencies
 // =============================================================
 const path = require("path");
+const util = require('util');
+const fs = require("fs");
+const readFilePromise = util.promisify(fs.readFile);
 
-function checkAuthentication(req,res,next){
-  if(req.user){
-      next();
+function checkAuthentication(req, res, next) {
+  if (req.user) {
+    next();
   } else {
     console.log("Not authenticated");
     return res.redirect('/login'); // Supposed to redirect to home page :)
@@ -17,52 +20,64 @@ function checkAuthentication(req,res,next){
 
 // Routes
 // =============================================================
-module.exports = function(app){
+module.exports = function (app) {
 
-    // To Home Page, IF authenticated, go to dashboard page. If not go to homepage
-    app.get("/", checkAuthentication, (req,res) => {
-        console.log(req.user); // This is the ID!! 
-        //Prepare data and go into dashboard page... 
-    });
+  // To Home Page, IF authenticated, go to dashboard page. If not go to homepage
+  app.get("/", checkAuthentication, (req, res) => {
+    res.redirect('/dashboard');
+  });
 
-    // To industry_data html page
-    app.get("/data", (req,res) => {
-        res.sendFile(path.resolve(__dirname + "/../public/html/industry_data.html"));
-    });
+  // To industry_data html page
+  app.get("/data", async (req, res) => {
+    try{
+      const job_growth_raw = await readFilePromise(path.resolve(__dirname, "../data/job_growth.json"));
+      const job_growth_data= JSON.parse(job_growth_raw);
 
-    // To login page
-    app.get("/login", (req,res) => {
-        res.sendFile(path.resolve(__dirname + "/../public/html/login.html"));
-    });
+      res.render('industry_data', {
+        job_growth_data,
+      });
+      
+    }catch(e){
+      throw e;
+    }
+  });
 
-    // To signup page
-    app.get("/signup", (req,res) => {
-        res.sendFile(path.resolve(__dirname + "/../public/html/signup.html"));
-    });
-  
-  
-// When all is lost, 404 
- //   app.get("*", function(req, res) {
-//     res.sendFile(path.join(__dirname, "../public/index.html"));
-//   });
-  
-    // Viewing ALL resumes for a job leads to viewallresumes.html
-  //   app.get("/viewall", function(req, res) {
-//     res.sendFile(path.join(__dirname, "../public/viewallresumes.html"));
-//   });
-    // Creating a job post route leads to createpost.html
-  //   app.get("/createpost", function(req, res) {
-//     res.sendFile(path.join(__dirname, "../public/createpost.html"));
-//   });
-  
+  // To login page
+  app.get("/login", (req, res) => {
+    res.sendFile(path.resolve(__dirname + "/../public/html/login.html"));
+  });
+
+  // To signup page
+  app.get("/signup", (req, res) => {
+    res.sendFile(path.resolve(__dirname + "/../public/html/signup.html"));
+  });
+
   // Dashboard route loads dashboard.html
-//   app.get("/dashboard", function(req, res) {
-//     
-//   });
+  app.get("/dashboard", checkAuthentication, function (req, res) {
+    // Would have to do some database searching and data preparation here!
+    // res.render('something', {data})/ 
+    res.sendFile(path.resolve(__dirname + "/../public/html/dashboard.html"));
+  });
+
+  // Creating a job post route leads to createpost.html
+  app.get("/createpost", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/html/create_post.html"));
+  });
+
+
+  // When all is lost, 404 
+  //   app.get("*", function(req, res) {
+  //     res.sendFile(path.join(__dirname, "../public/index.html"));
+  //   });
+
+  // Viewing ALL resumes for a job leads to viewallresumes.html
+  //   app.get("/viewall", function(req, res) {
+  //     res.sendFile(path.join(__dirname, "../public/viewallresumes.html"));
+  //   });
 
   // Viewing a job post route loads jobposting.html
-//   app.get("/jobposting", function(req, res) {
-//     res.sendFile(path.join(__dirname, "../public/jobposting.html"));
-//   });
+  //   app.get("/jobposting", function(req, res) {
+  //     res.sendFile(path.join(__dirname, "../public/jobposting.html"));
+  //   });
 
 }

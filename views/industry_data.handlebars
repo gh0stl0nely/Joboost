@@ -38,9 +38,9 @@
             industry/sector to see visual data</div>
         <select id="industryOption" class="browser-default" style="width: 60%; margin: 0 auto;">
             <option value="" selected disabled>Choose sector</option>
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
+            {{#each job_growth_data}}
+                <option>{{Industry}}</option>
+            {{/each}}
         </select>
     </section>
 

@@ -58,34 +58,15 @@
         <div class="row">
             <div class="col s7" style="padding: 0;">
                 <ul class="collection" id="postList">
-                    <li class="collection-item avatar dropdown-trigger" data-target='dropdown'>
-                        <p class="title">Title</p>
-                        <p>Published date:</p>
+                    {{#each job_posts}}
+                    <li class="collection-item avatar dropdown-trigger" data-target='dropdown-{{id}}'>
+                        <p class="title">{{title}}</p>
+                        <p>Published date: {{date_published}}</p>
                         <p>Resume received:</p>
                         <a href="#" class="secondary-content"><i
                                 class="material-icons purple-text text-darken-2">more_vert</i></a>
                     </li>
-                    <li class="collection-item avatar dropdown-trigger" data-target='dropdown'>
-                        <p class="title">Title</p>
-                        <p>Published date:</p>
-                        <p>Resume received:</p>
-                        <a href="#" class="secondary-content"><i
-                                class="material-icons purple-text text-darken-2">more_vert</i></a>
-                    </li>
-                    <li class="collection-item avatar dropdown-trigger" data-target='dropdown'>
-                        <p class="title">Title</p>
-                        <p>Published date:</p>
-                        <p>Resume received:</p>
-                        <a href="#" class="secondary-content"><i
-                                class="material-icons purple-text text-darken-2">more_vert</i></a>
-                    </li>
-                    <li class="collection-item avatar dropdown-trigger" data-target='dropdown'>
-                        <p class="title">Title</p>
-                        <p>Published date:</p>
-                        <p>Resume received:</p>
-                        <a href="#" class="secondary-content"><i
-                                class="material-icons purple-text text-darken-2">more_vert</i></a>
-                    </li>
+                    {{/each}}
                 </ul>
             </div>
 
@@ -130,40 +111,27 @@
 
         <div id="modalEdit" class="modal modal-fixed-footer">
             <div class="modal-content">
-                <div class="input-field col s12">
-                    <input type="text" class="validate" placeholder="Title"> 
-                </div>
+                <h4>Title</h4>
                 <div class="row">
                     <p>Published date: <span></span></p>
                 </div>
                 <form>
                     <div class="row">
-                        <div class="input-field col s12 m6">
-                            <input id="city" type="text" class="validate">
-                            <label for="city">City</label>
-                        </div>
-
-                        <div class="input-field col s12 m6">
-                            <input id="province" type="text" class="validate">
-                            <label for="province">Province</label>
+                        <div class="input-field col s12">
+                            <input id="location" type="text" class="validate">
+                            <label for="location">Location</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <textarea id="description" class="broswer-default"></textarea>
+                            <textarea id="description" class="materialize-textarea"></textarea>
                             <label for="description">Description</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="email" type="email" class="validate">
-                            <label for="email">Email</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="phone" type="number" class="validate">
-                            <label for="phone">Phone number</label>
+                            <input id="contact" type="text">
+                            <label for="contact">Contact</label>
                         </div>
                     </div>
                 </form>
@@ -177,13 +145,21 @@
             </div>
         </div>
 
-        <ul id='dropdown' class='dropdown-content'>
-            <li>Title</li>
-            <li>Published Date: <span></span></li>
-            <li>Description</li>
-            <li>Contact</li>
-            <li>Resume received: <span></span></li>
+        {{#each job_posts}}
+        <ul id='dropdown-{{id}}' class='dropdown-content'>
+            <li>Title: {{title}}</li>
+            <li>Published Date: {{date_published}}</li>
+            <li>City: {{city}}</li>
+            <li>Province: {{province}}</li>
+            <li>Description:
+                <p>{{description}}</p>
+            </li>
+            <li>Email: {{email}}</li>
+            <li>Phone number: {{contact_number}}</li>
+            <li>Resume received: </li>
         </ul>
+        {{/each}}
+
     </div>
 
 
