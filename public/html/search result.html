@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <script src="https://kit.fontawesome.com/29e5db4ce1.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -18,37 +19,39 @@
             <a href="/login" class="brand-logo" id="logo"><img src="../logo/Logo.jpeg" width="64" /></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="/createpost">Create Posts</a></li>
-                <li><a href="/">Log out</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Employer Sign In</a></li>
+                <li><a href="/">Industry Data</a></li>
             </ul>
         </div>
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="/createpost">Create Posts</a></li>
-        <li><a href="/">Log out</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/">Employer Sign In</a></li>
+        <li><a href="/">Industry Data</a></li>
     </ul>
 
-    <div class="container">
+    <div class="container" style="width: 100%">
         <div class="row">
-            <div class="col s12 m3">
-                <div class="row">
-                    <p>What do you want to search?</p>
+            <div class="col s12 m3 purple lighten-5" id="searchCol">
+                <div class="row center searchRow">
+                    <h5>Search</h5>
                 </div>
                 <form>
-                    <div class="row">
+                    <div class="row searchRow">
                         <div class="input-field col s12">
                             <input id="jobTitleSearch" type="search" class="validate">
                             <label for="jobTitleSearch">Job Title</label>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row searchRow">
                         <div class="input-field col s12">
                             <input id="companySearch" type="search" class="validate">
                             <label for="companySearch">Company Name</label>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row searchRow">
                         <div class="input-field col s12">
                             <input id="citySearch" type="search" class="validate">
                             <label for="citySearch">City</label>
@@ -60,7 +63,7 @@
                             <label for="provinceSearch">Province</label>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row center">
                         <button class="btn-small waves-effect waves-purple purple" type="submit" name="action">Submit
                             <i class="material-icons right">send</i>
                         </button>
@@ -68,13 +71,13 @@
                 </form>
             </div>
 
-            <div class="col s6 m6">
+            <div class="col s12 m6">
                 <div class="row">
-                    <div class="col s4">
-                        <img src="https://via.placeholder.com/100" />
+                    <div class="col s4 center" style="padding: 0px">
+                        <img src="https://via.placeholder.com/100" style="padding-top: 20px;" />
                     </div>
-                    <div class="col s8">
-                        <h4>Job Title</h4>
+                    <div class="col s8" style="padding: 0px">
+                        <h4>Title</h4>
                         <p>Publish date: </p>
                         <p>Company name</p>
                         <p>Location</p>
@@ -88,15 +91,26 @@
                         <p>Contact Information</p>
                     </div>
                 </div>
-                <div class="row center">
-                    <input class="" type="file" name="logo" id="logoFile">
-                    <label class="btn purple" data-multiple-caption="{count} files selected" multiple
-                        for="logoFile"><span>Choose a file&hellip;</span></label>
-                    <button class="btn purple">Apply</button>
+                <div class="row center" id="applyDiv">
+                    <div class="col s12 m8" style="padding: 0px">
+                        <div class="file-field input-field">
+                            <div class="btn-small purple wave-effect waves-purple">
+                                <span>File</span>
+                                <input type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m4" style="padding: 20px 0px">
+                        <button class="btn-small purple wave-effect waves-purple">Apply</button>
+                    </div>
+
                 </div>
             </div>
 
-            <div class="col s6 m3">
+            <div class="col s12 m3" id="resultCol">
                 <div class="row center">
                     <p>Relevent Jobs: <span id="resultCounts"></span> found</p>
                     <p>Page <span id="currentPage"></span> of <span id="totalPages"></span></p>
@@ -105,7 +119,7 @@
                     <a class="waves-effect waves-purple btn-small purple" id="nextP"><i
                             class="material-icons">keyboard_arrow_right</i></a>
                 </div>
-                <div class="row">
+                <div class="row" id="resultDiv">
                     <div class="card horizontal">
                         <div class="card-stacked">
                             <div class="card-content">
@@ -168,7 +182,29 @@
             </div>
         </div>
 
-
+        <footer class="page-footer" style="background-color: rgb(167, 39, 192)">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <h5 class="white-text center">Follow us @</h5>
+                        <div class="row center">
+                            <div class="col s3"></div>
+                            <div class="col s6">
+                                <div class="col s4"><i class="fab fa-linkedin icon"></i></div>
+                                <div class="col s4"><i class="fab fa-facebook-square icon"></i></div>
+                                <div class="col s4"><i class="fab fa-twitter-square icon"></i></div>
+                            </div>
+                            <div class="col s3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright" style="background-color: rgb(140, 4, 168)">
+                <div class="container">
+                    © 2020 Copyright Reserved
+                </div>
+            </div>
+        </footer>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <!-- Compiled and minified JavaScript -->
