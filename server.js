@@ -8,7 +8,7 @@ var express = require("express");
 var session = require("express-session");
 const passport = require("./config/passport");
 const hbs = require('express-handlebars');
-
+const path = require('path');
 
 // Sets up the Express App
 // =============================================================
@@ -18,9 +18,21 @@ var PORT = process.env.PORT || 8080;
 // Requiring our models for syncing
 var db = require("./models");
 
-// Sets up the Express app to handle data parsing
+// Sets up the Express app to handle data parsing (Json, string and file)
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+// Configure multer for file upload
+var multer  = require('multer'); // Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files
+const storage = multer.diskStorage({
+  destination : './public/uploaded_logo/',
+  filename: function(req,file,next){
+    next(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({
+  storage: storage
+});
 
 // Set up view engine
 app.engine('handlebars', hbs());
@@ -43,7 +55,7 @@ app.use(passport.session());
 // Routes
 // =============================================================
 require("./routes/html-routes.js")(app);
-require("./routes/api-routes.js")(app);
+require("./routes/api-routes.js")(app,upload);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
