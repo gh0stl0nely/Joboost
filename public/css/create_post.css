@@ -2,6 +2,10 @@ nav{
     background-color: rgb(140, 4, 168);
 }
 
+#logo{
+    padding-left: 20px;
+}
+
 h3{
     color: rgb(140, 4, 168);
 }

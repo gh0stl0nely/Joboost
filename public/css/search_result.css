@@ -1,0 +1,42 @@
+nav{
+    background-color: rgb(140, 4, 168);
+}
+
+#logo{
+    padding-left: 20px;
+}
+
+#logoFile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+#searchCol{
+    padding: 0px 20px;
+    height:170vh; 
+}
+
+#searchCol h5{
+    padding-top: 20px;
+}
+
+.searchRow{
+    margin: 0px;
+}
+
+#details{
+    padding: 0px 10px;
+}
+
+#applyDiv{
+    padding: 0 10px;
+}
+
+.icon{
+    padding-top: 10px;
+    font-size: 40px;
+}
