@@ -1,0 +1,15 @@
+nav{
+    background-color: rgb(140, 4, 168);
+}
+
+h3{
+    color: rgb(140, 4, 168);
+}
+
+#editor {
+    height: 300px;
+}
+
+.ql-editor strong{
+    font-weight:bold;
+}

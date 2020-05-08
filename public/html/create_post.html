@@ -6,10 +6,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+
+    <!-- Materialize-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="../css/dashboard.css" rel="stylesheet">
+
+    <!-- Quill.js API text editor-->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="../css/create_post.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js" defer></script>
+    <script src="../js/create_post.js" defer></script>
 </head>
 
 <body>
@@ -38,8 +47,8 @@
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="title" type="text" class="validate">
-                        <label for="title">Post Title</label>
+                        <input id="title" placeholder="Enter the post title" type="text" class="validate">
+                        <label for="title">Title</label>
                     </div>
                 </div>
                 <div class="row">
@@ -3428,14 +3437,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <label for="description" style="margin-bottom: 10px;">Details</label>
-                            <br>
-                            <textarea id="description" style="resize: none;height: 200px;" placeholder="Enter" required></textarea>
+                    <div class="input-field col s12">
+                        <p style="color: #9e9e9e; font-size: 12px;">Description</p>
+                        <div id="content-container">
+                            <div id="editor"></div>
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="input-field col s12 m6">
                         <input id="emailInfo" type="email" class="validate" required>
@@ -3453,15 +3462,6 @@
                     </button>
                 </div>
             </form>
-
-
         </div>
 
-
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <!-- Compiled and minified JavaScript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-        <script type="text/javascript" src="../js/dashboard.js"></script>
 </body>
