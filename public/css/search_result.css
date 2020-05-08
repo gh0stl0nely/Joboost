@@ -17,6 +17,11 @@ nav{
 
 #searchCol{
     padding: 0px 20px;
+    height:170vh; 
+}
+
+#searchCol h5{
+    padding-top: 20px;
 }
 
 .searchRow{
