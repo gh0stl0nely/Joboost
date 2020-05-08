@@ -13,7 +13,7 @@
     <!-- Materialize-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    
+
     <!-- Quill.js API text editor-->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link href="../css/create_post.css" rel="stylesheet">
@@ -47,8 +47,8 @@
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="title" type="text" class="validate">
-                        <label for="title">Post Title</label>
+                        <input id="title" placeholder="Enter the post title" type="text" class="validate">
+                        <label for="title">Title</label>
                     </div>
                 </div>
                 <div class="row">
@@ -3437,37 +3437,22 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <label for="description">Details</label>
-                            <div id="editor">
-                                    <!-- https://quilljs.com/playground/#quill-playground/  
-                                        
-                                        READ UP ON DEFER TAG FOR JAVASCRIPT (Since you can see upon loading everything is very slow
-                                        But because we are using handlebar so when serving file it shouldn't be that long. But you
-                                        need to figure this out
-                                        
-                                        You should make sure HTML works first prior to putting it in handlebar
-                                        
-                                    -->
-                            </div>
-
+                    <div class="input-field col s12">
+                        <p style="color: #9e9e9e; font-size: 12px;">Description</p>
+                        <div id="content-container">
+                            <div id="editor"></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12 m6">
-                        <select required>
-                            <option value="" disabled selected>Choose your option</option>
-                            <option value="phone">Phone</option>
-                            <option value="email">Email</option>
-                        </select>
-                        <label for="contactOp">Contact Method</label>
+                        <input id="emailInfo" type="email" class="validate" required>
+                        <label for="emailInfo">Email</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <input id="contactInfo" type="text" class="validate" required>
-                        <label for="contactInfo">Email or phone number</label>
+                        <input id="phone" type="number" class="validate" required>
+                        <label for="phone">Phone number</label>
                     </div>
                 </div>
                 <div class="row center-align">

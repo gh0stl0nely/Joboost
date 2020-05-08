@@ -1,7 +1,3 @@
-#editor {
-    height: 300px;
-}
-
 nav{
     background-color: rgb(140, 4, 168);
 }
@@ -10,35 +6,10 @@ h3{
     color: rgb(140, 4, 168);
 }
 
-#searchBtn{
-    background-color: #B794F4;
+#editor {
+    height: 300px;
 }
 
-#postList li{
-    background-color: #f3e5f5;
-    padding-left: 15px;
-}
-
-#dropdown li{
-    pointer-events: none;
-}
-
-#dropdown li:hover{
-    background-color: white;
-}
-
-#editList{
-    padding-left: 10px; 
-    padding-top: 20px;
-}
-
-#editList li,
-#viewList li{
-    border:none; 
-    padding: 0;
-}
-
-#viewList {
-    padding-top: 20px; 
-    padding-left: 0px;
+.ql-editor strong{
+    font-weight:bold;
 }
