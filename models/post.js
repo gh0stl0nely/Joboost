@@ -36,18 +36,17 @@ module.exports = function(sequelize, DataTypes) {
 
           Industry: {
             type: DataTypes.STRING,
+          },
+          resumes: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
+          },
+          employerID: {
+            type: DataTypes.INTEGER,
+            allowNull: false
           }
 
     })
-
-    // Post should belong to an employer
-    Post.associate = function(models) {
-        Post.belongsTo(models.Employer, {
-            foreignKey: {
-                allowNull: false
-              }
-        })
-    };
     
     return Post;
-    };
+};
