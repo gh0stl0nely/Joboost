@@ -1,0 +1,16 @@
+nav{
+    background-color: rgb(140, 4, 168);
+}
+
+#logo{
+    padding-left: 20px;
+}
+
+#logoFile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Search Results</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="../css/search_result.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/login" class="brand-logo" id="logo"><img src="../logo/Logo.jpeg" width="64" /></a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/createpost">Create Posts</a></li>
+                <li><a href="/">Log out</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="/createpost">Create Posts</a></li>
+        <li><a href="/">Log out</a></li>
+    </ul>
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m3">
+                <div class="row">
+                    <p>What do you want to search?</p>
+                </div>
+                <form>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="jobTitleSearch" type="search" class="validate">
+                            <label for="jobTitleSearch">Job Title</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="companySearch" type="search" class="validate">
+                            <label for="companySearch">Company Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="citySearch" type="search" class="validate">
+                            <label for="citySearch">City</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="provinceSearch" type="search" class="validate">
+                            <label for="provinceSearch">Province</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button class="btn-small waves-effect waves-purple purple" type="submit" name="action">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col s6 m6">
+                <div class="row">
+                    <div class="col s4">
+                        <img src="https://via.placeholder.com/100" />
+                    </div>
+                    <div class="col s8">
+                        <h4>Job Title</h4>
+                        <p>Publish date: </p>
+                        <p>Company name</p>
+                        <p>Location</p>
+                    </div>
+                </div>
+                <div id="details">
+                    <div class="row">
+                        <p>Description and details</p>
+                    </div>
+                    <div class="row">
+                        <p>Contact Information</p>
+                    </div>
+                </div>
+                <div class="row center">
+                    <input class="" type="file" name="logo" id="logoFile">
+                    <label class="btn purple" data-multiple-caption="{count} files selected" multiple
+                        for="logoFile"><span>Choose a file&hellip;</span></label>
+                    <button class="btn purple">Apply</button>
+                </div>
+            </div>
+
+            <div class="col s6 m3">
+                <div class="row center">
+                    <p>Relevent Jobs: <span id="resultCounts"></span> found</p>
+                    <p>Page <span id="currentPage"></span> of <span id="totalPages"></span></p>
+                    <a class="waves-effect waves-purple btn-small purple" id="prevP"><i
+                            class="material-icons">keyboard_arrow_left</i></a>
+                    <a class="waves-effect waves-purple btn-small purple" id="nextP"><i
+                            class="material-icons">keyboard_arrow_right</i></a>
+                </div>
+                <div class="row">
+                    <div class="card horizontal">
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <p>Title</p>
+                                <p>Company</p>
+                                <p>Location</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Go to the post</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card horizontal">
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <p>Title</p>
+                                <p>Company</p>
+                                <p>Location</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Go to the post</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card horizontal">
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <p>Title</p>
+                                <p>Company</p>
+                                <p>Location</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Go to the post</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card horizontal">
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <p>Title</p>
+                                <p>Company</p>
+                                <p>Location</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Go to the post</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+        <script type="text/javascript" src="../js/search_result.js"></script>
+</body>
