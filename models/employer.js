@@ -16,6 +16,11 @@ module.exports = function(sequelize, DataTypes) {
         company: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+
+        logo_path: {
+            type: DataTypes.STRING,
+            allowNull: true,
         }
     }) 
 

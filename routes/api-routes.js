@@ -5,9 +5,12 @@ const util = require('util');
 const fs = require("fs");
 const readFilePromise = util.promisify(fs.readFile);
 
-module.exports = function(app){
+
+module.exports = function(app, upload){
+
+
     
-    // When Employer press "Login" 
+    // When Employer press "Login"  
     app.post("/api/login", passport.authenticate("local"), (req,res)=> {
         //If successful then redirect them back to t
         //req.user will exist here. 
@@ -19,19 +22,17 @@ module.exports = function(app){
     });
 
     // When Employer press "Signup"
-    app.post("/api/register", async (req,res) => {
-        const username = req.body.name;
-        const email = req.body.email;
-        const password = req.body.password;
+    app.post("/api/register", upload.single('logo'), async (req,res) => {
+        var logoPath = req.file ? req.file.filename : null;
 
         const response = await db.Employer.create({
-            email: email,
-            password: password,
-            company: username
+            email: req.body.email,
+            password: req.body.password,
+            company: req.body.companyName, // Company name
+            logo_path: logoPath // Referencing the file path in 'public/uploaded_logo'
         });
 
-        res.end();
-
+        res.redirect('/login');
     });
 
     app.post("/api/data", async (req,res) => {

@@ -50,19 +50,21 @@ $(document).ready(function () {
         responsiveMenu();
     });
 
-    $("#registerBtn").on("click", (e) => {
-        e.preventDefault();
+    // $("#dataForm").on("submit", (e) => {
+   
+    //     // e.preventDefault();
+    //     // console.log("Submitted")
+    //     // const data = {
+    //     //     name: $('#name').val(),
+    //     //     email: $('#email').val(),
+    //     //     password: $('#password').val(),
+    //     //     // Missing logo but will figure out later
+    //     // };
 
-        const data = {
-            name: $('#name').val(),
-            email: $('#email').val(),
-            password: $('#password').val(),
-            // Missing logo but will figure out later
-        };
+    //     // $.post("/api/register", data).then(() => {
+    //     //     window.location = "/login";
+    //     // })
+    // });
 
-        $.post("/api/register", data).then(() => {
-            window.location = "/login";
-        })
-    })
 });
 
