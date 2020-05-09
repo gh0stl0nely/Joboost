@@ -14,7 +14,7 @@ function checkAuthentication(req, res, next) {
     next();
   } else {
     console.log("Not authenticated");
-    return res.redirect('/login'); // Supposed to redirect to home page :)
+    return res.redirect('/home');
   }
 }
 
@@ -26,6 +26,10 @@ module.exports = function (app) {
   app.get("/", checkAuthentication, (req, res) => {
     res.redirect('/dashboard');
   });
+
+  app.get("/home", (req,res) => {
+    res.sendFile(path.resolve(__dirname + "/../public/html/home.html"));
+  })
 
   // To industry_data html page
   app.get("/data", async (req, res) => {
@@ -77,20 +81,8 @@ module.exports = function (app) {
    
   });
 
-
-  // When all is lost, 404 
-  //   app.get("*", function(req, res) {
-  //     res.sendFile(path.join(__dirname, "../public/index.html"));
-  //   });
-
-  // Viewing ALL resumes for a job leads to viewallresumes.html
-  //   app.get("/viewall", function(req, res) {
-  //     res.sendFile(path.join(__dirname, "../public/viewallresumes.html"));
-  //   });
-
-  // Viewing a job post route loads jobposting.html
-  //   app.get("/jobposting", function(req, res) {
-  //     res.sendFile(path.join(__dirname, "../public/jobposting.html"));
-  //   });
-
+  // To view_resume page
+  app.get("/viewresume", (req, res) => {
+    res.sendFile(path.resolve(__dirname + "/../public/html/view_resume.html"));
+  });
 }

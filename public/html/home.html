@@ -34,7 +34,19 @@
                     }
                 });
             });
+
+        $("#IndustyBtn").on('click', function(e){
+        e.preventDefault();
+        window.location = '/data'
+    })
+
+    $("#signBtn").on('click', function(e){
+            e.preventDefault();
+            window.location = '/login'
+        })
         });
+
+
         </script>
     
 
@@ -71,9 +83,9 @@
 		<nav id="mainNav" class="fr">
 				<ul>
                   <li><a href="#home" class="current">About Us</a></li>
-                  <li><a href="#signIn">Employer Sign In</a></li>
+                  <li><a id="signBtn">Employer Sign In</a></li>
 				  <li><a href="#jobPosting">Job Posting</a></li>
-				  <li><a href="#industry">Industry Reviews</a></li>
+				  <li><a id="IndustyBtn">Industry Data</a></li>
 		  </ul>
         </nav>
         
