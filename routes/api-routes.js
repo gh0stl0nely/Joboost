@@ -8,8 +8,6 @@ const readFilePromise = util.promisify(fs.readFile);
 
 module.exports = function (app, upload) {
 
-
-
     // When Employer press "Login"  
     app.post("/api/login", passport.authenticate("local"), (req, res) => {
         //If successful then redirect them back to t
@@ -35,6 +33,7 @@ module.exports = function (app, upload) {
         res.redirect('/login');
     });
 
+    // End point for retrieving graph data
     app.post("/api/data", async (req, res) => {
         const selectedIndustry = req.body.selectedOption
         const job_growth_raw = await readFilePromise(path.resolve(__dirname, "../data/job_growth.json"));
@@ -53,11 +52,38 @@ module.exports = function (app, upload) {
         };
     });
 
-    // create new post
-    app.post("/api/data", function (req, res) {
-        db.post.create(req.body).then(function (dbPost) {
-            res.json(dbPost);
+    // Create New Post
+    app.post("/api/newpost" , async function (req, res) {
+        // console.log(req.user); This is employerID
+        // console.log(req.body); This is data body
+        // console.log(typeof req.body.description.join(','))
+
+        // {
+        //   title: '213',
+        //   description: '',
+        //   contactEmail: 'sadasd@asdasd',
+        //   contactNumber: '123123123',
+        //   city: 'Calgary',
+        //   province: 'NB',
+        //   industry: 'Agriculture'
+        // }
+        const data = req.body;
+        
+        // Store to database...
+        const newPostData = await db.Post.create({
+            title: data.title,
+            description: data.description.join(','),
+            contactEmail: data.contactEmail,
+            contactNumber: data.contactEmail,
+            city: data.city,
+            province: data.province,
+            industry: data.industry,
+            employerID: req.user
         });
-    })
+
+        res.redirect('/dashboard');
+        
+
+    });
 
 }

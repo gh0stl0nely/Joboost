@@ -26,27 +26,61 @@ $(document).ready(function () {
     $("#createPostForm").on("submit", function (event) {
         event.preventDefault();
 
-        let newPost = {
-            title: $("#title").val().trim(),
-            description: $("#editor").val().trim(),
-            contactEmail: $("#contactEmail").val().trim(),
-            contactNumber: $("#phone").val().trim(),
-            city: $("#city").val().trim(),
-            province: $("#province").val().trim(),
-            industry: $("#industry").val().trim(),
+        // Validation criteria:
+            // Title, industry, city, province, description, cannot be empty 
+            // Email and phone number needs to be validated
+        
+        // When click submit, goes through validation process, 
+        // If validation 
+
+        const editor = $("#editor");
+        const editorContent = editor.children()[0].children; // this is a list of <p>
+  
+        const textList = [];
+        const title = $("#title").val() ? $("#title").val().trim() : null;
+        const city = $("#city").val() ? $("#city").val().trim() : null;
+        const province = $("#province").val() ? $("#province").val().trim() : null;
+        const industry = $("#industry").val() ? $("#industry").val().trim() : null;
+        const contactEmail =  $("#contactEmail").val().trim();
+        const contactNumber = $("#phone").val().trim();
+
+        // Get texts from each paragraph tag in editor
+        for(var i = 0; i < editorContent.length; i++){
+            textList.push(editorContent[i].innerHTML);
         };
 
-        $.ajax("/api/newpost", {
-            type: "POST",
-            data: newPost
-        }).then(
-            function () {
-                console.log("Successful");
-                M.toast({html: 'Successful posted!'});
-                // Reload the page to get the updated list
-                location.reload();
-            }
-        );
+        // Disable button just in case double click
+        $("#submitBtn").prop('disabled', true)
+        
+        // Validation
+        if(!title || !textList || !contactEmail|| !contactNumber|| !city || !province || !industry){
+            // Failed validation
+            M.toast({html: 'Please verify all fields are filled'});
+            $("#submitBtn").prop('disabled', false);
+        } else {
+            // Successful validation
+            let newPost = {
+                title,
+                description: textList, //List of description content in HTML tag
+                contactEmail,
+                contactNumber,
+                city,
+                province,
+                industry,
+            };
+    
+            $.ajax("/api/newpost", {
+                type: "POST",
+                data: newPost
+            }).then(() => {
+                    console.log("Successful");
+                    M.toast({html: 'Successful posted!'});
+                    // Reload the page to get the updated list
+                    window.location = '/dashboard';
+                }
+            );
+        }
+
     })
 
 });

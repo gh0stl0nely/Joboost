@@ -60,7 +60,7 @@ module.exports = function (app) {
   });
 
   // Creating a job post route
-  app.get("/createpost", async function (req, res) {
+  app.get("/createpost", checkAuthentication , async function (req, res) {
     try{
       const industry_list_raw= await readFilePromise(path.resolve(__dirname, "../data/job_growth.json"));
       const industry_list_data= JSON.parse(industry_list_raw);
@@ -74,7 +74,7 @@ module.exports = function (app) {
     }catch(e){
       throw e;
     }
-
+   
   });
 
 

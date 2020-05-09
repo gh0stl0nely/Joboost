@@ -22,19 +22,19 @@ module.exports = function(sequelize, DataTypes) {
           },
 
           contactNumber: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
           },
 
-          City: {
+          city: {
             type: DataTypes.STRING,
           },
 
-          Province: {
+          province: {
             type: DataTypes.STRING,
           },
 
-          Industry: {
+          industry: {
             type: DataTypes.STRING,
           },
           resumes: {
