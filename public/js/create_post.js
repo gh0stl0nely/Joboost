@@ -16,11 +16,37 @@ $(document).ready(function () {
         ['clean']                                         // remove formatting button
     ];
 
-    var quill = new Quill('#editor', {
+    const quill = new Quill('#editor', {
         modules: {
             toolbar: toolbarOptions
         },
         theme: 'snow'
     });
+
+    $("#createPostForm").on("submit", function (event) {
+        event.preventDefault();
+
+        let newPost = {
+            title: $("#title").val().trim(),
+            description: $("#editor").val().trim(),
+            contactEmail: $("#contactEmail").val().trim(),
+            contactNumber: $("#phone").val().trim(),
+            city: $("#city").val().trim(),
+            province: $("#province").val().trim(),
+            industry: $("#industry").val().trim(),
+        };
+
+        $.ajax("/api/newpost", {
+            type: "POST",
+            data: newPost
+        }).then(
+            function () {
+                console.log("Successful");
+                M.toast({html: 'Successful posted!'});
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
+    })
 
 });

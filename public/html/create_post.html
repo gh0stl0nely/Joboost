@@ -44,7 +44,7 @@
         </div>
 
         <div class="row">
-            <form class="col s12">
+            <form class="col s12" id="createPostForm">
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="title" placeholder="Enter the post title" type="text" class="validate">
@@ -53,7 +53,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select>
+                        <select id="industry">
                             <option value="" disabled selected>Choose your option</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
@@ -64,7 +64,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m6">
-                        <select>
+                        <select id="city">
                             <option value="" disabled selected>Choose your option</option>
                             <option value="100 Mile House">100 Mile House</option>
                             <option value="108 Mile House">108 Mile House</option>
@@ -3417,7 +3417,7 @@
                         <label>City</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <select>
+                        <select id="province">
                             <option value="" disabled selected>Choose your option</option>
                             <option value="AB">Alberta</option>
                             <option value="BC">British Columbia</option>
@@ -3433,7 +3433,7 @@
                             <option value="NU">Nunavut</option>
                             <option value="YT">Yukon</option>
                         </select>
-                        <label>Pronvince</label>
+                        <label>Province</label>
                     </div>
                 </div>
                 <div class="row">
@@ -3447,8 +3447,8 @@
 
                 <div class="row">
                     <div class="input-field col s12 m6">
-                        <input id="emailInfo" type="email" class="validate" required>
-                        <label for="emailInfo">Email</label>
+                        <input id="contactEmail" type="email" class="validate" required>
+                        <label for="contactEmail">Email</label>
                     </div>
                     <div class="input-field col s12 m6">
                         <input id="phone" type="number" class="validate" required>
