@@ -28,6 +28,10 @@ nav{
     margin: 0px;
 }
 
+.detailRow{
+    padding: 0px 20px;
+}
+
 #details{
     padding: 0px 10px;
 }
