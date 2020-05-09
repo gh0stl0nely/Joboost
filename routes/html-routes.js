@@ -8,6 +8,7 @@ const path = require("path");
 const util = require('util');
 const fs = require("fs");
 const readFilePromise = util.promisify(fs.readFile);
+const db = require("../models");
 
 function checkAuthentication(req, res, next) {
   if (req.user) {
@@ -42,21 +43,75 @@ module.exports = function (app) {
     }
   });
 
-  // To login page
+  // To login page, if not authenticated, go to login
   app.get("/login", (req, res) => {
-    res.sendFile(path.resolve(__dirname + "/../public/html/login.html"));
+    if(req.user){
+      return res.redirect('/dashboard');
+    } else {
+      return res.sendFile(path.resolve(__dirname + "/../public/html/login.html"));
+    };
   });
 
-  // To signup page
+  // To signup page, if not authenticated, go to signup, if yes go to dashboard
   app.get("/signup", (req, res) => {
-    res.sendFile(path.resolve(__dirname + "/../public/html/signup.html"));
+
+    if(req.user){
+      return res.redirect('/dashboard');
+    } else {
+      return res.sendFile(path.resolve(__dirname + "/../public/html/signup.html"));
+    };
+  });
+
+  // Logs user out
+  app.get('/logout', (req,res) => {
+    req.logout();
+    req.redirect('/login');
   });
 
   // Dashboard route loads dashboard.html
-  app.get("/dashboard", checkAuthentication, function (req, res) {
-    // Would have to do some database searching and data preparation here!
-    // res.render('something', {data})/ 
-    res.sendFile(path.resolve(__dirname + "/../public/html/dashboard.html"));
+  app.get("/dashboard", checkAuthentication, async function (req, res) {
+    const userID = req.user;
+    // This will automatically display all post 
+    // Need Title , published date (created at), resume received 
+    // Find all post that relates to userID
+    const allPosts = await db.Post.findAll({
+      where: {
+        employerID: userID
+      },
+    });
+
+    // console.log(allPosts[0].title); {{#each allPosts}}
+    // <p class="title">{{title}}</p>
+    // <p>Published date: {{createdAt}}</p>
+    // <p>Resume received: {{resumes}}</p>
+            // {{/each }}
+
+  
+    // Edit: On click, send Post request, take $(this).attr('id'), 
+    //  modal appears, fill out all  
+//     <li class="collection-item avatar">
+//        <a id="{{id}}" class="edit modal-trigger btn purple" href="#modalEdit"><i
+//             class="material-icons white-text left">mode_edit</i>Edit</a>
+//     </li>
+
+    // View All Resume, should have postID so when click can be sent to backend for querying
+//     <li class="collection-item avatar">
+//        <a class="btn purple">View all resume</a>
+//     </li>
+
+// Delete, on click, get postID, go to backend, delete it and redirect(/dashboard)
+  
+
+    res.render('dashboard', {
+      // Title, published date, resume received
+      // Edit
+      // View All
+      //allPosts
+    });
+
+    // RESET THE server.js because force is not true
+
+    // res.sendFile(path.resolve(__dirname + "/../public/html/dashboard.html"));
   });
 
   // Creating a job post route

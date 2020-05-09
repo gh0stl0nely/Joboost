@@ -74,7 +74,7 @@ module.exports = function (app, upload) {
             title: data.title,
             description: data.description.join(','),
             contactEmail: data.contactEmail,
-            contactNumber: data.contactEmail,
+            contactNumber: data.contactNumber,
             city: data.city,
             province: data.province,
             industry: data.industry,
@@ -82,8 +82,9 @@ module.exports = function (app, upload) {
         });
 
         res.redirect('/dashboard');
-        
-
     });
+
+    // View all post
+
 
 }
