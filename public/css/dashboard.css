@@ -42,3 +42,8 @@ h3{
     padding-top: 20px; 
     padding-left: 0px;
 }
+
+textarea{
+    resize: none;
+    height: 300px;
+}
