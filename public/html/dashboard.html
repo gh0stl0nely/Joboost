@@ -9,6 +9,12 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Quill.js API text editor-->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="../css/create_post.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js" defer></script>
+
     <link href="../css/dashboard.css" rel="stylesheet">
 </head>
 
@@ -56,60 +62,51 @@
         </div>
 
         <div class="row">
-            <div class="col s7" style="padding: 0;">
+            <div class="col s12" style="padding: 0;">
                 <ul class="collection" id="postList">
-                    <li class="collection-item avatar dropdown-trigger" data-target='dropdown'>
+                    <li class="collection-item avatar" data-target='dropdown'>
                         <p class="title">Title</p>
                         <p>Published date:</p>
                         <p>Resume received:</p>
-                        <a href="#" class="secondary-content"><i
-                                class="material-icons purple-text text-darken-2">more_vert</i></a>
+                        <div class="row btnRow center">
+                            <a class="edit modal-trigger btn-small purple" href="#modalEdit">Edit</a>
+                            <a class="btn-small purple delte">Delete</a>
+                            <a class="btn-small purple viewAll">View all resumes</a>
+                        </div>
                     </li>
-                    <li class="collection-item avatar dropdown-trigger" data-target='dropdown'>
+                    <li class="collection-item avatar" data-target='dropdown'>
                         <p class="title">Title</p>
                         <p>Published date:</p>
                         <p>Resume received:</p>
-                        <a href="#" class="secondary-content"><i
-                                class="material-icons purple-text text-darken-2">more_vert</i></a>
+                        <div class="row btnRow center">
+                            <a class="edit modal-trigger btn-small purple" href="#modalEdit">Edit</a>
+                            <a class="btn-small purple delte">Delete</a>
+                            <a class="btn-small purple viewAll">View all resumes</a>
+                        </div>
                     </li>
-                    <li class="collection-item avatar dropdown-trigger" data-target='dropdown'>
+                    <li class="collection-item avatar" data-target='dropdown'>
                         <p class="title">Title</p>
                         <p>Published date:</p>
                         <p>Resume received:</p>
-                        <a href="#" class="secondary-content"><i
-                                class="material-icons purple-text text-darken-2">more_vert</i></a>
+                        <div class="row btnRow center">
+                            <a class="edit modal-trigger btn-small purple" href="#modalEdit">Edit</a>
+                            <a class="btn-small purple delte">Delete</a>
+                            <a class="btn-small purple viewAll">View all resumes</a>
+                        </div>
                     </li>
-                    <li class="collection-item avatar dropdown-trigger" data-target='dropdown'>
+                    <li class="collection-item avatar">
                         <p class="title">Title</p>
                         <p>Published date:</p>
                         <p>Resume received:</p>
-                        <a href="#" class="secondary-content"><i
-                                class="material-icons purple-text text-darken-2">more_vert</i></a>
+                        <div class="row btnRow center">
+                            <a class="edit modal-trigger btn-small purple" href="#modalEdit">Edit</a>
+                            <a class="btn-small purple delte">Delete</a>
+                            <a class="btn-small purple viewAll">View all resumes</a>
+                        </div>
                     </li>
                 </ul>
             </div>
-
-            <div class="col s2" id="editList">
-                <ul class="collection" style="border: none;">
-                    <li class="collection-item avatar">
-                        <a class="edit modal-trigger btn purple" href="#modalEdit"><i
-                                class="material-icons white-text left">mode_edit</i>Edit</a>
-                    </li>
-                    <li class="collection-item avatar">
-                        <a class="edit modal-trigger btn purple" href="#modalEdit"><i
-                                class="material-icons white-text left">mode_edit</i>Edit</a>
-                    </li>
-                    <li class="collection-item avatar">
-                        <a class="edit modal-trigger btn purple" href="#modalEdit"><i
-                                class="material-icons white-text left">mode_edit</i>Edit</a>
-                    </li>
-                    <li class="collection-item avatar">
-                        <a class="edit modal-trigger btn purple" href="#modalEdit"><i
-                                class="material-icons white-text left">mode_edit</i>Edit</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col s3" id="viewList">
+            <!-- <div class="col s3" id="viewList">
                 <ul class="collection" style="border: none;">
                     <li class="collection-item avatar">
                         <a class="btn purple">View all resume</a>
@@ -124,7 +121,7 @@
                         <a class="btn purple">View all resume</a>
                     </li>
                 </ul>
-            </div>
+            </div> -->
         </div>
 
 
@@ -138,20 +135,47 @@
                 </div>
                 <form>
                     <div class="row">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select id="industry">
+                                    <option value="" disabled selected>Choose your option</option>
+                                </select>
+                                <label>Industry</label>
+                            </div>
+                        </div>
                         <div class="input-field col s12 m6">
-                            <input id="city" type="text" class="validate">
+                            <select id="city">
+                                <option value="" disabled selected>Choose your option</option>
+                            </select>
                             <label for="city">City</label>
                         </div>
 
                         <div class="input-field col s12 m6">
-                            <input id="province" type="text" class="validate">
-                            <label for="province">Province</label>
+                            <select id="province">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="AB">Alberta</option>
+                                <option value="BC">British Columbia</option>
+                                <option value="MB">Manitoba</option>
+                                <option value="NB">New Brunswick</option>
+                                <option value="NL">Newfoundland and Labrador</option>
+                                <option value="NS">Nova Scotia</option>
+                                <option value="ON">Ontario</option>
+                                <option value="PE">Prince Edward Island</option>
+                                <option value="QC">Quebec</option>
+                                <option value="SK">Saskatchewan</option>
+                                <option value="NT">Northwest Territories</option>
+                                <option value="NU">Nunavut</option>
+                                <option value="YT">Yukon</option>
+                            </select>
+                            <label>Province</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                             <p style="color: #9e9e9e; font-size: 15px;">Description</p>
-                            <textarea id="description" class="broswer-default"></textarea>
+                            <p style="color: #9e9e9e; font-size: 15px;">Description</p>
+                            <div id="content-container">
+                                <div id="editor"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -172,18 +196,10 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Save</a>
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                <a href="#!" class="modal-close waves-effect waves-purple btn-flat">Save</a>
+                <a href="#!" class="modal-close waves-effect waves-purple btn-flat">Close</a>
             </div>
         </div>
-
-        <ul id='dropdown' class='dropdown-content'>
-            <li>Title</li>
-            <li>Published Date: <span></span></li>
-            <li>Description</li>
-            <li>Contact</li>
-            <li>Resume received: <span></span></li>
-        </ul>
     </div>
 
 
