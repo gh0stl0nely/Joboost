@@ -64,8 +64,8 @@
                         </div>
                     </div>
                     <div class="row center">
-                        <button class="btn-small waves-effect waves-purple purple" type="submit" name="action">Submit
-                            <i class="material-icons right">send</i>
+                        <button class="btn-small waves-effect waves-purple purple" id="searchBtn" type="submit" name="action">Search
+                            <i class="material-icons right">search</i>
                         </button>
                     </div>
                 </form>
@@ -92,19 +92,24 @@
                     </div>
                 </div>
                 <div class="row center" id="applyDiv">
-                    <div class="col s12 m8" style="padding: 0px">
+                    <div class="col s12 input-field detailRow">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="fullName" type="text" class="validate" required>
+                        <label for="fullName">Full Name</label>
+                    </div>
+                    <div class="col s12 detailRow">
                         <div class="file-field input-field">
-                            <div class="btn-small purple wave-effect waves-purple">
-                                <span>File</span>
-                                <input type="file">
+                            <div class="btn-small waves-effect waves-purple purple">
+                                <i class="material-icons right">file_upload</i><span>Resume</span>
+                                <input type="file" required>
                             </div>
                             <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text">
+                                <input class="file-path validate" type="text" required>
                             </div>
                         </div>
                     </div>
-                    <div class="col s12 m4" style="padding: 20px 0px">
-                        <button class="btn-small purple wave-effect waves-purple">Apply</button>
+                    <div class="col s12 detailRow">
+                        <button class="btn waves-effect waves-purple purple">Apply</button>
                     </div>
 
                 </div>
