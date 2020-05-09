@@ -6,12 +6,12 @@ const fs = require("fs");
 const readFilePromise = util.promisify(fs.readFile);
 
 
-module.exports = function(app, upload){
+module.exports = function (app, upload) {
 
 
-    
+
     // When Employer press "Login"  
-    app.post("/api/login", passport.authenticate("local"), (req,res)=> {
+    app.post("/api/login", passport.authenticate("local"), (req, res) => {
         //If successful then redirect them back to t
         //req.user will exist here. 
         // console.log("FOUND EM! ID is " + req.user);
@@ -22,7 +22,7 @@ module.exports = function(app, upload){
     });
 
     // When Employer press "Signup"
-    app.post("/api/register", upload.single('logo'), async (req,res) => {
+    app.post("/api/register", upload.single('logo'), async (req, res) => {
         var logoPath = req.file ? req.file.filename : null;
 
         const response = await db.Employer.create({
@@ -35,23 +35,29 @@ module.exports = function(app, upload){
         res.redirect('/login');
     });
 
-    app.post("/api/data", async (req,res) => {
+    app.post("/api/data", async (req, res) => {
         const selectedIndustry = req.body.selectedOption
         const job_growth_raw = await readFilePromise(path.resolve(__dirname, "../data/job_growth.json"));
-        const job_growth_data= JSON.parse(job_growth_raw);
+        const job_growth_data = JSON.parse(job_growth_raw);
         const job_predictions_raw = await readFilePromise(path.resolve(__dirname, "../data/job_predictions.json"));
-        const job_predictions_data= JSON.parse(job_predictions_raw);
+        const job_predictions_data = JSON.parse(job_predictions_raw);
 
         // Find the object with Industry == req.body.selectedOption
-        for(let i = 0; i < job_growth_data.length; i++){
-            if(job_growth_data[i].Industry == selectedIndustry){
+        for (let i = 0; i < job_growth_data.length; i++) {
+            if (job_growth_data[i].Industry == selectedIndustry) {
                 return res.json({
                     job_growth_data: job_growth_data[i],
-                    job_prediction_data : job_predictions_data[i]
+                    job_prediction_data: job_predictions_data[i]
                 });
             };
         };
     });
 
+    // create new post
+    app.post("/api/data", function (req, res) {
+        db.post.create(req.body).then(function (dbPost) {
+            res.json(dbPost);
+        });
+    })
 
 }
