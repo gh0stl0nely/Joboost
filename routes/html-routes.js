@@ -8,6 +8,7 @@ const path = require("path");
 const util = require('util');
 const fs = require("fs");
 const readFilePromise = util.promisify(fs.readFile);
+const db = require("../models");
 
 function checkAuthentication(req, res, next) {
   if (req.user) {
@@ -46,21 +47,60 @@ module.exports = function (app) {
     }
   });
 
-  // To login page
+  // To login page, if not authenticated, go to login
   app.get("/login", (req, res) => {
-    res.sendFile(path.resolve(__dirname + "/../public/html/login.html"));
+    if(req.user){
+      return res.redirect('/dashboard');
+    } else {
+      return res.sendFile(path.resolve(__dirname + "/../public/html/login.html"));
+    };
   });
 
-  // To signup page
+  // To signup page, if not authenticated, go to signup, if yes go to dashboard
   app.get("/signup", (req, res) => {
-    res.sendFile(path.resolve(__dirname + "/../public/html/signup.html"));
+
+    if(req.user){
+      return res.redirect('/dashboard');
+    } else {
+      return res.sendFile(path.resolve(__dirname + "/../public/html/signup.html"));
+    };
   });
 
-  // Dashboard route loads dashboard.html
-  app.get("/dashboard", checkAuthentication, function (req, res) {
-    // Would have to do some database searching and data preparation here!
-    // res.render('something', {data})/ 
-    res.sendFile(path.resolve(__dirname + "/../public/html/dashboard.html"));
+  // Logs user out
+  app.get('/logout', (req,res) => {
+    req.logout();
+    res.redirect('/login');
+  });
+
+  // Dashboard route loads dashboard.handlebars
+  app.get("/dashboard", checkAuthentication, async function (req, res) {
+
+    try{
+      const userID = req.user;
+      const allPosts = await db.Post.findAll({
+        where: {
+          employerID: userID
+        },
+      });
+
+      // Render choices
+      const industry_list_raw= await readFilePromise(path.resolve(__dirname, "../data/job_growth.json"));
+      const industry_list_data= JSON.parse(industry_list_raw);
+      const city_raw = await readFilePromise(path.resolve(__dirname, "../data/city.json"));
+      const city_data = JSON.parse(city_raw);
+
+      res.render('dashboard', {
+        allPosts,
+        industry_list_data,
+        city_data
+      });
+
+    }catch(e){
+      throw e
+    }
+    
+    // RESET THE server.js because force is not true
+
   });
 
   // Creating a job post route
