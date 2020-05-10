@@ -1,13 +1,18 @@
 $(document).ready(function () {
-
-    $("#DownloadBtn").on('click', function(e){
+    $(".deleteBtn").on('click', function(e){
         e.preventDefault();
-        console.log("heelo")
-        window.location = '/api/download'
+        const applicationID = $(this).attr("data-appid");
+        
+        const data = {
+            applicationID
+        };
+
+        $.ajax('/api/deleteApplication/', {
+            type: 'DELETE',
+            data 
+        }).then(() => {
+            window.location.reload();
+        });
     })
-
-
-
-
 
 })

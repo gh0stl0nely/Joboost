@@ -140,5 +140,19 @@ module.exports = function (app, upload) {
         res.end();
     });
 
+    // Delete certain application
+
+    app.delete("/api/deleteApplication", async (req,res) => {
+        const applicationID = req.body.applicationID;
+        
+        const applicationToBeDeleted = await db.Application.findOne({
+            where:{
+                id: applicationID
+            }
+        });
+        await applicationToBeDeleted.destroy();
+
+        res.end();
+    });
 
 }
