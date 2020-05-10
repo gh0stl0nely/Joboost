@@ -15,4 +15,9 @@ $(document).ready(function () {
         });
     })
 
+    $(".downloadBtn").on('click', function(e){
+        e.preventDefault();
+        const resumePath = $(this).attr("data-resumepath");
+        window.open('/download?filePath=' + resumePath);
+    });
 })

@@ -119,36 +119,51 @@ module.exports = function (app) {
       throw e;
     }
 
-    // Viewing all applications for certain postID
-    app.get("/view_resume", checkAuthentication, async (req, res) => {
-      // const postID = req.params.id;
-      // console.log(req.query.postID)
+  });
 
-      try {
-        const applications = await db.Application.findAll({
-          where: {
-            postID: req.query.postID
-          }
-        });
-        
-        const post = await db.Post.findOne({
-          where: {
-            id: req.query.postID
-          }
-        })
-        console.log(post);
 
-        res.render('view_resume', {
-          applications,
-          postTitle: post.title
-        });
+  // Viewing all applications for certain postID
+  app.get("/view_resume", checkAuthentication, async (req, res) => {
+    // const postID = req.params.id;
+    // console.log(req.query.postID)
 
-      } catch (e) {
-        throw e;
-      }
-      
-    });
+    try {
+      const applications = await db.Application.findAll({
+        where: {
+          postID: req.query.postID
+        }
+      });
+
+      const post = await db.Post.findOne({
+        where: {
+          id: req.query.postID
+        }
+      })
+      console.log(post);
+
+      res.render('view_resume', {
+        applications,
+        postTitle: post.title
+      });
+
+    } catch (e) {
+      throw e;
+    }
 
   });
+  
+  // Get route for downloading resume
+  app.get('/download', checkAuthentication, (req,res) => {
+    // console.log(req.query.filePath);
+    // Change sample_pdf to designated folder that store pdf, and req.query.filePath
+    res.download(__dirname + '/../public/sample_pdf/' + 'ExamplePDF.PDF');  
+  });
+
+  // Custom 404 Catcher
+  // DELETE THIS, AND /another/* WORKS, KEEP IT AND /another/* DOES NOT WORK
+  app.get('*', function (req, res) {
+    res.status(404).send('This is 404 page');
+  });
+
 
 }
