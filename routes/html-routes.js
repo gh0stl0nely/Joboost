@@ -65,53 +65,38 @@ module.exports = function (app) {
   // Logs user out
   app.get('/logout', (req,res) => {
     req.logout();
-    req.redirect('/login');
+    res.redirect('/login');
   });
 
-  // Dashboard route loads dashboard.html
+  // Dashboard route loads dashboard.handlebars
   app.get("/dashboard", checkAuthentication, async function (req, res) {
-    const userID = req.user;
-    // This will automatically display all post 
-    // Need Title , published date (created at), resume received 
-    // Find all post that relates to userID
-    const allPosts = await db.Post.findAll({
-      where: {
-        employerID: userID
-      },
-    });
 
-    // console.log(allPosts[0].title); {{#each allPosts}}
-    // <p class="title">{{title}}</p>
-    // <p>Published date: {{createdAt}}</p>
-    // <p>Resume received: {{resumes}}</p>
-            // {{/each }}
+    try{
+      const userID = req.user;
+      const allPosts = await db.Post.findAll({
+        where: {
+          employerID: userID
+        },
+      });
 
-  
-    // Edit: On click, send Post request, take $(this).attr('id'), 
-    //  modal appears, fill out all  
-//     <li class="collection-item avatar">
-//        <a id="{{id}}" class="edit modal-trigger btn purple" href="#modalEdit"><i
-//             class="material-icons white-text left">mode_edit</i>Edit</a>
-//     </li>
+      // Render choices
+      const industry_list_raw= await readFilePromise(path.resolve(__dirname, "../data/job_growth.json"));
+      const industry_list_data= JSON.parse(industry_list_raw);
+      const city_raw = await readFilePromise(path.resolve(__dirname, "../data/city.json"));
+      const city_data = JSON.parse(city_raw);
 
-    // View All Resume, should have postID so when click can be sent to backend for querying
-//     <li class="collection-item avatar">
-//        <a class="btn purple">View all resume</a>
-//     </li>
+      res.render('dashboard', {
+        allPosts,
+        industry_list_data,
+        city_data
+      });
 
-// Delete, on click, get postID, go to backend, delete it and redirect(/dashboard)
-  
-
-    res.render('dashboard', {
-      // Title, published date, resume received
-      // Edit
-      // View All
-      //allPosts
-    });
-
+    }catch(e){
+      throw e
+    }
+    
     // RESET THE server.js because force is not true
 
-    // res.sendFile(path.resolve(__dirname + "/../public/html/dashboard.html"));
   });
 
   // Creating a job post route

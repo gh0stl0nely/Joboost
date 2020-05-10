@@ -54,25 +54,12 @@ module.exports = function (app, upload) {
 
     // Create New Post
     app.post("/api/newpost" , async function (req, res) {
-        // console.log(req.user); This is employerID
-        // console.log(req.body); This is data body
-        // console.log(typeof req.body.description.join(','))
-
-        // {
-        //   title: '213',
-        //   description: '',
-        //   contactEmail: 'sadasd@asdasd',
-        //   contactNumber: '123123123',
-        //   city: 'Calgary',
-        //   province: 'NB',
-        //   industry: 'Agriculture'
-        // }
         const data = req.body;
         
         // Store to database...
         const newPostData = await db.Post.create({
             title: data.title,
-            description: data.description.join(','),
+            description: data.description.join('|'),
             contactEmail: data.contactEmail,
             contactNumber: data.contactNumber,
             city: data.city,
@@ -85,6 +72,66 @@ module.exports = function (app, upload) {
     });
 
     // View all post
+    app.post("/api/editPost", async (req,res) => {
+        const id = req.body.postID; // Post ID to be deleted
 
+        const postData = await db.Post.findOne({
+            where: {
+                id: id
+            }
+        });
+
+        res.json(postData);
+    });
+
+    // Update existing post
+
+    app.post("/api/updatePost", async (req,res) => {
+        console.log(req.body);
+
+        try{
+            const data = req.body;
+            const post = await db.Post.findOne({
+                where: {
+                    id: data.postID
+                }
+            })
+    
+            post.title = data.title;
+            post.description = data.description.join("|");
+            post.contactEmail = data.contactEmail;
+            post.contactNumber = data.contactNumber;
+            post.city = data.city;
+            post.province = data.province;
+            post.industry = data.industry;
+            post.resumes = data.resumes;
+    
+            await post.save();
+    
+            res.json({
+                message: "Saved Successful",
+                postID: data.postID,
+                newTitle: data.title
+            });
+        }catch(e){
+            throw e
+        }
+        
+    });
+
+    // Delete Post
+    app.delete("/api/deletePost", async (req,res) => {
+        const id = req.body.postID; // Post ID to be deleted
+
+        const deletedData = await db.Post.findOne({
+            where: {
+                id: id
+            }
+        })
+
+        await deletedData.destroy();
+
+        res.end();
+    });
 
 }
