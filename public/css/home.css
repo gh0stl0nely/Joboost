@@ -39,15 +39,14 @@ nav{
 
 #hiring {
     /* width:280px; */
-    padding-top: 20px;
-    margin: 0px;
+    padding-top: 40px;
+    /* margin: 0px; */
     /* height: 64vh; */
-    height: 100%;
     text-align: right;
     text-shadow: 3px 2px #FFF;
     line-height: 250px;
     margin-bottom:5px;
-    background-image: url("../images/hiring.jpg");
+    background-image: url("https://www.theladders.com/wp-content/uploads/interview-190822.jpg");
     background-repeat:no-repeat; 
     background-position:center bottom;
     background-size:cover;
@@ -55,10 +54,9 @@ nav{
 
 #industry {
     /* width:280px; */
-    padding-top: 20px;
+    padding-top: 40px;
     margin: 0px;
     /* height: 64vh; */
-    height: 100%;
     text-align: center;
 	text-shadow: 3px 2px #FFF;
     line-height: 250px;
@@ -71,18 +69,26 @@ nav{
 
 .heading2 {
 	color:#7E4EAC;
-    font-size:38px;
-	text-align: end;
+    font-size:36px;
+    text-align: end;
+    background-color: rgba(241, 194, 247, 0.699);
 }
 
 .heading3 {
-	color:#8C04A8;
-	font-size:20px;
-	font-family: 'Quicksand', sans-serif;
+    color:#8C04A8;
+    font-weight: bolder;
+    font-size:30px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+#about{
+    background-color: rgb(221, 200, 236); 
+    padding: 20px 50px;
 }
 
 .intro {
-	font-size: 13px;
+    font-size: 16px;
+    font-weight: bold;
 	font-family: 'Quicksand', sans-serif;
 	color:rgb(94, 67, 126);
 }
