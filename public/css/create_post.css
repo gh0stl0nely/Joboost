@@ -1,9 +1,11 @@
 nav{
     background-color: rgb(140, 4, 168);
+    height: 80px;
+    line-height: 80px;
 }
 
 #logo{
-    padding-left: 20px;
+    padding-left: 30px;
 }
 
 h3{

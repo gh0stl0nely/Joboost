@@ -1,3 +1,13 @@
+nav{
+    background-color: rgb(140, 4, 168);
+    height: 80px;
+    line-height: 80px;
+}
+
+#logo{
+    padding-left: 30px;
+}
+
 .chart-styling{
     margin-top: 10px; 
     /* margin-left: 30px; */
