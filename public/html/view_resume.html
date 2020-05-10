@@ -13,23 +13,29 @@
 </head>
 
 <body>
-    <nav>
-        <div class="nav-wrapper">
-            <a href="/login" class="brand-logo" id="logo"><img src="../logo/Logo.jpeg" width="64" /></a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="/">Dashboard</a></li>
-                <li><a href="/">Create Posts</a></li>
-                <li><a href="/">Log out</a></li>
-            </ul>
-        </div>
-    </nav>
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="/login" class="brand-logo" id="logo"><img src="../logo/Logo.jpeg" width="80" /></a>
+                <a data-target="mobile-demo" class="sidenav-trigger right"><i
+                        class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="/">Dashboard</a></li>
+                    <li><a href="/">Create Posts</a></li>
+                    <li><a href="/">Log out</a></li>
+                </ul>
+            </div>
+        </nav>
 
-    <ul class="sidenav" id="mobile-demo">
-        <li><a href="/">Dashboard</a></li>
-        <li><a href="/">Create Posts</a></li>
-        <li><a href="/">Log out</a></li>
-    </ul>
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="/">Dashboard</a></li>
+            <li><a href="/">Create Posts</a></li>
+            <li><a href="/">Log out</a></li>
+        </ul>
+    </header>
+
+
+
 
     <div class="container">
         <div class="row">
@@ -90,5 +96,9 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <script type="text/javascript" src="../js/dashboard.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+        });
+    </script>
 </body>
