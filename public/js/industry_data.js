@@ -82,11 +82,11 @@ function drawJobOpportunityGraphWithData(data) {
     var chartElement = document.getElementById('jobPredictionGraph')
     var data = google.visualization.arrayToDataTable([
         ['Year', data.Industry, ],
-        ['2019', data['2019']],
         ['2020', data['2020']],
         ['2021', data['2021']],
         ['2022', data['2022']],
         ['2023', data['2023']],
+        ['2024', data['2024']],
     ]);
 
     var options = {
@@ -123,11 +123,11 @@ function drawEmploymentGrowthRateGraphWithData(data) {
     var chartElement = document.getElementById('employmentGrowthGraph')
     var data = google.visualization.arrayToDataTable([
         ['Year', data.Industry, ],
-        ['2019', data['2019']],
         ['2020', data['2020']],
         ['2021', data['2021']],
         ['2022', data['2022']],
         ['2023', data['2023']],
+        ['2024', data['2024']],
     ]);
 
     var options = {

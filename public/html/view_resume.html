@@ -17,20 +17,18 @@
         <nav>
             <div class="nav-wrapper">
                 <a href="/login" class="brand-logo" id="logo"><img src="../logo/Logo.jpeg" width="80" /></a>
-                <a data-target="mobile-demo" class="sidenav-trigger right"><i
-                        class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="/">Dashboard</a></li>
-                    <li><a href="/">Create Posts</a></li>
-                    <li><a href="/">Log out</a></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/createpost">Create Posts</a></li>
+                    <li><a href="/logout">Log out</a></li>
                 </ul>
             </div>
         </nav>
 
         <ul class="sidenav" id="mobile-demo">
-            <li><a href="/">Dashboard</a></li>
-            <li><a href="/">Create Posts</a></li>
-            <li><a href="/">Log out</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/createpost">Create Posts</a></li>
+            <li><a href="/logout">Log out</a></li>
         </ul>
     </header>
 
@@ -39,7 +37,8 @@
 
     <div class="container">
         <div class="row">
-            <h3 class="center-align">All Resumes for <span>'Job Title'</span></h3>
+            <h3 class="center-align">All Application for</h3>
+            <h3 class="center-align" id="jobTitle">"Software Developer TOMOR"</h3>
         </div>
 
         <div class="row">
@@ -47,41 +46,11 @@
                 <ul class="collection" id="resumeList">
                     <li class="collection-item">
                         <div class="row" style="padding: 0px 30px;">
-                            <h5>Title</h5>
+                            <h5>Applicant's Name: <span></span></h5>
                         </div>
                         <div class="row center" style="padding-top: 20px;">
                             <a class="waves-effect waves-purple purple btn-small">View</a>
-                            <a class="waves-effect waves-purple purple btn-small">Download</a>
-                            <a class="waves-effect waves-purple purple btn-small">Delete</a>
-                        </div>
-                    </li>
-                    <li class="collection-item">
-                        <div class="row" style="padding: 0px 30px;">
-                            <h5>Title</h5>
-                        </div>
-                        <div class="row center" style="padding-top: 20px;">
-                            <a class="waves-effect waves-purple purple btn-small">View</a>
-                            <a class="waves-effect waves-purple purple btn-small">Download</a>
-                            <a class="waves-effect waves-purple purple btn-small">Delete</a>
-                        </div>
-                    </li>
-                    <li class="collection-item">
-                        <div class="row" style="padding: 0px 30px;">
-                            <h5>Title</h5>
-                        </div>
-                        <div class="row center" style="padding-top: 20px;">
-                            <a class="waves-effect waves-purple purple btn-small">View</a>
-                            <a class="waves-effect waves-purple purple btn-small">Download</a>
-                            <a class="waves-effect waves-purple purple btn-small">Delete</a>
-                        </div>
-                    </li>
-                    <li class="collection-item">
-                        <div class="row" style="padding: 0px 30px;">
-                            <h5>Title</h5>
-                        </div>
-                        <div class="row center" style="padding-top: 20px;">
-                            <a class="waves-effect waves-purple purple btn-small">View</a>
-                            <a class="waves-effect waves-purple purple btn-small">Download</a>
+                            <a class="waves-effect waves-purple purple btn-small" id="DownloadBtn">Download</a>
                             <a class="waves-effect waves-purple purple btn-small">Delete</a>
                         </div>
                     </li>
@@ -90,15 +59,16 @@
         </div>
     </div>
 
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-    <script type="text/javascript">
+    <<<<<<< HEAD <script type="text/javascript">
         $(document).ready(function () {
-            $('.sidenav').sidenav();
+        $('.sidenav').sidenav();
         });
-    </script>
+        </script>
+        =======
+        <script type="text/javascript" src="../js/view_resume.js"></script>
+        <!-- <script type="text/javascript" src="../js/dashboard.js"></script> -->
+        >>>>>>> master
 </body>
