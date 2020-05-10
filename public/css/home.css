@@ -1,0 +1,88 @@
+nav{
+    background-color: rgb(140, 4, 168);
+    height: 80px;
+    line-height: 80px;
+}
+
+#logo{
+    padding-left: 30px;
+}
+
+#titleLine{
+    text-align: center;
+    color: #8C04A8;
+    margin:20px 0;
+    font-size: 40px;
+    padding: 0px 15px;
+}
+
+#subtitle{
+    text-align: center;
+    color:#7E4EAC;
+    font-size: 25px;
+    padding: 0px 15px;
+}
+
+.icon{
+    padding-top: 10px;
+    font-size: 40px;
+}
+
+#carouselDiv{
+    border-top: 5px solid rebeccapurple;
+    border-bottom: 5px solid rebeccapurple;
+}
+
+.arrow{
+    margin: 0px;
+}
+
+#hiring {
+    /* width:280px; */
+    padding-top: 20px;
+    margin: 0px;
+    /* height: 64vh; */
+    height: 100%;
+    text-align: right;
+    text-shadow: 3px 2px #FFF;
+    line-height: 250px;
+    margin-bottom:5px;
+    background-image: url("../images/hiring.jpg");
+    background-repeat:no-repeat; 
+    background-position:center bottom;
+    background-size:cover;
+}
+
+#industry {
+    /* width:280px; */
+    padding-top: 20px;
+    margin: 0px;
+    /* height: 64vh; */
+    height: 100%;
+    text-align: center;
+	text-shadow: 3px 2px #FFF;
+    line-height: 250px;
+    margin-bottom:5px;
+    background-image: url(../images/industry.jpg);
+    background-repeat:no-repeat; 
+    background-position:center center;
+    background-size:cover;
+}
+
+.heading2 {
+	color:#7E4EAC;
+    font-size:38px;
+	text-align: end;
+}
+
+.heading3 {
+	color:#8C04A8;
+	font-size:20px;
+	font-family: 'Quicksand', sans-serif;
+}
+
+.intro {
+	font-size: 13px;
+	font-family: 'Quicksand', sans-serif;
+	color:rgb(94, 67, 126);
+}
