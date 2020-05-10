@@ -1,5 +1,6 @@
 $(document).ready(function () {
     $('select').formSelect();
+    $('.sidenav').sidenav();
 
     const toolbarOptions = [
         ['bold', 'italic', 'underline', 'strike'],        // toggled buttons

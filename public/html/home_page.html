@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Joboost</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://kit.fontawesome.com/29e5db4ce1.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="../css/home.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/login" class="brand-logo" id="logo"><img src="../logo/Logo.jpeg" width="80" /></a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Employer Sign In</a></li>
+                <li><a href="/">Industry Data</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="/">Home</a></li>
+        <li><a href="/">Employer Sign In</a></li>
+        <li><a href="/">Industry Data</a></li>
+    </ul>
+
+    <main class="container" style="width: 100%">
+        <div class="row" style="margin: 0px;">
+            <div class="col s12 m2"></div>
+            <div class="col s12 m8" id="searchDiv">
+                <div class="row center searchRow">
+                    <p id="titleLine"><img src="../images/heart.png" />More Resources for Covid-19</p>
+                    <p id="subtitle">Just one click. We are here to help!</p>
+                </div>
+                <form>
+                    <div class="row searchRow">
+                        <div class="input-field col s6">
+                            <input id="jobTitleSearch" type="search" class="validate">
+                            <label for="jobTitleSearch">Job Title</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="companySearch" type="search" class="validate">
+                            <label for="companySearch">Company Name</label>
+                        </div>
+                    </div>
+                    <div class="row searchRow">
+                        <div class="input-field col s6">
+                            <select id="citySearch">
+                                <option value="" disabled selected>Choose your option</option>
+                            </select>
+                            <label for="citySearch">City</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <select id="provinceSearch">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="Alberta">Alberta</option>
+                                <option value="British Columbia">British Columbia</option>
+                                <option value="Manitoba">Manitoba</option>
+                                <option value="New Brunswick">New Brunswick</option>
+                                <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                                <option value="Nova Scotia">Nova Scotia</option>
+                                <option value="Ontario">Ontario</option>
+                                <option value="Prince Edward Island">Prince Edward Island</option>
+                                <option value="Quebec">Quebec</option>
+                                <option value="Saskatchewan">Saskatchewan</option>
+                                <option value="Northwest Territories">Northwest Territories</option>
+                                <option value="Nunavut">Nunavut</option>
+                                <option value="Yukon">Yukon</option>
+                            </select>
+                            <label>Province</label>
+                        </div>
+                    </div>
+                    <div class="row center">
+                        <button class="btn-small waves-effect waves-purple purple" id="searchBtn" type="submit"
+                            name="action">Search
+                            <i class="material-icons right">search</i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col s12 m2"></div>
+        </div>
+
+        <div class="row" style="margin: 0px;">
+            <div class="carousel carousel-slider center" id="carouselDiv">
+                <a class="carousel-item"><img src="../images/Slide1.png"></a>
+                <a class="carousel-item"><img src="../images/Slide2.png"></a>
+                <a class="carousel-item" href="https://novoresume.com/career-blog/how-to-write-a-resume-guide"><img
+                        src="../images/Slide3.png"></a>
+                <a class="carousel-item"><img src="../images/Slide4.png"></a>
+                <a class="carousel-item"><img src="../images/Slide5.png"></a>
+            </div>
+        </div>
+
+        <div class="row" style="margin: 0px; border-bottom: 5px solid rebeccapurple; height: 100vh;">
+            <div class="col s4" style="background-color: rgb(221, 200, 236); height: 100%; padding: 0px 30px;">
+                <h3 class="heading3">About Us</h3>
+                <p class="intro">Joboost is here offering the best and effective job posting ads site to help both
+                    our
+                    job seekers and employers. We help Job Seekers by offering
+                    more job boards, useful guide for career advancement and open to new opportunities.</p>
+
+                <p class="intro">Looking to hire the right candidate for your job opening? Post a job on Joboost,
+                    most
+                    resources job site. Save Time and Money plus Top Talents!</p>
+                <p class="intro">How it Works?<br>Step 1: Create Your Job Post. <br>Step 2: Reach Top Candidates
+                    <br>Step 3: Review Your Great Matches in our all-in-one dashboard.</p>
+            </div>
+            <div class="col s4" id="hiring">
+                <a href="jobPosting.html">
+                    <h2 class="heading2">Uploading Your Resume</h2>
+                </a>
+            </div>
+            <div class="col s4" id="industry">
+                <a href="industry.html">
+                    <h2 class="heading2">Industry Reviews</h2>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="page-footer" style="background-color: rgb(167, 39, 192)">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <h5 class="white-text center">Follow us @</h5>
+                    <div class="row center">
+                        <div class="col s3"></div>
+                        <div class="col s6">
+                            <div class="col s4"><i class="fab fa-linkedin icon"></i></div>
+                            <div class="col s4"><i class="fab fa-facebook-square icon"></i></div>
+                            <div class="col s4"><i class="fab fa-twitter-square icon"></i></div>
+                        </div>
+                        <div class="col s3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright" style="background-color: rgb(140, 4, 168)">
+            <div class="container">
+                Copyright © 2020 Joboost - Privacy and Terms. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script type="text/javascript" src="../js/home.js"></script>
+</body>

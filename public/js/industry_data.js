@@ -41,6 +41,8 @@ $(document).ready(function () {
 
     //Initialize selection bar
     $('select').formSelect(); 
+    //Initialize side nav
+    $('.sidenav').sidenav();
 
 })
 
