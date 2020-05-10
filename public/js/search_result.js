@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    $('.sidenav').sidenav();
+    $('select').formSelect();
+    
     function chooseLogo() {
         const $input = $("#logoFile");
         const $label = $input.next('label');
