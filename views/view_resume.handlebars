@@ -33,23 +33,25 @@
 
     <div class="container">
         <div class="row">
-            <h3 class="center-align">All Application for</h3>
-            <h3 class="center-align" id="jobTitle">"Software Developer TOMOR"</h3>
+            <h3 class="center-align">All Applications for</h3>
+            <h3 class="center-align" id="jobTitle">"{{postTitle}}"</h3>
         </div>
 
         <div class="row">
             <div class="col s12" style="padding: 0;">
                 <ul class="collection" id="resumeList">
-                    <li class="collection-item">
-                        <div class="row" style="padding: 0px 30px;">
-                            <h5>Applicant's Name: <span></span></h5>
-                        </div>
-                        <div class="row center" style="padding-top: 20px;">
-                            <a class="waves-effect waves-purple purple btn-small">View</a>
-                            <a class="waves-effect waves-purple purple btn-small" id="DownloadBtn">Download</a>
-                            <a class="waves-effect waves-purple purple btn-small">Delete</a>
-                        </div>
-                    </li>
+                    {{#each applications}}
+                        <li class="collection-item">
+                            <div class="row" style="padding: 0px 30px;">
+                                <h5>Applicant's Name: <span>{{dataValues.userName}}</span></h5>
+                            </div>
+                            <div class="row center" style="padding-top: 20px;">
+                                <a data-appID="{{dataValues.resumePath}}" class="waves-effect waves-purple purple btn-small viewBtn">View</a>
+                                <a data-appID="{{dataValues.resumePath}}" class="waves-effect waves-purple purple btn-small downloadBtn">Download</a>
+                                <a data-appID="{{dataValues.id}}" class="waves-effect waves-purple purple btn-small deleteBtn">Delete</a>
+                            </div>
+                        </li>
+                    {{/each}}    
                 </ul>
             </div>
         </div>

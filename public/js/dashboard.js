@@ -159,4 +159,11 @@ $(document).ready(function () {
 
     });
 
+    $(".viewAllApp").on('click', function(){
+       const postID = $(this).attr("data-postID");
+       const url = "/view_resume?postID=" + postID;
+       window.location = url;
+
+    });
+
 });
