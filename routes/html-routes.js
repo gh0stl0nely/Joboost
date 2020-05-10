@@ -29,7 +29,7 @@ module.exports = function (app) {
   });
 
   app.get("/home", (req, res) => {
-    res.sendFile(path.resolve(__dirname + "/../public/html/home.html"));
+    res.sendFile(path.resolve(__dirname + "/../public/html/home_page.html"));
   })
 
   // To industry_data html page
