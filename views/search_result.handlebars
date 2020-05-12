@@ -57,38 +57,39 @@
                             <label for="citySearch">City</label>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="provinceSearch" type="search" class="validate">
-                            <label for="provinceSearch">Province</label>
-                        </div>
-                    </div>
                     <div class="row center">
-                        <button class="btn-small waves-effect waves-purple purple" id="searchBtn" type="submit" name="action">Search
+                        <button class="btn-small waves-effect waves-purple purple" id="searchBtn" type="submit"
+                            name="action">Search
                             <i class="material-icons right">search</i>
                         </button>
                     </div>
                 </form>
             </div>
 
+            <!-- Main Post -->
+            {{#if isResultFound}}
             <div class="col s12 m6">
                 <div class="row">
                     <div class="col s4 center" style="padding: 0px">
-                        <img src="https://via.placeholder.com/100" style="padding-top: 20px;" />
+                        <img src="{{mainPost.Employer.dataValues.logo_path}}" style="padding-top: 20px;" />
                     </div>
                     <div class="col s8" style="padding: 0px">
-                        <h4>Title</h4>
-                        <p>Publish date: </p>
-                        <p>Company name</p>
-                        <p>Location</p>
+                        <h4>Title: {{mainPost.dataValues.title}}</h4>
+                        <p>Publish date: {{mainPost.dataValues.createdAt}}</p>
+                        <p>Company name: {{mainPost.Employer.dataValues.company}}</p>
+                        <p>City: {{mainPost.dataValues.city}}</p>
                     </div>
                 </div>
                 <div id="details">
                     <div class="row">
                         <p>Description and details</p>
+                        {{#each mainPostDescripton}}
+                        <p>{{{this}}}</p>
+                        {{/each}}
                     </div>
                     <div class="row">
-                        <p>Contact Information</p>
+                        <p>Email: {{mainPost.dataValues.contactEmail}}</p>
+                        <p>Phone: {{mainPost.dataValues.contactNumber}}</p>
                     </div>
                 </div>
                 <div class="row center" id="applyDiv">
@@ -109,81 +110,51 @@
                         </div>
                     </div>
                     <div class="col s12 detailRow">
-                        <button class="btn waves-effect waves-purple purple">Apply</button>
+                        <button id="{{mainPost.dataValues.id}}"
+                            class="btn waves-effect waves-purple purple applyBtn">Apply</button>
                     </div>
 
                 </div>
             </div>
+            {{else}}
+            <div class="container">
+                <div class="row">
+                    <div class="col" style="margin-left: 20px">
+                        <h1>Sorry</h1>
+                        <h1>No Match Found</h1>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+
+            <!-- Main Post -->
 
             <div class="col s12 m3" id="resultCol">
                 <div class="row center">
-                    <p>Relevent Jobs: <span id="resultCounts"></span> found</p>
-                    <p>Page <span id="currentPage"></span> of <span id="totalPages"></span></p>
+                    <p>Search results: <strong>{{numberOfResult}}</strong> found</p>
+                    {{!-- <p>Page <span id="currentPage"></span> of <span id="totalPages"></span></p>
                     <a class="waves-effect waves-purple btn-small purple" id="prevP"><i
                             class="material-icons">keyboard_arrow_left</i></a>
                     <a class="waves-effect waves-purple btn-small purple" id="nextP"><i
-                            class="material-icons">keyboard_arrow_right</i></a>
+                            class="material-icons">keyboard_arrow_right</i></a> --}}
                 </div>
-                <div class="row" id="resultDiv">
-                    <div class="card horizontal">
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <p>Title</p>
-                                <p>Company</p>
-                                <p>Location</p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#">Go to the post</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                <!-- Remaining Data -->
+                {{#each data}}
                 <div class="row">
                     <div class="card horizontal">
                         <div class="card-stacked">
                             <div class="card-content">
-                                <p>Title</p>
-                                <p>Company</p>
-                                <p>Location</p>
+                                <p>Title: {{this.dataValues.title}} </p>
+                                <p>Company: {{this.dataValues.Employer.dataValues.company}}</p>
+                                <p>{{this.dataValues.city}}</p>
                             </div>
                             <div class="card-action">
-                                <a href="#">Go to the post</a>
+                                <a data-postID="{{this.dataValues.id}}" class="nextPost">Go to the post</a>
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <div class="row">
-                    <div class="card horizontal">
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <p>Title</p>
-                                <p>Company</p>
-                                <p>Location</p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#">Go to the post</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="card horizontal">
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <p>Title</p>
-                                <p>Company</p>
-                                <p>Location</p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#">Go to the post</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                {{/each}}
             </div>
         </div>
 

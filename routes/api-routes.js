@@ -7,6 +7,12 @@ const readFilePromise = util.promisify(fs.readFile);
 
 
 module.exports = function (app, upload) {
+    // Route for getting search result
+    // app.post('/api/result', (req, res) => {
+    //     const result = req.body;
+    //     console.log(result);
+    //     res.render('search_result');
+    // });
 
     // When Employer press "Login"  
     app.post("/api/login", passport.authenticate("local"), (req, res) => {
@@ -53,15 +59,15 @@ module.exports = function (app, upload) {
     });
 
     // For downloading. This DOES NOT check resume ID yet.
-    app.get('/api/download', function(req, res){
+    app.get('/api/download', function (req, res) {
         const file = `${__dirname}/resume/resumetest.txt`;
-        res.download(file); 
-      });
+        res.download(file);
+    });
 
     // Create New Post
-    app.post("/api/newpost" , async function (req, res) {
+    app.post("/api/newpost", async function (req, res) {
         const data = req.body;
-        
+
         // Store to database...
         const newPostData = await db.Post.create({
             title: data.title,
@@ -71,15 +77,15 @@ module.exports = function (app, upload) {
             city: data.city,
             province: data.province,
             industry: data.industry,
-            employerID: req.user
+            EmployerId: req.user
         });
 
         res.redirect('/dashboard');
     });
 
-    // View all post
-    app.post("/api/editPost", async (req,res) => {
-        const id = req.body.postID; // Post ID to be deleted
+    // Edit post
+    app.post("/api/editPost", async (req, res) => {
+        const id = req.body.postID; 
 
         const postData = await db.Post.findOne({
             where: {
@@ -92,17 +98,17 @@ module.exports = function (app, upload) {
 
     // Update existing post
 
-    app.post("/api/updatePost", async (req,res) => {
+    app.post("/api/updatePost", async (req, res) => {
         console.log(req.body);
 
-        try{
+        try {
             const data = req.body;
             const post = await db.Post.findOne({
                 where: {
                     id: data.postID
                 }
             })
-    
+
             post.title = data.title;
             post.description = data.description.join("|");
             post.contactEmail = data.contactEmail;
@@ -111,22 +117,22 @@ module.exports = function (app, upload) {
             post.province = data.province;
             post.industry = data.industry;
             post.resumes = data.resumes;
-    
+
             await post.save();
-    
+
             res.json({
                 message: "Saved Successful",
                 postID: data.postID,
                 newTitle: data.title
             });
-        }catch(e){
+        } catch (e) {
             throw e
         }
-        
+
     });
 
     // Delete Post
-    app.delete("/api/deletePost", async (req,res) => {
+    app.delete("/api/deletePost", async (req, res) => {
         const id = req.body.postID; // Post ID to be deleted
 
         const deletedData = await db.Post.findOne({
@@ -142,11 +148,11 @@ module.exports = function (app, upload) {
 
     // Delete certain application
 
-    app.delete("/api/deleteApplication", async (req,res) => {
+    app.delete("/api/deleteApplication", async (req, res) => {
         const applicationID = req.body.applicationID;
-        
+
         const applicationToBeDeleted = await db.Application.findOne({
-            where:{
+            where: {
                 id: applicationID
             }
         });

@@ -27,11 +27,11 @@ module.exports = function(sequelize, DataTypes) {
 
     // Associating Employer with Post
     // When an Employer is deleted, also delete any associated Posts
-    // Employer.associate = function(models){
-    //     Employer.hasMany(models.Post,{
-    //         onDelete: "cascade"
-    //     })
-    // };
+    Employer.associate = function(models){
+        Employer.hasMany(models.Post,{
+            onDelete: "cascade"
+        })
+    };
 
     return Employer
 };
