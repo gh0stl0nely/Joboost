@@ -19,7 +19,7 @@ nav{
 
 #searchCol{
     padding: 0px 20px;
-    height:170vh; 
+    height: 170vh;
 }
 
 #searchCol h5{
@@ -36,6 +36,12 @@ nav{
 
 #details{
     padding: 0px 10px;
+    border: 2px dashed rgb(148, 93, 199);
+}
+
+#details .row{
+    padding: 0 20px;
+    word-wrap: break-word;
 }
 
 #applyDiv{
@@ -47,6 +53,17 @@ nav{
     font-size: 40px;
 }
 
+#currentTitle{
+    font-size: 22px;
+    margin: 0px;
+    padding: 20px 20px 0px 0px;
+    word-wrap: break-word;
+}
+
+.heading{
+    font-weight: bold;
+}
+
   /* label focus color */
   .input-field input[type=text]:focus + label {
     color: #B794F4;
@@ -55,4 +72,11 @@ nav{
   .input-field input[type=text]:focus {
     border-bottom: 1px solid #B794F4;
     box-shadow: 0 1px 0 0#B794F4;
+  }
+
+  @media only screen and (max-width: 768px) {
+    #searchCol{
+        padding: 0px 20px;
+        height: 100%;
+    }
   }
