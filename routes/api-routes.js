@@ -141,6 +141,37 @@ module.exports = function (app, uploadOption) {
 
     });
 
+    // Update profile
+    app.post("/api/updateProfile", uploadOption.uploadLogo.single('newLogo'), async (req,res) => {
+        // This should technically deletes the old one in the file (But not done)
+
+        const employer = await db.Employer.findOne({
+            where: {
+                id: req.user// This represent the ID
+            }
+        });
+        const newPassword = req.body.newPassword.trim();
+
+        // If one of the file is null then don't update it!
+        if(!req.file && newPassword == ""){
+            console.log("No update");
+        } else if(!req.file && newPassword != ""){
+            employer.password = newPassword;
+            await employer.save();
+        } else if(req.file && newPassword == ""){
+            employer.logo_path = req.file.filename;
+            await employer.save();
+        } else {
+            employer.logo_path = req.file.filename;
+            employer.password = newPassword;
+            await employer.save();
+        }
+
+        res.redirect("/getProfile");
+   
+
+    });
+
     // Delete Post
     app.delete("/api/deletePost", async (req, res) => {
         const id = req.body.postID; // Post ID to be deleted
