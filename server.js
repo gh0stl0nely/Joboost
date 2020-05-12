@@ -48,6 +48,8 @@ const uploadResume = multer({
   storage: resumeStorage
 })
 
+
+
 const uploadOption = {
   uploadLogo,
   uploadResume

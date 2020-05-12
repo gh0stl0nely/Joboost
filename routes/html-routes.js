@@ -290,6 +290,31 @@ module.exports = function (app) {
     }
 
   });
+
+  // Get route for viewing your company profile
+  app.get("/getProfile", checkAuthentication, async (req,res) => {
+    const id = req.user;
+    console.log(id);
+
+    try{
+      const data = await db.Employer.findOne({
+        where: {
+          id
+        }
+      });
+      console.log(data);
+
+      const logoPath = "../company_logo/" + data.logo_path;
+
+      res.render('profile', {
+        data,
+        logoPath
+      });
+
+    }catch(e){
+      throw e
+    }
+  });
   
   // Get route for downloading resume
   app.get('/download', checkAuthentication, (req,res) => {
