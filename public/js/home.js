@@ -8,7 +8,12 @@ $(document).ready(function () {
 
     $("#searchBtn").on('click', function(e){
         e.preventDefault();
-        const keyWord = $("#keywordSearch").val() ? "keyWord=" + $("#keywordSearch").val().trim() + "&" : "keyWord=null&";
+        const keyWord = $("#keywordSearch").val().trim() != "" ? "keyWord=" + $("#keywordSearch").val().trim() + "&" : null;
+        if(!keyWord){
+            M.toast({html: 'Please fill in the keyword'});
+            return;
+        }
+    
         const companyName = $("#companySearch").val() ? "companyName=" + $("#companySearch").val().trim() + "&": "companyName=null&";
         const city = $("#citySearch").val() ? "city=" + $("#citySearch").val().trim() + "&": "city=null&";
         // const province = $("#provinceSearch").val() ? "province=" + $("#provinceSearch").val().trim() + "&": "province=null&";
