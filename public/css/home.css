@@ -92,3 +92,13 @@ nav{
 	font-family: 'Quicksand', sans-serif;
 	color:rgb(94, 67, 126);
 }
+
+  /* label focus color */
+  .input-field input[type=text]:focus + label {
+    color: #B794F4;
+  }
+  /* label underline focus color */
+  .input-field input[type=text]:focus {
+    border-bottom: 1px solid #B794F4;
+    box-shadow: 0 1px 0 0#B794F4;
+  }
