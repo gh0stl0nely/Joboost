@@ -39,7 +39,7 @@ $(document).ready(function () {
         });
     });
 
-    //Initialize selection bar
+    //Initialize selection
     $('select').formSelect(); 
     //Initialize side nav
     $('.sidenav').sidenav();
