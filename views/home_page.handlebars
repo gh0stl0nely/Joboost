@@ -15,31 +15,24 @@
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="/login" class="brand-logo" id="logo"><img src="../logo/Logo.jpeg" width="80" /></a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i
-                        class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="/signup">Employer Sign Up</a></li>
-                    <li><a href="/login">Employer Sign In</a></li>
-                    <li><a href="/data">Industry Data</a></li>
-                    <li><a href="/">Home</a></li>
-                </ul>
-            </div>
-        </nav>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/login" class="brand-logo" id="logo"><img src="../logo/Logo.jpeg" width="80" /></a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#about">About Us</a></li>
+                <li><a href="/login">Employer Sign In</a></li>
+                <li><a href="/data">Industry Data</a></li>
+                <li><a href="/">Home</a></li>
+            </ul>
+        </div>
+    </nav>
 
-        <ul class="sidenav" id="mobile-demo">
-            <li><a href="#about">About Us</a></li>
-            <li><a href="/signup">Employer Sign Up</a></li>
-            <li><a href="/login">Employer Sign In</a></li>
-            <li><a href="/data">Industry Data</a></li>
-            <li><a href="/">Home</a></li>
-        </ul>
-    </header>
-
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="/login">Employer Sign In</a></li>
+        <li><a href="/data">Industry Data</a></li>
+        <li><a href="/">Home</a></li>
+    </ul>
 
     <main class="container" style="width: 100%">
         <div class="row" style="margin: 0px;">
@@ -49,67 +42,47 @@
                     <p id="titleLine"><img src="../images/heart.png" />More Resources for Covid-19</p>
                     <p id="subtitle">Just one click. We are here to help!</p>
                 </div>
-                <form id="searchForm">
+                <form>  
+                    <p>Fill in all fields for a more focused search</p>
+                    <hr>
                     <div class="row searchRow">
-                        <p>Note: Leave Company Name empty for broader search results</p>
                         <div class="input-field col s6">
-                                <input id="jobTitleSearch" type="search" class="validate" required="" aria-required="true">
-                                <label for="jobTitleSearch">Job Title</label>
-                            </div>
-                        <div class="input-field col s6">
-                                <input id="companySearch" type="search" class="validate" required="" aria-required="true">
-                                <label for="companySearch">Company Name</label>
+                            <select id="industrySearch">
+                                <option value="" disabled selected>Choose your option</option>
+                                {{#each industry_list_data}}
+                                <option value="{{Industry}}">{{Industry}}</option>
+                                {{/each}}
+                            </select>
+                            <label>Industry</label>
                         </div>
                     </div>
+
+
                     <div class="row searchRow">
+                        <div class="input-field col s6">
+                            <input id="keywordSearch" type="search" class="validate" required="" aria-required="true">
+                            <label for="keywordSearch">Keyword</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="companySearch" type="search" class="validate" required="" aria-required="true">
+                            <label for="companySearch">Company Name</label>
+                        </div>
+                    </div>
+
+                    <div class="row searchRow">
+                        
                         <div class="input-field col s6">
                             <select id="citySearch">
                                 <option value="" disabled selected>Choose your option</option>
+                                {{#each city_data}}
+                                <option value="{{city}}">{{city}}</option>
+                                {{/each}}
                             </select>
                             <label for="citySearch">City</label>
                         </div>
-                        <div class="input-field col s6">
-                            <select id="provinceSearch">
-                                <option value="" disabled selected>Choose your option</option>
-                                <option value="Alberta">Alberta</option>
-                                <option value="British Columbia">British Columbia</option>
-                                <option value="Manitoba">Manitoba</option>
-                                <option value="New Brunswick">New Brunswick</option>
-                                <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
-                                <option value="Nova Scotia">Nova Scotia</option>
-                                <option value="Ontario">Ontario</option>
-                                <option value="Prince Edward Island">Prince Edward Island</option>
-                                <option value="Quebec">Quebec</option>
-                                <option value="Saskatchewan">Saskatchewan</option>
-                                <option value="Northwest Territories">Northwest Territories</option>
-                                <option value="Nunavut">Nunavut</option>
-                                <option value="Yukon">Yukon</option>
-                            </select>
-                            <label>Province</label>
-                        </div>
-                        <div class="input-field col s6">
-                                <select id="provinceSearch">
-                                    <option value="" disabled selected>Choose your option</option>
-                                    <option value="Alberta">Alberta</option>
-                                    <option value="British Columbia">British Columbia</option>
-                                    <option value="Manitoba">Manitoba</option>
-                                    <option value="New Brunswick">New Brunswick</option>
-                                    <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
-                                    <option value="Nova Scotia">Nova Scotia</option>
-                                    <option value="Ontario">Ontario</option>
-                                    <option value="Prince Edward Island">Prince Edward Island</option>
-                                    <option value="Quebec">Quebec</option>
-                                    <option value="Saskatchewan">Saskatchewan</option>
-                                    <option value="Northwest Territories">Northwest Territories</option>
-                                    <option value="Nunavut">Nunavut</option>
-                                    <option value="Yukon">Yukon</option>
-                                </select>
-                                <label>Province</label>
-                            </div>
                     </div>
                     <div class="row center">
-                        <button class="btn-small waves-effect waves-purple purple" id="searchBtn" type="submit"
-                            name="action">Search
+                        <button class="btn-small waves-effect waves-purple purple" id="searchBtn" name="action">Search
                             <i class="material-icons right">search</i>
                         </button>
                     </div>
@@ -180,7 +153,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer-copyright center" style="background-color: rgb(140, 4, 168)">
+        <div class="footer-copyright" style="background-color: rgb(140, 4, 168)">
             <div class="container">
                 Copyright © 2020 Joboost - Privacy and Terms. All rights reserved.
             </div>

@@ -1,17 +1,26 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
 
     var Application = sequelize.define("Application", {
-        userName:{
+        userName: {
             type: DataTypes.STRING
         },
         resumePath: {
             type: DataTypes.STRING
         },
-        postID: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
+        // postID: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false
+        // },
 
     })
- return Application
+
+    Application.associate = function (models) {
+        Application.belongsTo(models.Post, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
+
+    return Application
 }
