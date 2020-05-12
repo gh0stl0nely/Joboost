@@ -36,13 +36,13 @@
         <div class="row" style="margin: 0px;">
             <div class="col s12 m3 purple lighten-5 flex" id="searchCol">
                 <div class="row center searchRow">
-                    <h5>Search</h5>
+                    <h5>New Search</h5>
                 </div>
                 <form>
                     <div class="row searchRow">
                         <div class="input-field col s12">
-                            <input id="jobTitleSearch" type="search" class="validate">
-                            <label for="jobTitleSearch">Job Title</label>
+                            <input id="keywordSearch" type="search" class="validate">
+                            <label for="keywordSearch">Keyword (Required)</label>
                         </div>
                     </div>
                     <div class="row searchRow">
@@ -53,8 +53,24 @@
                     </div>
                     <div class="row searchRow">
                         <div class="input-field col s12">
-                            <input id="citySearch" type="search" class="validate">
-                            <label for="citySearch">City</label>
+                            <select id="industrySearch">
+                                <option value="" disabled selected>Choose your option</option>
+                                {{#each industry_list_data}}
+                                <option value="{{Industry}}">{{Industry}}</option>
+                                {{/each}}
+                            </select>
+                            <label>Industry</label>
+                        </div>
+                    </div>
+                    <div class="row searchRow">
+                        <div class="input-field col s12">
+                            <select id="citySearch">
+                                <option value="" disabled selected>Choose your option</option>
+                                {{#each city_data}}
+                                <option value="{{city}}">{{city}}</option>
+                                {{/each}}
+                            </select>
+                            <label>City</label>
                         </div>
                     </div>
                     <div class="row center">
@@ -92,29 +108,41 @@
                         <p>Phone: {{mainPost.dataValues.contactNumber}}</p>
                     </div>
                 </div>
-                <div class="row center" id="applyDiv">
-                    <div class="col s12 input-field detailRow">
-                        <i class="material-icons prefix">account_circle</i>
-                        <input id="fullName" type="text" class="validate" required>
-                        <label for="fullName">Full Name</label>
-                    </div>
-                    <div class="col s12 detailRow">
-                        <div class="file-field input-field">
-                            <div class="btn-small waves-effect waves-purple purple">
-                                <i class="material-icons right">file_upload</i><span>Resume</span>
-                                <input type="file" required>
-                            </div>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text" required>
+                <form class="mx-10 md:mx-0" action="/api/apply" method="post"
+                    enctype="multipart/form-data">
+                    <div class="row center">
+                        
+                        <div class="col s12 input-field detailRow">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="fullName" name="fullName" type="text" class="validate" required />
+                            <label for="fullName">Full Name</label>
+                        </div>
+
+                        <div class="col s12 detailRow">
+                            <div class="file-field input-field">
+                                <div class="btn-small waves-effect waves-purple purple">
+                                    <i class="material-icons right">file_upload</i><span>Resume</span>
+                                    <input type="file" name="resume" required />
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text" name="filePath" required>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col s12 detailRow">
-                        <button id="{{mainPost.dataValues.id}}"
-                            class="btn waves-effect waves-purple purple applyBtn">Apply</button>
-                    </div>
 
-                </div>
+                        <div style="display:none" class="col s12 input-field detailRow">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input name="postID" value="{{mainPost.dataValues.id}}" type="text" class="validate" required />
+                        </div>
+
+                        <div class="col s12 detailRow">
+                            <button 
+                                class="btn waves-effect waves-purple purple" name="action" type="submit">Apply</button>
+                        </div>
+
+                    </div>
+                </form>
+
             </div>
             {{else}}
             <div class="container">

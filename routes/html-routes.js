@@ -21,9 +21,17 @@ function checkAuthentication(req, res, next) {
   }
 }
 
-function findAndRenderSearchResult(data,rawPostData,keyWord,res){
+async function findAndRenderSearchResult(data,rawPostData,keyWord,res){
+    
+  // These 4 lines are to render search option on the left hand side 
+  const industry_list_raw = await readFilePromise(path.resolve(__dirname, "../data/job_growth.json"));
+  const industry_list_data = JSON.parse(industry_list_raw);
+  const city_raw = await readFilePromise(path.resolve(__dirname, "../data/city_new.json"));
+  const city_data = JSON.parse(city_raw);
+  ///
+  
   // To access Employer => rawPostData[i] => This is Post => rawPostData[i].Employer
- 
+
   for(let j = 0; j < rawPostData.length; j++){
     console.log(rawPostData[j].title)
     const dataTitle = rawPostData[j].title.trim().toLowerCase(); // String to find keyWrod from
@@ -42,14 +50,18 @@ function findAndRenderSearchResult(data,rawPostData,keyWord,res){
       mainPost,
       mainPostDescripton: mainPost.description.split('|'),
       numberOfResult: data.length,
-      isResultFound: true
+      isResultFound: true,
+      industry_list_data,
+      city_data
     })
   } else {
     // If empty then serve no result
     res.render('search_result', {
       data,
       numberOfResult: 0,
-      isResultFound: false
+      isResultFound: false,
+      industry_list_data,
+      city_data
     })
   }
 }
@@ -93,32 +105,37 @@ module.exports = function (app) {
 
   // Route for getting search result
   app.get('/result', async (req,res) => {
-    // Query result
     const result = req.query;
+    // In case user types in "/result" in browser
+    if(!result.keyWord){
+      return res.redirect('*');
+    }
+    // Query result
     const keyWord = result.keyWord.toLowerCase(); // This is the key wo rd that we will try to match with the title
 
     const company = result.companyName == 'null' ? null : result.companyName.trim().toLowerCase();
     const city = result.city == 'null' ? null : result.city;
-    const industry = result.industry == 'All Industries' || result.industry == 'null' ? null : result.industry;
+    const industry = result.industry == 'All Industries' ? null : result.industry;
 
     let rawPostData; // This variable holds the raw data for all the posts given city and industry
     let data = []; // This list would contain only post object that CONTAINS "keyWord" in title.Lower(already in lower case)
 
     // We base our search on Company Name
+    const allEmployer = await db.Employer.findAll();
+    var correctEmployerID;
 
-    if(company){
+    for(let i = 0; i < allEmployer.length; i++){
+      if(company == allEmployer[i].company.trim().toLowerCase()){
+        correctEmployerID = allEmployer[i].id;
+        break;
+      }
+    }
+
+    if(correctEmployerID){
       // If the user enters in company name,we take that and search Employer table for that employer object
       // Because there is no way to search case insensitive, so we need to find all employer first,
       // Loop through each and lowerCase each to find the match with company... 
-      const allEmployer = await db.Employer.findAll();
-      var correctEmployerID;
-
-      for(let i = 0; i < allEmployer.length; i++){
-        if(company == allEmployer[i].company.trim().toLowerCase()){
-          correctEmployerID = allEmployer[i].id;
-          break;
-        }
-      }
+    
 
       // Once found that company, search by employerID, Industry and City
       rawPostData = await db.Post.findAll({
@@ -135,7 +152,7 @@ module.exports = function (app) {
       // console.log(rawPostData[0].Employer);
       // Now we receive a list of all post that this company has given city and industry... Now we need a for loop to 
       // Find which title contains the keyword... (Exact match)
-      findAndRenderSearchResult(data,rawPostData,keyWord,res);
+      await findAndRenderSearchResult(data,rawPostData,keyWord,res);
     } else {
 
       // If the user does not enter in company name, we only need to search all Posts by city and industry
@@ -151,7 +168,7 @@ module.exports = function (app) {
         },
       });
 
-      findAndRenderSearchResult(data,rawPostData,keyWord,res);
+      await findAndRenderSearchResult(data,rawPostData,keyWord,res);
     }
 
   });
@@ -278,14 +295,13 @@ module.exports = function (app) {
   app.get('/download', checkAuthentication, (req,res) => {
     // console.log(req.query.filePath);
     // Change sample_pdf to designated folder that store pdf, and req.query.filePath
-    res.download(__dirname + '/../public/sample_pdf/' + 'ExamplePDF.PDF');  
+    res.download(__dirname + '/../public/resumes/' + req.query.filePath);  
   });
 
   // Custom 404 Catcher
   // DELETE THIS, AND /another/* WORKS, KEEP IT AND /another/* DOES NOT WORK
   app.get('*', function (req, res) {
-    res.status(404).send('This is 404 page');
+    res.sendFile(path.resolve(__dirname ,"../public/html/404page.html"));
   });
-
 
 }
