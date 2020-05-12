@@ -17,12 +17,13 @@
     <nav>
         <div class="nav-wrapper">
             <<a href="/login" class="brand-logo" id="logo"><img src="../logo/Logo.jpeg" width="80" /></a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="/">Home</a></li>
-                <li><a href="/">Employer Sign In</a></li>
-                <li><a href="/">Industry Data</a></li>
-            </ul>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i
+                        class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/">Employer Sign In</a></li>
+                    <li><a href="/">Industry Data</a></li>
+                </ul>
         </div>
     </nav>
 
@@ -53,18 +54,36 @@
                     </div>
                     <div class="row searchRow">
                         <div class="input-field col s12">
-                            <input id="citySearch" type="search" class="validate">
+                            <select id="citySearch">
+                                <option value="" disabled selected>Choose your option</option>
+                            </select>
                             <label for="citySearch">City</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="provinceSearch" type="search" class="validate">
-                            <label for="provinceSearch">Province</label>
+                            <select id="provinceSearch">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="Alberta">Alberta</option>
+                                <option value="British Columbia">British Columbia</option>
+                                <option value="Manitoba">Manitoba</option>
+                                <option value="New Brunswick">New Brunswick</option>
+                                <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                                <option value="Nova Scotia">Nova Scotia</option>
+                                <option value="Ontario">Ontario</option>
+                                <option value="Prince Edward Island">Prince Edward Island</option>
+                                <option value="Quebec">Quebec</option>
+                                <option value="Saskatchewan">Saskatchewan</option>
+                                <option value="Northwest Territories">Northwest Territories</option>
+                                <option value="Nunavut">Nunavut</option>
+                                <option value="Yukon">Yukon</option>
+                            </select>
+                            <label>Province</label>
                         </div>
                     </div>
                     <div class="row center">
-                        <button class="btn-small waves-effect waves-purple purple" id="searchBtn" type="submit" name="action">Search
+                        <button class="btn-small waves-effect waves-purple purple" id="searchBtn" type="submit"
+                            name="action">Search
                             <i class="material-icons right">search</i>
                         </button>
                     </div>
@@ -204,7 +223,7 @@
                     </div>
                 </div>
             </div>
-            <div class="footer-copyright" style="background-color: rgb(140, 4, 168)">
+            <div class="footer-copyright center" style="background-color: rgb(140, 4, 168)">
                 <div class="container">
                     Copyright © 2020 Joboost - Privacy and Terms. All rights reserved.
                 </div>

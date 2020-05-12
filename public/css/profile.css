@@ -9,18 +9,14 @@ nav{
 }
 
 h3{
-    color: rgb(140, 4, 168);
+    color:  rgb(140, 4, 168);
 }
 
-#editor {
-    height: 300px;
+#profilePic{
+    margin-top: 30px;
 }
 
-.ql-editor strong{
-    font-weight:bold;
-}
-
-  /* label focus color */
+ /* label focus color */
   .input-field input[type=text]:focus + label {
     color: #B794F4;
   }
