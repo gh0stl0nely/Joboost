@@ -21,33 +21,35 @@ function checkAuthentication(req, res, next) {
   }
 }
 
-async function findAndRenderSearchResult(data,rawPostData,keyWord,res){
-    
+async function findAndRenderSearchResult(data, rawPostData, keyWord, res) {
+
   // These 4 lines are to render search option on the left hand side 
   const industry_list_raw = await readFilePromise(path.resolve(__dirname, "../data/job_growth.json"));
   const industry_list_data = JSON.parse(industry_list_raw);
   const city_raw = await readFilePromise(path.resolve(__dirname, "../data/city_new.json"));
   const city_data = JSON.parse(city_raw);
   ///
-  
+
   // To access Employer => rawPostData[i] => This is Post => rawPostData[i].Employer
 
-  for(let j = 0; j < rawPostData.length; j++){
-    console.log(rawPostData[j].title)
+  for (let j = 0; j < rawPostData.length; j++) {
     const dataTitle = rawPostData[j].title.trim().toLowerCase(); // String to find keyWrod from
-    if(dataTitle.includes(keyWord)){
+    if (dataTitle.includes(keyWord)) {
       data.push(rawPostData[j]);
     }
-  }
+  };
+
   let mainPost; // This variable holds the main post that they will see on search result page 
 
   // If data is not empty (positive search), then we shuffle data
-  if(data.length > 0){
+  if (data.length > 0) {
     shuffle(data); // Randomize the data first
     mainPost = data[0];
+    const logoPath = "../company_logo/" + mainPost.Employer.logo_path;
     res.render('search_result', {
       data: data.slice(1),
       mainPost,
+      logoPath,
       mainPostDescripton: mainPost.description.split('|'),
       numberOfResult: data.length,
       isResultFound: true,
@@ -66,9 +68,9 @@ async function findAndRenderSearchResult(data,rawPostData,keyWord,res){
   }
 }
 
-function shuffle(array){
+function shuffle(array) {
 
-  for(let i = array.length-1; i > 0; i--){
+  for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * i)
     const temp = array[i]
     array[i] = array[j]
@@ -104,10 +106,10 @@ module.exports = function (app) {
   });
 
   // Route for getting search result
-  app.get('/result', async (req,res) => {
+  app.get('/result', async (req, res) => {
     const result = req.query;
     // In case user types in "/result" in browser
-    if(!result.keyWord){
+    if (!result.keyWord) {
       return res.redirect('*');
     }
     // Query result
@@ -124,24 +126,28 @@ module.exports = function (app) {
     const allEmployer = await db.Employer.findAll();
     var correctEmployerID;
 
-    for(let i = 0; i < allEmployer.length; i++){
-      if(company == allEmployer[i].company.trim().toLowerCase()){
+    for (let i = 0; i < allEmployer.length; i++) {
+      if (company == allEmployer[i].company.trim().toLowerCase()) {
         correctEmployerID = allEmployer[i].id;
         break;
       }
     }
 
-    if(correctEmployerID){
+    if (correctEmployerID) {
       // If the user enters in company name,we take that and search Employer table for that employer object
       // Because there is no way to search case insensitive, so we need to find all employer first,
       // Loop through each and lowerCase each to find the match with company... 
-    
+
 
       // Once found that company, search by employerID, Industry and City
       rawPostData = await db.Post.findAll({
         where: {
           EmployerId: correctEmployerID,
-          [Op.or]: [{city}, {industry}]
+          [Op.or]: [{
+            city
+          }, {
+            industry
+          }]
         },
 
         include: {
@@ -152,7 +158,7 @@ module.exports = function (app) {
       // console.log(rawPostData[0].Employer);
       // Now we receive a list of all post that this company has given city and industry... Now we need a for loop to 
       // Find which title contains the keyword... (Exact match)
-      await findAndRenderSearchResult(data,rawPostData,keyWord,res);
+      await findAndRenderSearchResult(data, rawPostData, keyWord, res);
     } else {
 
       // If the user does not enter in company name, we only need to search all Posts by city and industry
@@ -160,7 +166,11 @@ module.exports = function (app) {
 
       rawPostData = await db.Post.findAll({
         where: {
-          [Op.or]: [{city}, {industry}]
+          [Op.or]: [{
+            city
+          }, {
+            industry
+          }]
         },
 
         include: {
@@ -168,10 +178,84 @@ module.exports = function (app) {
         },
       });
 
-      await findAndRenderSearchResult(data,rawPostData,keyWord,res);
+      await findAndRenderSearchResult(data, rawPostData, keyWord, res);
     }
 
   });
+
+  app.get('/nextPost', async (req, res) => {
+    // console.log(req.query);
+    const keyWord = req.query.keyWord;
+
+    // Search for the post with the query. Render it as the main post 
+    const mainPost = await db.Post.findOne({
+      where: {
+        id: req.query.postID
+      },
+      include: [db.Employer]
+    });
+
+    // Contains data that contain either city and industry. Doesn't include company name in search criteria to give more results
+    const rawPostData = await db.Post.findAll({
+      where: {
+        id: {
+          [Op.ne]: Number(req.query.postID),
+        },
+        [Op.or]: [{
+          city: req.query.city
+        }, {
+          industry: req.query.industry
+        }]
+      },
+
+      include: {
+        model: db.Employer,
+      },
+    });
+
+    // This variable contains official posts which title contains keyword
+    let data = [];
+
+    const logoPath = "../company_logo/" + mainPost.Employer.logo_path; // Logo path of the selected post
+
+    // Prepare scroll down data
+    const industry_list_raw = await readFilePromise(path.resolve(__dirname, "../data/job_growth.json"));
+    const industry_list_data = JSON.parse(industry_list_raw);
+    const city_raw = await readFilePromise(path.resolve(__dirname, "../data/city_new.json"));
+    const city_data = JSON.parse(city_raw);
+
+    // Filter out post that contains the keyword
+
+    for (let j = 0; j < rawPostData.length; j++) {
+      const dataTitle = rawPostData[j].title.trim().toLowerCase(); // String to find keyWrod from
+      if (dataTitle.includes(keyWord)) {
+        data.push(rawPostData[j]);
+      }
+    };
+
+    if (data.length > 0) {
+      shuffle(data); // Randomize the data first
+      res.render('search_result', {
+        data,
+        mainPost,
+        logoPath,
+        mainPostDescripton: mainPost.description.split('|'),
+        numberOfResult: data.length + 1,
+        isResultFound: true,
+        industry_list_data,
+        city_data
+      })
+    } else {
+      // No other data exists 
+      res.render('search_result', {
+        data,
+        numberOfResult: 1,
+        isResultFound: true,
+        industry_list_data,
+        city_data
+      })
+    }
+  })
 
   // To industry_data html page
   app.get("/data", async (req, res) => {
@@ -278,7 +362,6 @@ module.exports = function (app) {
           id: req.query.postID
         }
       })
-      console.log(post);
 
       res.render('view_resume', {
         applications,
@@ -292,17 +375,15 @@ module.exports = function (app) {
   });
 
   // Get route for viewing your company profile
-  app.get("/getProfile", checkAuthentication, async (req,res) => {
+  app.get("/getProfile", checkAuthentication, async (req, res) => {
     const id = req.user;
-    console.log(id);
 
-    try{
+    try {
       const data = await db.Employer.findOne({
         where: {
           id
         }
       });
-      console.log(data);
 
       const logoPath = "../company_logo/" + data.logo_path;
 
@@ -311,22 +392,22 @@ module.exports = function (app) {
         logoPath
       });
 
-    }catch(e){
+    } catch (e) {
       throw e
     }
   });
-  
+
   // Get route for downloading resume
-  app.get('/download', checkAuthentication, (req,res) => {
+  app.get('/download', checkAuthentication, (req, res) => {
     // console.log(req.query.filePath);
     // Change sample_pdf to designated folder that store pdf, and req.query.filePath
-    res.download(__dirname + '/../public/resumes/' + req.query.filePath);  
+    res.download(__dirname + '/../public/resumes/' + req.query.filePath);
   });
 
   // Custom 404 Catcher
   // DELETE THIS, AND /another/* WORKS, KEEP IT AND /another/* DOES NOT WORK
   app.get('*', function (req, res) {
-    res.sendFile(path.resolve(__dirname ,"../public/html/404page.html"));
+    res.sendFile(path.resolve(__dirname, "../public/html/404page.html"));
   });
 
 }
