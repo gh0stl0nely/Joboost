@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $('.sidenav').sidenav();
+  $(".sidenav").sidenav();
 
   $("#loginBtn").on("click", function (e) {
     e.preventDefault();

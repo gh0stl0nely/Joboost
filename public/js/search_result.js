@@ -39,13 +39,13 @@ $(document).ready(function () {
 
   });
 
-    $("#applyBtn").on('click', function(e){
-        e.preventDefault();
+  $("#applyBtn").on("click", function(e){
+    e.preventDefault();
 
-        $("#currentPost").css("display", "none");
-        $("#details").css("display", "none");
-        $("#thankyouDiv").css("display", "block");
-    })
+    $("#currentPost").css("display", "none");
+    $("#details").css("display", "none");
+    $("#thankyouDiv").css("display", "block");
+  });
 
   $(".nextPost").on("click", function(e){
     e.preventDefault();
