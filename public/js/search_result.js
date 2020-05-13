@@ -53,10 +53,10 @@ $(document).ready(function () {
 
     $("#applyBtn").on('click', function(e){
         e.preventDefault();
-        // FOr Demi
-        // Display none the main 
-        // THANK YOU FOR SUBMITTING. CHECK OUT OR SEARCH FOR MORE MORE POST (MAKE IT SOUNDS GOOD LOL)
 
+        $("#currentPost").css("display", "none");
+        $("#details").css("display", "none");
+        $("#thankyouDiv").css("display", "block");
     })
 
     $(".nextPost").on('click', function(e){

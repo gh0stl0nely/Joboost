@@ -75,6 +75,17 @@ nav{
     box-shadow: 0 1px 0 0#B794F4;
   }
 
+  #thankyouDiv {
+      font-size: 30px;
+      background-color: rgba(217, 189, 245, 0.658);
+      margin: 20px;
+  }
+
+  #thankyouDiv p{
+      margin: 0px;
+      color: rgb(85, 42, 128);
+  }
+
   @media only screen and (max-width: 768px) {
     #searchCol{
         padding: 0px 20px;
