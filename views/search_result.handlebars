@@ -19,17 +19,19 @@
             <a href="/login" class="brand-logo" id="logo"><img src="../images/Logo.jpeg" width="80" /></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
+                <li><a href="#about">About Us</a></li>
+                <li><a href="/login">Employer Sign In</a></li>
+                <li><a href="/data">Industry Data</a></li>
                 <li><a href="/">Home</a></li>
-                <li><a href="/">Employer Sign In</a></li>
-                <li><a href="/">Industry Data</a></li>
             </ul>
         </div>
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="/login">Employer Sign In</a></li>
+        <li><a href="/data">Industry Data</a></li>
         <li><a href="/">Home</a></li>
-        <li><a href="/">Employer Sign In</a></li>
-        <li><a href="/">Industry Data</a></li>
     </ul>
 
     <div class="container" style="width: 100%">
@@ -87,17 +89,17 @@
             <div class="col s12 m6">
                 <div class="row">
                     <div class="col s4 center" style="padding: 0px">
-                        <img src="{{mainPost.Employer.dataValues.logo_path}}" style="padding-top: 20px;" />
+                        <img class="responsive-img" src="{{logoPath}}" style="padding: 20px 20px 20px 20px;" />
                     </div>
                     <div class="col s8" style="padding: 0px">
-                        <p id="currentTitle">Title: {{mainPost.dataValues.title}}</p>
-                        <p style="padding-right: 20px;">Company name: {{mainPost.Employer.dataValues.company}}</p>
-                        <p style="padding-right: 20px;">City: {{mainPost.dataValues.city}}</p>
+                        <p id="currentTitle">"{{mainPost.dataValues.title}}"</p>
+                        <p style="padding-right: 20px;"><strong>Company: </strong> {{mainPost.Employer.dataValues.company}}</p>
+                        <p style="padding-right: 20px;">{{mainPost.dataValues.city}}, {{mainPost.dataValues.province}}</p>
                     </div>
                 </div>
                 <div id="details">
                     <div class="row">
-                      <p>Publish date: {{mainPost.dataValues.createdAt}}</p>  
+                        <p><strong>Published date:</strong> {{mainPost.dataValues.createdAt}}</p>
                     </div>
                     <div class="row">
                         <p class="heading">Description</p>
@@ -110,10 +112,9 @@
                         <p class="heading">Phone: {{mainPost.dataValues.contactNumber}}</p>
                     </div>
                 </div>
-                <form class="mx-10 md:mx-0" action="/api/apply" method="post"
-                    enctype="multipart/form-data">
+                <form class="mx-10 md:mx-0" action="/api/apply" method="post" enctype="multipart/form-data">
                     <div class="row center">
-                        
+
                         <div class="col s12 input-field detailRow">
                             <i class="material-icons prefix">account_circle</i>
                             <input id="fullName" name="fullName" type="text" class="validate" required />
@@ -134,12 +135,13 @@
 
                         <div style="display:none" class="col s12 input-field detailRow">
                             <i class="material-icons prefix">account_circle</i>
-                            <input name="postID" value="{{mainPost.dataValues.id}}" type="text" class="validate" required />
+                            <input name="postID" value="{{mainPost.dataValues.id}}" type="text" class="validate"
+                                required />
                         </div>
 
                         <div class="col s12 detailRow">
-                            <button 
-                                class="btn waves-effect waves-purple purple" name="action" type="submit">Apply</button>
+                            <button class="btn waves-effect waves-purple purple" id="applyBtn" name="action"
+                                type="submit">Apply</button>
                         </div>
 
                     </div>
@@ -165,31 +167,19 @@
                 </div>
                 <!-- Remaining Data -->
                 {{#each data}}
-                {{!-- <div class="row">
-                    <div class="card horizontal">
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <p>Title: {{this.dataValues.title}} </p>
-                                <p>Company: {{this.dataValues.Employer.dataValues.company}}</p>
-                                <p>{{this.dataValues.city}}</p>
-                            </div>
-                            <div class="card-action">
-                                <a data-postID="{{this.dataValues.id}}" class="nextPost">Go to the post</a>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
                 <div class="row">
                     <div class="card">
                         <div class="card-content">
-                          <span class="card-title" style="word-wrap: break-word;">Title: {{this.dataValues.title}} </span>
-                          <p>Company: {{this.dataValues.Employer.dataValues.company}}</p>
-                          <p>{{this.dataValues.city}}</p>
+                            <span class="card-title" style="word-wrap: break-word;">"{{this.dataValues.title}}"
+                            </span>
+                            <p><span style="text-decoration: underline;">Company: </span> {{this.dataValues.Employer.dataValues.company}}</p>
+                            <p><strong>Industry: </strong> {{this.dataValues.industry}}</p>
+                            <p>{{this.dataValues.city}}, {{this.dataValues.province}}</p>
                         </div>
                         <div class="card-action">
-                          <a data-postID="{{this.dataValues.id}}" class="nextPost">Go to the post</a>
+                            <button data-postID="{{this.dataValues.id}}" data-company="{{this.dataValues.Employer.dataValues.company}}" data-industry="{{this.dataValues.industry}}" data-city="{{this.dataValues.city}}" class="nextPost">Go to the post</button>
                         </div>
-                      </div>
+                    </div>
                 </div>
                 {{/each}}
             </div>
