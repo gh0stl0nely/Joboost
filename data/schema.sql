@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS joboost_DB;
+DROP DATABASE IF EXISTS jobsdb;
 
-CREATE DATABASE joboost_DB;
+CREATE DATABASE jobsdb;
 
 -- "Remember to set your database congifuration in config/config.json"
