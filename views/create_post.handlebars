@@ -29,18 +29,20 @@
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i
                         class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                 <li><a href="/createpost">Create Posts</a></li>
+                    <li class="active"><a href="/createpost">Create Posts</a></li>
                     <li><a href="/getProfile">Edit Profile</a></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
                     <li><a href="/logout">Log Out</a></li>
                     <li><a href="/">Home</a></li>
                 </ul>
             </div>
         </nav>
         <ul class="sidenav" id="mobile-demo">
-           <li><a href="/createpost">Create Posts</a></li>
-                    <li><a href="/getProfile">Edit Profile</a></li>
-                    <li><a href="/logout">Log Out</a></li>
-                    <li><a href="/">Home</a></li>
+            <li class="active"><a href="/createpost">Create Posts</a></li>
+            <li><a href="/getProfile">Edit Profile</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/logout">Log Out</a></li>
+            <li><a href="/">Home</a></li>
         </ul>
     </header>
 
@@ -62,7 +64,7 @@
                         <select id="industry">
                             <option value="" disabled selected>Choose your option</option>
                             {{#each industry_list_data}}
-                                <option value="{{Industry}}">{{Industry}}</option>
+                            <option value="{{Industry}}">{{Industry}}</option>
                             {{/each}}
                         </select>
                         <label>Industry</label>
@@ -73,7 +75,7 @@
                         <select id="city">
                             <option value="" disabled selected>Choose your option</option>
                             {{#each city_data}}
-                                <option value="{{city}}">{{city}}</option>
+                            <option value="{{city}}">{{city}}</option>
                             {{/each}}
                         </select>
                         <label>City</label>
@@ -118,8 +120,8 @@
                     </div>
                 </div>
                 <div class="row center-align">
-                    <button id="submitBtn" class="btn waves-effect waves-light" style="background-color: #B794F4;" type="submit"
-                        name="action">Submit
+                    <button id="submitBtn" class="btn waves-effect waves-light" style="background-color: #B794F4;"
+                        type="submit" name="action">Submit
                         <i class="material-icons right">send</i>
                     </button>
                 </div>

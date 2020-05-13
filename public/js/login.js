@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    $('.sidenav').sidenav();
+    
     let isOpen = false;
     function responsiveMenu() {
         if (!isOpen) {

@@ -20,7 +20,8 @@
             <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="#about">About Us</a></li>
-                <li><a href="/login">Employer Sign In</a></li>
+                <li><a href="/signup">Sign Up</a></li>
+                <li><a href="/login">My Account</a></li>
                 <li><a href="/data">Industry Data</a></li>
                 <li><a href="/">Home</a></li>
             </ul>
@@ -29,7 +30,8 @@
 
     <ul class="sidenav" id="mobile-demo">
         <li><a href="#about">About Us</a></li>
-        <li><a href="/login">Employer Sign In</a></li>
+        <li><a href="/signup">Sign Up</a></li>
+        <li><a href="/login">My Account</a></li>
         <li><a href="/data">Industry Data</a></li>
         <li><a href="/">Home</a></li>
     </ul>
@@ -93,13 +95,15 @@
                     </div>
                     <div class="col s8" style="padding: 0px">
                         <p id="currentTitle">"{{mainPost.dataValues.title}}"</p>
-                        <p style="padding-right: 20px;"><strong>Company: </strong> {{mainPost.Employer.dataValues.company}}</p>
-                        <p style="padding-right: 20px;">{{mainPost.dataValues.city}}, {{mainPost.dataValues.province}}</p>
+                        <p style="padding-right: 20px;"><strong>Company: </strong>
+                            {{mainPost.Employer.dataValues.company}}</p>
+                        <p style="padding-right: 20px;">{{mainPost.dataValues.city}}, {{mainPost.dataValues.province}}
+                        </p>
                     </div>
                 </div>
                 <div id="details">
                     <div class="row">
-                        <p><strong>Published date:</strong> {{mainPost.dataValues.createdAt}}</p>
+                        <p class="heading">Published date: </p><span>{{mainPost.dataValues.createdAt}}</span>
                     </div>
                     <div class="row">
                         <p class="heading">Description</p>
@@ -162,7 +166,7 @@
             <!-- Main Post -->
 
             <div class="col s12 m3" id="resultCol">
-                <div class="row center">
+                <div class="row center" style="margin-bottom:0px; padding-top: 10px;">
                     <p>Search results: <strong>{{numberOfResult}}</strong> found</p>
                 </div>
                 <!-- Remaining Data -->
@@ -172,12 +176,16 @@
                         <div class="card-content">
                             <span class="card-title" style="word-wrap: break-word;">"{{this.dataValues.title}}"
                             </span>
-                            <p><span style="text-decoration: underline;">Company: </span> {{this.dataValues.Employer.dataValues.company}}</p>
-                            <p><strong>Industry: </strong> {{this.dataValues.industry}}</p>
+                            <p class="heading">Company: </p><span>{{this.dataValues.Employer.dataValues.company}}</span>
+                            <p class="heading">Industry: </p><span>{{this.dataValues.industry}}</span>
                             <p>{{this.dataValues.city}}, {{this.dataValues.province}}</p>
                         </div>
                         <div class="card-action">
-                            <button data-postID="{{this.dataValues.id}}" data-company="{{this.dataValues.Employer.dataValues.company}}" data-industry="{{this.dataValues.industry}}" data-city="{{this.dataValues.city}}" class="nextPost">Go to the post</button>
+                            <button class="waves-effect waves-purple btn purple white-text"
+                                data-postID="{{this.dataValues.id}}"
+                                data-company="{{this.dataValues.Employer.dataValues.company}}"
+                                data-industry="{{this.dataValues.industry}}" data-city="{{this.dataValues.city}}"
+                                class="nextPost">Go to the post</button>
                         </div>
                     </div>
                 </div>

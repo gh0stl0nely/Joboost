@@ -28,7 +28,8 @@
                         class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="/createpost">Create Posts</a></li>
-                    <li><a href="/getProfile">Edit Profile</a></li>
+                    <li class="active"><a href="/getProfile">Edit Profile</a></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
                     <li><a href="/logout">Log Out</a></li>
                     <li><a href="/">Home</a></li>
                 </ul>
@@ -37,7 +38,8 @@
 
         <ul class="sidenav" id="mobile-demo">
             <li><a href="/createpost">Create Posts</a></li>
-            <li><a href="/getProfile">Edit Profile</a></li>
+            <li class="active"><a href="/getProfile">Edit Profile</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
             <li><a href="/logout">Log Out</a></li>
             <li><a href="/">Home</a></li>
         </ul>
@@ -45,8 +47,7 @@
 
     <section class="container">
         <div class="col s2"></div>
-        <form class="col s8" action="/api/updateProfile" method="post"
-                    enctype="multipart/form-data">
+        <form class="col s8" action="/api/updateProfile" method="post" enctype="multipart/form-data">
             <div class="row center">
                 <h3>Company's Profile</h3>
             </div>
