@@ -3,11 +3,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'dark-purple': '#8C04A8',
-        'light-purple': '#EADEFF',
+        "dark-purple": "#8C04A8",
+        "light-purple": "#EADEFF",
       }
     },
   },
   variants: {},
   plugins: [],
-}
+};

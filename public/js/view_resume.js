@@ -1,31 +1,31 @@
 $(document).ready(function () {
-    $('.sidenav').sidenav();
+  $(".sidenav").sidenav();
 
-    $(".viewBtn").on('click', function (e){
-        e.preventDefault();
-        const resumePath = $(this).attr("data-resumepath");
-        window.open('/resumes/' + resumePath)
-    })
+  $(".viewBtn").on("click", function (e){
+    e.preventDefault();
+    const resumePath = $(this).attr("data-resumepath");
+    window.open("/resumes/" + resumePath);
+  });
 
-    $(".deleteBtn").on('click', function (e) {
-        e.preventDefault();
-        const applicationID = $(this).attr("data-appid");
+  $(".deleteBtn").on("click", function (e) {
+    e.preventDefault();
+    const applicationID = $(this).attr("data-appid");
 
-        const data = {
-            applicationID
-        };
+    const data = {
+      applicationID
+    };
 
-        $.ajax('/api/deleteApplication/', {
-            type: 'DELETE',
-            data
-        }).then(() => {
-            window.location.reload();
-        });
-    })
-
-    $(".downloadBtn").on('click', function (e) {
-        e.preventDefault();
-        const resumePath = $(this).attr("data-resumepath");
-        window.open('/download?filePath=' + resumePath);
+    $.ajax("/api/deleteApplication/", {
+      type: "DELETE",
+      data
+    }).then(() => {
+      window.location.reload();
     });
-})
+  });
+
+  $(".downloadBtn").on("click", function (e) {
+    e.preventDefault();
+    const resumePath = $(this).attr("data-resumepath");
+    window.open("/download?filePath=" + resumePath);
+  });
+});

@@ -7,8 +7,8 @@
 var express = require("express");
 var session = require("express-session");
 const passport = require("./config/passport");
-const hbs = require('express-handlebars');
-const path = require('path');
+const hbs = require("express-handlebars");
+const path = require("path");
 
 // Sets up the Express App
 // =============================================================
@@ -22,42 +22,42 @@ var db = require("./models");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Configure multer for file upload
-var multer  = require('multer'); // Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files
+var multer = require("multer"); // Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files
 
 const logoStorage = multer.diskStorage({
-  destination : './public/company_logo/',
+  destination : "./public/company_logo/",
   filename: function(req,file,next){
-    next(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    next(null,file.fieldname + "-" + Date.now() + path.extname(file.originalname));
   },
 });
 
 const resumeStorage = multer.diskStorage({
-    destination : './public/resumes/',
-    filename: function(req,file,next){
-      next(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    },
-  })
+  destination : "./public/resumes/",
+  filename: function(req,file,next){
+    next(null,file.fieldname + "-" + Date.now() + path.extname(file.originalname));
+  },
+});
 
 // For storing company logo
 const uploadLogo = multer({
   storage: logoStorage
 });
 
-// For storing resume 
+// For storing resume
 const uploadResume = multer({
   storage: resumeStorage
-})
+});
 
 
 
 const uploadOption = {
   uploadLogo,
   uploadResume
-}
+};
 
 // Set up view engine
-app.engine('handlebars', hbs());
-app.set('view engine', 'handlebars');
+app.engine("handlebars", hbs());
+app.set("view engine", "handlebars");
 
 // Static directory
 app.use(express.static("public"));
@@ -66,10 +66,10 @@ app.use(express.static("public"));
 app.use(session({
   secret: "asdsadsad21313@",
   resave: false,
-  saveUninitialized: false // Will only create a cookie upon authentication or logged in 
+  saveUninitialized: false // Will only create a cookie upon authentication or logged in
 }));
 
-// Initialize passport and integrates Express session with Express-session 
+// Initialize passport and integrates Express session with Express-session
 app.use(passport.initialize());
 app.use(passport.session());
 
