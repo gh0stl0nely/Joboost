@@ -1,8 +1,8 @@
-# Project 2 Title
+# Title
 
-[Insert Description]
+As the Covid-19 situation continues to evolve, Joboost is here to support job seekers who are looking for a job or career transition opportunities. Joboost offers the best and effective job posting site to help employers promoting job, sourcing talent and applicant tracking.
 
-Try it out! -> [Here]()
+Demo -> [Here]()
 
 ## User Story
 ```
@@ -32,6 +32,13 @@ so that I can easily manage the hiring process
 * [Heroku](https://www.heroku.com/) - For application deployment
 * [Sequelize](https://sequelize.org/) - NodeJS module to interact with MySQL database from the code editor
 * [Sequelize-CLI](https://www.npmjs.com/package/sequelize-cli) - Command line package designed to make using Sequelize more streamlined
+* [Multer](https://www.npmjs.com/package/multer) - Node.JS module for performing file upload
+* [Google Chart](https://developers.google.com/chart) - Third Party API for drawing industry data graph
+* [Eslint](https://eslint.org/) - Linting tool for fixing format of Javascript code
+
+## Data Source
+
+[Government of Canada](https://open.canada.ca/data/en/dataset/e80851b8-de68-43bd-a85c-c72e1b3a3890) - Official forecast and prediction of employment opportunity in various industries across Canada
 
 ## Contributors
 

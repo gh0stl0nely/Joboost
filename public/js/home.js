@@ -8,6 +8,13 @@ $(document).ready(function () {
     indicators: true
   });
 
+  $("#prev").click(()=>{
+    $(".carousel").carousel("previous", 1);
+  });
+  $("#next").click(()=>{
+    $(".carousel").carousel("next", 1);
+  });
+
   $("#searchBtn").on("click", function (e) {
     e.preventDefault();
     // Use this in localStorage to store the keyword for later use
