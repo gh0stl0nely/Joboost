@@ -67,13 +67,6 @@ module.exports = function (app, uploadOption) {
         };
     });
 
-    // For downloading. This DOES NOT check resume ID yet.
-    // app.get('/api/download', function (req, res) {
-    //     // Find the filePath first
-    //     const file = `${__dirname}/resume/resumetest.txt`;
-    //     res.download(file);
-    // });
-
     // Create New Post
     app.post("/api/newpost", async function (req, res) {
         const data = req.body;
