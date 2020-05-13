@@ -19,30 +19,32 @@
             <a href="/login" class="brand-logo" id="logo"><img src="../images/Logo.jpeg" width="80" /></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
+                <li><a href="#about">About Us</a></li>
+                <li><a href="/login">Employer Sign In</a></li>
+                <li><a href="/data">Industry Data</a></li>
                 <li><a href="/">Home</a></li>
-                <li><a href="/">Employer Sign In</a></li>
-                <li><a href="/">Industry Data</a></li>
             </ul>
         </div>
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="/login">Employer Sign In</a></li>
+        <li><a href="/data">Industry Data</a></li>
         <li><a href="/">Home</a></li>
-        <li><a href="/">Employer Sign In</a></li>
-        <li><a href="/">Industry Data</a></li>
     </ul>
 
     <div class="container" style="width: 100%">
         <div class="row" style="margin: 0px;">
             <div class="col s12 m3 purple lighten-5 flex" id="searchCol">
                 <div class="row center searchRow">
-                    <h5>Search</h5>
+                    <h5>New Search</h5>
                 </div>
                 <form>
                     <div class="row searchRow">
                         <div class="input-field col s12">
-                            <input id="jobTitleSearch" type="search" class="validate">
-                            <label for="jobTitleSearch">Job Title</label>
+                            <input id="keywordSearch" type="search" class="validate">
+                            <label for="keywordSearch">Keyword (Required)</label>
                         </div>
                     </div>
                     <div class="row searchRow">
@@ -53,8 +55,24 @@
                     </div>
                     <div class="row searchRow">
                         <div class="input-field col s12">
-                            <input id="citySearch" type="search" class="validate">
-                            <label for="citySearch">City</label>
+                            <select id="industrySearch">
+                                <option value="" disabled selected>Choose your option</option>
+                                {{#each industry_list_data}}
+                                <option value="{{Industry}}">{{Industry}}</option>
+                                {{/each}}
+                            </select>
+                            <label>Industry</label>
+                        </div>
+                    </div>
+                    <div class="row searchRow">
+                        <div class="input-field col s12">
+                            <select id="citySearch">
+                                <option value="" disabled selected>Choose your option</option>
+                                {{#each city_data}}
+                                <option value="{{city}}">{{city}}</option>
+                                {{/each}}
+                            </select>
+                            <label>City</label>
                         </div>
                     </div>
                     <div class="row center">
@@ -71,17 +89,17 @@
             <div class="col s12 m6">
                 <div class="row">
                     <div class="col s4 center" style="padding: 0px">
-                        <img src="{{mainPost.Employer.dataValues.logo_path}}" style="padding-top: 20px;" />
+                        <img class="responsive-img" src="{{logoPath}}" style="padding: 20px 20px 20px 20px;" />
                     </div>
                     <div class="col s8" style="padding: 0px">
-                        <p id="currentTitle">Title: {{mainPost.dataValues.title}}</p>
-                        <p style="padding-right: 20px;">Company name: {{mainPost.Employer.dataValues.company}}</p>
-                        <p style="padding-right: 20px;">City: {{mainPost.dataValues.city}}</p>
+                        <p id="currentTitle">"{{mainPost.dataValues.title}}"</p>
+                        <p style="padding-right: 20px;"><strong>Company: </strong> {{mainPost.Employer.dataValues.company}}</p>
+                        <p style="padding-right: 20px;">{{mainPost.dataValues.city}}, {{mainPost.dataValues.province}}</p>
                     </div>
                 </div>
                 <div id="details">
                     <div class="row">
-                      <p>Publish date: {{mainPost.dataValues.createdAt}}</p>  
+                        <p><strong>Published date:</strong> {{mainPost.dataValues.createdAt}}</p>
                     </div>
                     <div class="row">
                         <p class="heading">Description</p>
@@ -94,29 +112,41 @@
                         <p class="heading">Phone: {{mainPost.dataValues.contactNumber}}</p>
                     </div>
                 </div>
-                <div class="row center" id="applyDiv">
-                    <div class="col s12 input-field detailRow">
-                        <i class="material-icons prefix">account_circle</i>
-                        <input id="fullName" type="text" class="validate" required>
-                        <label for="fullName">Full Name</label>
-                    </div>
-                    <div class="col s12 detailRow">
-                        <div class="file-field input-field">
-                            <div class="btn-small waves-effect waves-purple purple">
-                                <i class="material-icons right">file_upload</i><span>Resume</span>
-                                <input type="file" required>
-                            </div>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text" required>
+                <form class="mx-10 md:mx-0" action="/api/apply" method="post" enctype="multipart/form-data">
+                    <div class="row center">
+
+                        <div class="col s12 input-field detailRow">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="fullName" name="fullName" type="text" class="validate" required />
+                            <label for="fullName">Full Name</label>
+                        </div>
+
+                        <div class="col s12 detailRow">
+                            <div class="file-field input-field">
+                                <div class="btn-small waves-effect waves-purple purple">
+                                    <i class="material-icons right">file_upload</i><span>Resume</span>
+                                    <input type="file" name="resume" required />
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text" name="filePath" required>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col s12 detailRow">
-                        <button id="{{mainPost.dataValues.id}}"
-                            class="btn waves-effect waves-purple purple applyBtn">Apply</button>
-                    </div>
 
-                </div>
+                        <div style="display:none" class="col s12 input-field detailRow">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input name="postID" value="{{mainPost.dataValues.id}}" type="text" class="validate"
+                                required />
+                        </div>
+
+                        <div class="col s12 detailRow">
+                            <button class="btn waves-effect waves-purple purple" id="applyBtn" name="action"
+                                type="submit">Apply</button>
+                        </div>
+
+                    </div>
+                </form>
+
             </div>
             {{else}}
             <div class="container">
@@ -137,31 +167,19 @@
                 </div>
                 <!-- Remaining Data -->
                 {{#each data}}
-                {{!-- <div class="row">
-                    <div class="card horizontal">
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <p>Title: {{this.dataValues.title}} </p>
-                                <p>Company: {{this.dataValues.Employer.dataValues.company}}</p>
-                                <p>{{this.dataValues.city}}</p>
-                            </div>
-                            <div class="card-action">
-                                <a data-postID="{{this.dataValues.id}}" class="nextPost">Go to the post</a>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
                 <div class="row">
                     <div class="card">
                         <div class="card-content">
-                          <span class="card-title" style="word-wrap: break-word;">Title: {{this.dataValues.title}} </span>
-                          <p>Company: {{this.dataValues.Employer.dataValues.company}}</p>
-                          <p>{{this.dataValues.city}}</p>
+                            <span class="card-title" style="word-wrap: break-word;">"{{this.dataValues.title}}"
+                            </span>
+                            <p><span style="text-decoration: underline;">Company: </span> {{this.dataValues.Employer.dataValues.company}}</p>
+                            <p><strong>Industry: </strong> {{this.dataValues.industry}}</p>
+                            <p>{{this.dataValues.city}}, {{this.dataValues.province}}</p>
                         </div>
                         <div class="card-action">
-                          <a data-postID="{{this.dataValues.id}}" class="nextPost">Go to the post</a>
+                            <button data-postID="{{this.dataValues.id}}" data-company="{{this.dataValues.Employer.dataValues.company}}" data-industry="{{this.dataValues.industry}}" data-city="{{this.dataValues.city}}" class="nextPost">Go to the post</button>
                         </div>
-                      </div>
+                    </div>
                 </div>
                 {{/each}}
             </div>

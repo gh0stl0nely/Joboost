@@ -1,6 +1,12 @@
 $(document).ready(function () {
     $('.sidenav').sidenav();
 
+    $(".viewBtn").on('click', function (e){
+        e.preventDefault();
+        const resumePath = $(this).attr("data-resumepath");
+        window.open('/resumes/' + resumePath)
+    })
+
     $(".deleteBtn").on('click', function (e) {
         e.preventDefault();
         const applicationID = $(this).attr("data-appid");

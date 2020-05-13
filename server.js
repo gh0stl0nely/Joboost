@@ -23,16 +23,37 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Configure multer for file upload
 var multer  = require('multer'); // Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files
-const storage = multer.diskStorage({
-  destination : './public/uploaded_logo/',
+
+const logoStorage = multer.diskStorage({
+  destination : './public/company_logo/',
   filename: function(req,file,next){
     next(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
   },
 });
 
-const upload = multer({
-  storage: storage
+const resumeStorage = multer.diskStorage({
+    destination : './public/resumes/',
+    filename: function(req,file,next){
+      next(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    },
+  })
+
+// For storing company logo
+const uploadLogo = multer({
+  storage: logoStorage
 });
+
+// For storing resume 
+const uploadResume = multer({
+  storage: resumeStorage
+})
+
+
+
+const uploadOption = {
+  uploadLogo,
+  uploadResume
+}
 
 // Set up view engine
 app.engine('handlebars', hbs());
@@ -55,7 +76,7 @@ app.use(passport.session());
 // Routes
 // =============================================================
 require("./routes/html-routes.js")(app);
-require("./routes/api-routes.js")(app,upload);
+require("./routes/api-routes.js")(app,uploadOption);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

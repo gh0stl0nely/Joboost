@@ -23,12 +23,12 @@
     <header>
         <nav>
             <div class="nav-wrapper">
-                <a href="/login" class="brand-logo" id="logo"><img src="../logo/Logo.jpeg" width="80" /></a>
+                <a href="/login" class="brand-logo" id="logo"><img src="../images/Logo.jpeg" width="80" /></a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i
                         class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="/createpost">Create Posts</a></li>
-                    <li><a href="/">Update Profile</a></li>
+                    <li><a href="/getProfile">Edit Profile</a></li>
                     <li><a href="/logout">Log Out</a></li>
                     <li><a href="/">Home</a></li>
                 </ul>
@@ -37,7 +37,7 @@
 
         <ul class="sidenav" id="mobile-demo">
             <li><a href="/createpost">Create Posts</a></li>
-            <li><a href="/">Update Profile</a></li>
+            <li><a href="/getProfile">Edit Profile</a></li>
             <li><a href="/logout">Log Out</a></li>
             <li><a href="/">Home</a></li>
         </ul>
@@ -47,32 +47,35 @@
         <div class="col s2"></div>
         <form class="col s8">
             <div class="row center">
-                <h3>Update Your Profile</h3>
+                <h3>Your Company's Profile</h3>
             </div>
             <div class="row">
                 <div class="col s3 center">
-                    <img id="profilePic"class="responsive-img circle" src="../images/Logo.jpeg">
+                    <img id="profilePic" class="responsive-img circle" src="../images/heart.png">
                 </div>
-                <div class="col s6">
-                    <h3 id="companyName">Company Name</h3>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="password" type="password" class="validate">
-                            <label for="password">New Password</label>
-                          </div>
-                    </div>
-                    <div class="row">
-                        <div class="file-field input-field">
-                            <div class="btn-small waves-effect waves-purple purple">
-                                <i class="material-icons right">file_upload</i><span>Logo</span>
-                                <input type="file">
+                <form>
+                    <div class="col s6">
+                        <h3 id="companyName"></h3>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="newPassword" type="password" class="validate">
+                                <label for="newPassword">New Password</label>
                             </div>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text">
+                        </div>
+                        <div class="row">
+                            <div class="file-field input-field">
+                                <div class="btn-small waves-effect waves-purple purple">
+                                    <i class="material-icons right">file_upload</i><span>New Logo</span>
+                                    <input type="file" name="newLogo">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
+
             </div>
             <div class="row center">
                 <button class="btn waves-effect waves-purple purple" type="submit" name="action">Submit</button>

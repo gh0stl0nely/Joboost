@@ -6,19 +6,28 @@ const fs = require("fs");
 const readFilePromise = util.promisify(fs.readFile);
 
 
-module.exports = function (app, upload) {
-    // Route for getting search result
-    // app.post('/api/result', (req, res) => {
-    //     const result = req.body;
-    //     console.log(result);
-    //     res.render('search_result');
-    // });
+module.exports = function (app, uploadOption) {
+
+    // Route for storing job seeker application given the Post
+    app.post("/api/apply", uploadOption.uploadResume.single("resume"), async (req,res) => {
+        const resumePath = req.file.filename; // This is resume file path
+        console.log(resumePath);
+        console.log(req.body)
+        console.log(req.file);
+        const response = await db.Application.create({
+            userName: req.body.fullName,
+            resumePath,
+            PostId: req.body.postID
+        });
+
+        res.end();
+
+    });
 
     // When Employer press "Login"  
     app.post("/api/login", passport.authenticate("local"), (req, res) => {
         //If successful then redirect them back to t
         //req.user will exist here. 
-        // console.log("FOUND EM! ID is " + req.user);
         // After this will direct them to to dashboard page
         res.json({
             "message": "Successfully login!"
@@ -26,7 +35,7 @@ module.exports = function (app, upload) {
     });
 
     // When Employer press "Signup"
-    app.post("/api/register", upload.single('logo'), async (req, res) => {
+    app.post("/api/register", uploadOption.uploadLogo.single('logo'), async (req, res) => {
         var logoPath = req.file ? req.file.filename : null;
 
         const response = await db.Employer.create({
@@ -56,12 +65,6 @@ module.exports = function (app, upload) {
                 });
             };
         };
-    });
-
-    // For downloading. This DOES NOT check resume ID yet.
-    app.get('/api/download', function (req, res) {
-        const file = `${__dirname}/resume/resumetest.txt`;
-        res.download(file);
     });
 
     // Create New Post
@@ -128,6 +131,37 @@ module.exports = function (app, upload) {
         } catch (e) {
             throw e
         }
+
+    });
+
+    // Update profile
+    app.post("/api/updateProfile", uploadOption.uploadLogo.single('newLogo'), async (req,res) => {
+        // This should technically deletes the old one in the file (But not done)
+
+        const employer = await db.Employer.findOne({
+            where: {
+                id: req.user// This represent the ID
+            }
+        });
+        const newPassword = req.body.newPassword.trim();
+
+        // If one of the file is null then don't update it!
+        if(!req.file && newPassword == ""){
+            console.log("No update");
+        } else if(!req.file && newPassword != ""){
+            employer.password = newPassword;
+            await employer.save();
+        } else if(req.file && newPassword == ""){
+            employer.logo_path = req.file.filename;
+            await employer.save();
+        } else {
+            employer.logo_path = req.file.filename;
+            employer.password = newPassword;
+            await employer.save();
+        }
+
+        res.redirect("/getProfile");
+   
 
     });
 
