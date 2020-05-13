@@ -16,20 +16,24 @@
 <body>
     <nav>
         <div class="nav-wrapper">
-            <a href="/login" class="brand-logo" id="logo"><img src="../logo/Logo.jpeg" width="80" /></a>
+            <a href="/login" class="brand-logo" id="logo"><img src="../images/Logo.jpeg" width="80" /></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="/">Home</a></li>
-                <li><a href="/">Employer Sign In</a></li>
-                <li><a href="/">Industry Data</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="/signup">Sign Up</a></li>
+                <li><a href="/login">My Account</a></li>
+                <li><a href="/data">Industry Data</a></li>
+                <li class="active"><a href="/">Home</a></li>
             </ul>
         </div>
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="/">Home</a></li>
-        <li><a href="/">Employer Sign In</a></li>
-        <li><a href="/">Industry Data</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="/signup">Sign Up</a></li>
+        <li><a href="/login">My Account</a></li>
+        <li><a href="/data">Industry Data</a></li>
+        <li class="active"><a href="/">Home</a></li>
     </ul>
 
     <div class="container" style="width: 100%">
@@ -90,7 +94,7 @@
             </div>
 
             <div class="col s12 m6">
-                <div class="row">
+                <div class="row" id="currentPost">
                     <div class="col s4 center" style="padding: 0px">
                         <img src="https://via.placeholder.com/100" style="padding-top: 20px;" />
                     </div>
@@ -102,8 +106,8 @@
                 </div>
                 <div id="details">
                     <div class="row">
-                        <p>Publish date: </p>  
-                      </div>
+                        <p>Publish date: </p>
+                    </div>
                     <div class="row">
                         <p class="heading">Description</p>
                     </div>
@@ -134,29 +138,30 @@
                     </div>
 
                 </div>
+                <div class="row center" id="thankyouDiv" style="display: none;">
+                    <p>Thank you for submitting your resume<i class="material-icons medium" style="padding: 10px">assignment_turned_in</i></p>
+                    <p>Check out more post<i class="material-icons medium" style="padding: 10px">arrow_forward</i></p>
+                </div>
             </div>
 
             <div class="col s12 m3" id="resultCol">
                 <div class="row center">
-                    <p>Relevent Jobs: <span id="resultCounts"></span> found</p>
-                    <p>Page <span id="currentPage"></span> of <span id="totalPages"></span></p>
-                    <a class="waves-effect waves-purple btn-small purple" id="prevP"><i
-                            class="material-icons">keyboard_arrow_left</i></a>
-                    <a class="waves-effect waves-purple btn-small purple" id="nextP"><i
-                            class="material-icons">keyboard_arrow_right</i></a>
+                    <div class="row center" style="margin-bottom:0px; padding-top: 10px;">
+                        <p>Search results: <strong>45</strong> found</p>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="card">
                         <div class="card-content">
-                          <span class="card-title" style="word-wrap: break-word;">Card Title</span>
-                          <p>I am a very simple card. I am good at containing small bits of information.
-                          I am convenient because I require little markup to use effectively.</p>
+                            <span class="card-title heading" style="word-wrap: break-word;">Title: </span>
+                            <p class="heading">Company: </p>
+                            <p>{{this.dataValues.city}}</p>
                         </div>
-                        <div class="card-action">
-                          <a href="#">This is a link</a>
-                          <a href="#">This is a link</a>
+                        <div class="card-action center">
+                            <button class="waves-effect waves-purple btn purple white-text"
+                                data-postID="{{this.dataValues.id}}" class="nextPost">Go to the post</button>
                         </div>
-                      </div>
+                    </div>
                 </div>
             </div>
         </div>

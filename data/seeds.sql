@@ -1,5 +1,31 @@
-DROP DATABASE IF EXISTS project2_DB;
+USE joboost_DB;
 
-CREATE DATABASE project2_DB;
+INSERT INTO Employers(email,password,company,logo_path,  createdAt, updatedAt) VALUES ('null', 'pass', “Microsoft” ,'none_existence',"2020-05-01 04:07:14", "2020-05-07 02:49:05");
+INSERT INTO Employers(email,password,company,logo_path,  createdAt, updatedAt) VALUES ('null', 'pass', “Scotiabank” ,'none_existence',"2020-05-04 04:03:14", "2020-05-10 02:50:05");
+INSERT INTO Employers(email,password,company,logo_path,  createdAt, updatedAt) VALUES ('null', 'pass', “Google” ,'none_existence',"2020-05-13 04:30:14", "2020-05-13 04:50:05");
 
--- "Remember to set your database congifuration in config/config.json"
+INSERT INTO Posts(title,description,contactEmail,contactNumber, city, province, industry,resumes, EmployerId, createdAt, updatedAt) VALUES ('Software Engineer', 'We are looking for a candidate who is passionate about building high quality reliable Cloud Service features. As an engineer in our team, you’ll be working on changes to one or more services to meet the growing needs of Microsoft first party and second party solutions. In particular, for a given feature you’ll be expected to meet with stakeholders/PM to get the requirements, document the design and review within the team, implement the design, create unit tests on your changes, manage the flighting of the new feature, and implement additional monitoring and metrics as needed for the feature. In short, you will truly own your feature from start to finish.', 'apply@microsoft.com' ,'1234567890',"Vancouver", "British Columbia", "Computer Systems Design and Related Services", "13", "1","2020-05-10 08:07:14", "2020-05-10 03:49:05");
+
+INSERT INTO Posts(title,description,contactEmail,contactNumber, city, province, industry,resumes, EmployerId, createdAt, updatedAt) VALUES ('Full Stack Web Developer', 'Looking for a highly motivated, self-starter with passion for web development to join the Gears of War web team. Candidate will be responsible for implementing new features, problem solving and offering technical solutions. Must have strong interpersonal and communication skills, as the role is on a small and close-knit development team comprised of production, design, engineering and quality assurance.', 'apply@microsoft.com' ,'1234567890',"Vancouver", "British Columbia", "Computer Systems Design and Related Services", "1", "1","2020-05-10 08:10:14", "2020-05-10 08:10:14");
+
+INSERT INTO Posts(title,description,contactEmail,contactNumber, city, province, industry,resumes, EmployerId, createdAt, updatedAt) VALUES ('Principal Software Engineer', 'As a Principal Software Engineer, you will be developing full-stack code and be a key player across all areas of the engineering lifecycle, including eliciting requirements from customers, defining the feature in partnership with UX designers and Product Owners, building the experience by writing the code, testing it and shipping it with quality and on time, and sustaining it through its maturity. The candidate should have strong communication skills, both written and verbal, since working comfortably and effectively with real customers – in-person – is part of our product lifecycle. We also expect the candidate to display a bias for action in implementing new disruptive ideas, show a desire to make our team better, and to learn and adapt quickly.', 'apply@microsoft.com' ,'1234567890',"Vancouver", "British Columbia", "Computer Systems Design and Related Services", "14", "1","2020-05-10 08:12:14", "2020-05-10 08:30:14");
+
+INSERT INTO Posts(title,description,contactEmail,contactNumber, city, province, industry,resumes, EmployerId, createdAt, updatedAt) VALUES ('Fraud Detection Advisor - Part Time Opportunities Available!', 'What will your role be?
+
+Detect and prevent fraudulent activity with respect to credit cards, debit cards, and online accounts by:
+Analyzing alerts by using various fraud detection tools
+Making a decision, based on your analysis, on the most appropriate course of action
+Contacting customers to discuss suspicious activity
+Shift: The shift will be determined and communicated during the interview process. We are committed to providing our employees with a balanced working environment, and your work schedule will be fixed, once assigned; not subject to rotation.
+
+Training: There will be mandatory full-time training for the first 4 weeks of the position for part-time roles (Monday to Friday 8:00am - 4:00pm).', 'applynow@scotiabank.com' ,'0123456789',"North York", "Ontario", "Finance, Insurance, Real Estate and Leasing Services", "9", "2","2020-05-04 08:12:14", "2020-05-11 08:30:14");
+
+INSERT INTO Posts(title,description,contactEmail,contactNumber, city, province, industry,resumes, EmployerId, createdAt, updatedAt) VALUES ('Financial Advisor- Ontario, Canada', 'What you’ll be doing…
+Our Advisors are customer-centric and able to connect with people in a relatable way. As an essential member of the Canadian Banking Branch network, the focus is to provide exceptional service throughout the customer’s journey by:
+Taking a proactive approach to discovering our customer needs, listening to understand what they are asking for
+Educating our customers, providing relevant insights and expert advice
+Building customer’s plans using a holistic approach to help them achieve their goals
+Nurturing strong, long-standing relationships
+Developing, retaining and growing the branch business by delivering against individuals and team sales goals that support a positive customer experience', 'applynow@scotiabank.com' ,'0123456789',"Guelph", "Ontario", "Finance, Insurance, Real Estate and Leasing Services", "21", "2","2020-05-08 08:19:14", "2020-05-09 08:32:14");
+
+INSERT INTO Posts(title,description,contactEmail,contactNumber, city, province, industry,resumes, EmployerId, createdAt, updatedAt) VALUES ('Software Engineer', 'We are looking for engineers who bring fresh ideas from all areas, including information retrieval, distributed computing, large-scale system design, networking and data storage, security, artificial intelligence, natural language processing, UI design and mobile; the list goes on and is growing every day. As a software engineer, you will work on a specific project critical to Google’s needs with opportunities to switch teams and projects as you and our fast-paced business grow and evolve. We need our engineers to be versatile, display leadership qualities and be enthusiastic to take on new problems across the full-stack as we continue to push technology forward.', 'applynow@scotiabank.com' ,'1112345566',"Waterloo", "Ontario", "Computer Systems Design and Related Services", "30", "3","2020-05-10 08:12:14", "2020-05-10 08:30:14");

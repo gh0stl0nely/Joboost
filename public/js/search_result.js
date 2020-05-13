@@ -39,6 +39,14 @@ $(document).ready(function () {
 
   });
 
+    $("#applyBtn").on('click', function(e){
+        e.preventDefault();
+
+        $("#currentPost").css("display", "none");
+        $("#details").css("display", "none");
+        $("#thankyouDiv").css("display", "block");
+    })
+
   $(".nextPost").on("click", function(e){
     e.preventDefault();
     $(".nextPost").prop("disabled", true);
@@ -48,6 +56,7 @@ $(document).ready(function () {
     const company = $(this).attr("data-company");
 
     const url = "/nextPost?postID=" + postID + "&keyWord=" + JSON.parse(localStorage.getItem("keyword")) + "&companyName=" + company + "&city=" + city + "&industry=" + industry;
+
 
     $.get(url).then(() => window.location = url);
   });

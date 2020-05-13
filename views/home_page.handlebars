@@ -21,17 +21,20 @@
             <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="#about">About Us</a></li>
-                <li><a href="/login">Employer Sign In</a></li>
+                <li><a href="/signup">Sign Up</a></li>
+                <li><a href="/login">My Account</a></li>
                 <li><a href="/data">Industry Data</a></li>
-                <li><a href="/">Home</a></li>
+                <li class="active"><a href="/">Home</a></li>
             </ul>
         </div>
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="/login">Employer Sign In</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="/signup">Sign Up</a></li>
+        <li><a href="/login">My Account</a></li>
         <li><a href="/data">Industry Data</a></li>
-        <li><a href="/">Home</a></li>
+        <li class="active"><a href="/">Home</a></li>
     </ul>
 
     <main class="container" style="width: 100%">
@@ -41,10 +44,9 @@
                 <div class="row center searchRow">
                     <p id="titleLine"><img src="../images/heart.png" />More Resources for Covid-19</p>
                     <p id="subtitle">Just one click. We are here to help!</p>
+                    <p id="note">Fill in all fields for a more focused search</p>
                 </div>
-                <form>  
-                    <p>Fill in all fields for a more focused search</p>
-                    <hr>
+                <form>
                     <div class="row searchRow">
                         <div class="input-field col s6">
                             <select id="industrySearch">
@@ -70,7 +72,7 @@
                     </div>
 
                     <div class="row searchRow">
-                        
+
                         <div class="input-field col s6">
                             <select id="citySearch">
                                 <option value="" disabled selected>Choose your option</option>

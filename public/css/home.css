@@ -23,6 +23,16 @@ nav{
     padding: 0px 15px;
 }
 
+#note{
+    padding: 10px;
+    font-weight: bold;
+    color:  rgb(98, 2, 117);
+    margin: 0 auto;
+    width: 50%;
+    border-radius: 10px;
+    background-color: rgba(208, 170, 243, 0.822);
+}
+
 .icon{
     padding-top: 10px;
     font-size: 40px;
