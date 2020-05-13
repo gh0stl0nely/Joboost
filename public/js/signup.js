@@ -1,5 +1,3 @@
-
-
 $(document).ready(function () {
     $('.sidenav').sidenav();
     
@@ -24,49 +22,8 @@ $(document).ready(function () {
             }
         });
     }
-
-
-    let isOpen = false;
-    function responsiveMenu() {
-        if (!isOpen) {
-            $("#close").addClass("hidden");
-            $("#mobileMenu").addClass("hidden");
-            $("#menu").removeClass("hidden");
-        } else {
-            $("#menu").addClass("hidden");
-            $("#close").removeClass("hidden");
-            $("#mobileMenu").removeClass("hidden");
-        }
-    };
-
+  
     chooseLogo();
-    responsiveMenu();
-    $("#menu").click(function () {
-        console.log("open menu");
-        isOpen = true;
-        responsiveMenu();
-    });
-    $("#close").click(function () {
-        console.log("close menu");
-        isOpen = false;
-        responsiveMenu();
-    });
-
-    // $("#dataForm").on("submit", (e) => {
-   
-    //     // e.preventDefault();
-    //     // console.log("Submitted")
-    //     // const data = {
-    //     //     name: $('#name').val(),
-    //     //     email: $('#email').val(),
-    //     //     password: $('#password').val(),
-    //     //     // Missing logo but will figure out later
-    //     // };
-
-    //     // $.post("/api/register", data).then(() => {
-    //     //     window.location = "/login";
-    //     // })
-    // });
 
 });
 
