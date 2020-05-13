@@ -39,13 +39,13 @@ $(document).ready(function () {
 
   });
 
-    $("#applyBtn").on('click', function(e){
-        e.preventDefault();
+  $("#applyBtn").on("click", function(e){
+    e.preventDefault();
 
-        $("#currentPost").css("display", "none");
-        $("#details").css("display", "none");
-        $("#thankyouDiv").css("display", "block");
-    })
+    $("#currentPost").css("display", "none");
+    $("#details").css("display", "none");
+    $("#thankyouDiv").css("display", "block");
+  });
 
   $(".nextPost").on("click", function(e){
     e.preventDefault();
@@ -55,7 +55,7 @@ $(document).ready(function () {
     const city = $(this).attr("data-city");
     const company = $(this).attr("data-company");
 
-    const url = "/nextPost?postID=" + postID + "&keyWord=" + JSON.parse(localStorage.getItem("keyword")) + "&companyName=" + company + "&city=" + city + "&industry=" + industry;
+    const url = "/nextPost?postID=" + postID + "&keyWord=" + JSON.parse(localStorage.getItem("keyword").trim().toLowerCase()) + "&companyName=" + company + "&city=" + city + "&industry=" + industry;
 
 
     $.get(url).then(() => window.location = url);

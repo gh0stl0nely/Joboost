@@ -1,4 +1,4 @@
-USE joboost_DB;
+USE jobsdb;
 
 INSERT INTO Employers(email,password,company,logo_path,  createdAt, updatedAt) VALUES ('null', 'pass', “Microsoft” ,'none_existence',"2020-05-01 04:07:14", "2020-05-07 02:49:05");
 INSERT INTO Employers(email,password,company,logo_path,  createdAt, updatedAt) VALUES ('null', 'pass', “Scotiabank” ,'none_existence',"2020-05-04 04:03:14", "2020-05-10 02:50:05");

@@ -19,21 +19,19 @@
             <a href="/login" class="brand-logo" id="logo"><img src="../images/Logo.jpeg" width="80" /></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="#about">About Us</a></li>
                 <li><a href="/signup">Sign Up</a></li>
                 <li><a href="/login">My Account</a></li>
                 <li><a href="/data">Industry Data</a></li>
-                <li><a href="/">Home</a></li>
+                 <li><a href="/home">Home</a></li>
             </ul>
         </div>
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="#about">About Us</a></li>
         <li><a href="/signup">Sign Up</a></li>
         <li><a href="/login">My Account</a></li>
         <li><a href="/data">Industry Data</a></li>
-        <li><a href="/">Home</a></li>
+         <li><a href="/home">Home</a></li>
     </ul>
 
     <div class="container" style="width: 100%">
@@ -176,16 +174,17 @@
                         <div class="card-content">
                             <span class="card-title" style="word-wrap: break-word;">"{{this.dataValues.title}}"
                             </span>
-                            <p class="heading">Company: </p><span>{{this.dataValues.Employer.dataValues.company}}</span>
-                            <p class="heading">Industry: </p><span>{{this.dataValues.industry}}</span>
-                            <p>{{this.dataValues.city}}, {{this.dataValues.province}}</p>
+                            <span class="heading">Company: </span><span>{{this.dataValues.Employer.dataValues.company}}</span>
+                            <br>
+                            <span class="heading">Industry: </span><span>{{this.dataValues.industry}}</span>
+                            <p style="padding-top: 10px;">{{this.dataValues.city}}, {{this.dataValues.province}}</p>
                         </div>
                         <div class="card-action">
-                            <button class="waves-effect waves-purple btn purple white-text"
+                            <button class="waves-effect waves-purple btn purple white-text nextPost"
                                 data-postID="{{this.dataValues.id}}"
                                 data-company="{{this.dataValues.Employer.dataValues.company}}"
                                 data-industry="{{this.dataValues.industry}}" data-city="{{this.dataValues.city}}"
-                                class="nextPost">Go to the post</button>
+                             >Go to the post</button>
                         </div>
                     </div>
                 </div>
