@@ -2,7 +2,7 @@
 
 As the Covid-19 situation continues to evolve, Joboost is here to support job seekers who are looking for a job or career transition opportunities. Joboost offers the best and effective job posting site to help employers promoting job, sourcing talent and applicant tracking.
 
-Demo -> [Here](https://joboost2020.herokuapp.com/)
+Demo -> [Here](https://joboost.herokuapp.com/)
 
 ## User Story
 ```
