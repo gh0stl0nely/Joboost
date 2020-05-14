@@ -4,8 +4,7 @@
     "password": "0903986011Aa!",
     "database": "jobsdb",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
+    "dialect": "mysql"
   },
   "production": {
     "use_env_variable": "JAWSDB_URL",

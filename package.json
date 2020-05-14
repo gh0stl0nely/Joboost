@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node server.js"
   },
+  "engines": {
+    "node": "12.16.2"
+    },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gh0stl0nely/Project2.git"
