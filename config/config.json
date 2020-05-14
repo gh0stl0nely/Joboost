@@ -1,20 +1,23 @@
 {
   "development": {
-    "username": "root",
-    "password": "Demiwu-0912",
-    "database": "jobsdb",
-    "host": "127.0.0.1",
+    "username": "ozyfe9zyvkn07a50",
+    "password": "gqu6mwzsrg90dvaz",
+    "database": "jsy3nilb8audko2t",
+    "host": "pqxt96p7ysz6rn1f.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": { 
-    "username": "root",
-    "password": "0903986011Aa!",
-    "database": "jobsdb",
-    "host": "127.0.0.1",
+    "username": "ozyfe9zyvkn07a50",
+    "password": "gqu6mwzsrg90dvaz",
+    "database": "jsy3nilb8audko2t",
+    "host": "pqxt96p7ysz6rn1f.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "production": {
-    "use_env_variable": "JAWSDB_URL",
+    "username": "ozyfe9zyvkn07a50",
+    "password": "gqu6mwzsrg90dvaz",
+    "database": "jsy3nilb8audko2t",
+    "host": "pqxt96p7ysz6rn1f.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   }
 }
