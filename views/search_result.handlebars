@@ -19,19 +19,21 @@
             <a href="/login" class="brand-logo" id="logo"><img src="../images/Logo.jpeg" width="80" /></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
+                <li><a href="#about">About Us</a></li>
                 <li><a href="/signup">Sign Up</a></li>
                 <li><a href="/login">My Account</a></li>
                 <li><a href="/data">Industry Data</a></li>
-                 <li><a href="/home">Home</a></li>
+                <li><a href="/">Home</a></li>
             </ul>
         </div>
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
+        <li><a href="#about">About Us</a></li>
         <li><a href="/signup">Sign Up</a></li>
         <li><a href="/login">My Account</a></li>
         <li><a href="/data">Industry Data</a></li>
-         <li><a href="/home">Home</a></li>
+        <li><a href="/">Home</a></li>
     </ul>
 
     <div class="container" style="width: 100%">
@@ -87,7 +89,7 @@
             <!-- Main Post -->
             {{#if isResultFound}}
             <div class="col s12 m6">
-                <div class="row">
+                <div class="row" id="currentPost">
                     <div class="col s4 center" style="padding: 0px">
                         <img class="responsive-img" src="{{logoPath}}" style="padding: 20px 20px 20px 20px;" />
                     </div>
@@ -114,7 +116,8 @@
                         <p class="heading">Phone: {{mainPost.dataValues.contactNumber}}</p>
                     </div>
                 </div>
-                <form class="mx-10 md:mx-0" action="/api/apply" method="post" enctype="multipart/form-data">
+                <iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe"></iframe>
+                <form class="mx-10 md:mx-0" target="dummyframe" action="/api/apply" method="post" enctype="multipart/form-data" id="applyDiv">
                     <div class="row center">
 
                         <div class="col s12 input-field detailRow">
@@ -148,7 +151,10 @@
 
                     </div>
                 </form>
-
+                <div class="row center" id="thankyouDiv" style="display: none;">
+                    <p>Thank you for submitting your resume<i class="material-icons medium" style="padding: 10px">assignment_turned_in</i></p>
+                    <p>Check out more post<i class="material-icons medium" style="padding: 10px">arrow_forward</i></p>
+                </div>
             </div>
             {{else}}
             <div class="container">
@@ -174,17 +180,16 @@
                         <div class="card-content">
                             <span class="card-title" style="word-wrap: break-word;">"{{this.dataValues.title}}"
                             </span>
-                            <span class="heading">Company: </span><span>{{this.dataValues.Employer.dataValues.company}}</span>
-                            <br>
-                            <span class="heading">Industry: </span><span>{{this.dataValues.industry}}</span>
-                            <p style="padding-top: 10px;">{{this.dataValues.city}}, {{this.dataValues.province}}</p>
+                            <p class="heading">Company: </p><span>{{this.dataValues.Employer.dataValues.company}}</span>
+                            <p class="heading">Industry: </p><span>{{this.dataValues.industry}}</span>
+                            <p>{{this.dataValues.city}}, {{this.dataValues.province}}</p>
                         </div>
                         <div class="card-action">
                             <button class="waves-effect waves-purple btn purple white-text nextPost"
                                 data-postID="{{this.dataValues.id}}"
                                 data-company="{{this.dataValues.Employer.dataValues.company}}"
                                 data-industry="{{this.dataValues.industry}}" data-city="{{this.dataValues.city}}"
-                             >Go to the post</button>
+                                >Go to the post</button>
                         </div>
                     </div>
                 </div>

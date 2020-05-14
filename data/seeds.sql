@@ -1,8 +1,8 @@
 USE jobsdb;
 
-INSERT INTO Employers(email,password,company,logo_path,  createdAt, updatedAt) VALUES ('null', 'pass', “Microsoft” ,'none_existence',"2020-05-01 04:07:14", "2020-05-07 02:49:05");
-INSERT INTO Employers(email,password,company,logo_path,  createdAt, updatedAt) VALUES ('null', 'pass', “Scotiabank” ,'none_existence',"2020-05-04 04:03:14", "2020-05-10 02:50:05");
-INSERT INTO Employers(email,password,company,logo_path,  createdAt, updatedAt) VALUES ('null', 'pass', “Google” ,'none_existence',"2020-05-13 04:30:14", "2020-05-13 04:50:05");
+INSERT INTO Employers(email,password,company,logo_path,  createdAt, updatedAt) VALUES ('microsoft@email.com', 'pass', "Microsoft" ,'none_existence',"2020-05-01 04:07:14", "2020-05-07 02:49:05");
+INSERT INTO Employers(email,password,company,logo_path,  createdAt, updatedAt) VALUES ('scotiabank@email.com', 'pass', "Scotiabank" ,'none_existence',"2020-05-04 04:03:14", "2020-05-10 02:50:05");
+INSERT INTO Employers(email,password,company,logo_path,  createdAt, updatedAt) VALUES ('google@email.com', 'pass', "Google" ,'none_existence',"2020-05-13 04:30:14", "2020-05-13 04:50:05");
 
 INSERT INTO Posts(title,description,contactEmail,contactNumber, city, province, industry,resumes, EmployerId, createdAt, updatedAt) VALUES ('Software Engineer', 'We are looking for a candidate who is passionate about building high quality reliable Cloud Service features. As an engineer in our team, you’ll be working on changes to one or more services to meet the growing needs of Microsoft first party and second party solutions. In particular, for a given feature you’ll be expected to meet with stakeholders/PM to get the requirements, document the design and review within the team, implement the design, create unit tests on your changes, manage the flighting of the new feature, and implement additional monitoring and metrics as needed for the feature. In short, you will truly own your feature from start to finish.', 'apply@microsoft.com' ,'1234567890',"Vancouver", "British Columbia", "Computer Systems Design and Related Services", "13", "1","2020-05-10 08:07:14", "2020-05-10 03:49:05");
 
